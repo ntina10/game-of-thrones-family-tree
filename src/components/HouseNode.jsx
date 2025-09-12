@@ -1,14 +1,12 @@
 import React from 'react';
-// import { Handle, Position } from 'reactflow';
-// import './HouseNode.css';
+import './HouseNode.css';
 
 function HouseNode({data}) {
+    const name = data.label.toUpperCase();
     return (
         <div className='house-node'>
             <img src={data.image} alt={data.label} />
-            <h2>
-            {data.label}
-            </h2>
+            <h2> {name} </h2>
         </div>
     );
 }
