@@ -1,0 +1,8 @@
+[
+  { "id": "e1-2", "source": "1", "target": "2", "label": "Married", "sourceHandle": "partner" },
+  { "id": "e1-3", "source": "1", "sourceHandle": "parent", "target": "3", "targetHandle": "child" },
+  { "id": "e1-4", "source": "1", "sourceHandle": "parent", "target": "4", "targetHandle": "child" },
+  { "id": "e1-5", "source": "1", "sourceHandle": "parent", "target": "5", "targetHandle": "child", "type": "smoothstep"  },
+  { "id": "e3-5", "source": "3", "sourceHandle": "partner", "target": "5", "targetHandle": "partner", "type": "smart" }
+  
+]

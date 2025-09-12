@@ -1,0 +1,114 @@
+.character-node {
+    background: #f0f0f0;
+    border-radius: 8px;
+    border: 2px solid #555;
+    padding: 10px;
+    text-align: center;
+    width: 170px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a container to position the tag relative to */
+.character-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.character-image {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #dddddd;
+}
+
+.character-name {
+    background: white;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 2px solid #555;
+    padding: 8px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: #333;
+}
+
+/* --- House Specific Colors --- */
+
+/* By default, the border is #555 as defined in .character-node */
+
+.character-node.Stark {
+    border-color: #a8a8a8;
+    /* Stark Grey */
+    background: #e8e8e8;
+}
+
+.character-node.Lannister {
+    border-color: #b8860b;
+    /* Lannister Gold */
+    background: #fff5e1;
+}
+
+.character-node.Targaryen {
+    border-color: #a30000;
+    /* Targaryen Red */
+    background: #fadde1;
+}
+
+.character-node.Baratheon {
+    border-color: #f0c400;
+    /* Baratheon Gold/Yellow */
+    background: #fff9d9;
+}
+
+.character-node.NightWatch {
+    border-color: #333;
+    /* Night's Watch Black */
+    background: #ddd;
+}
+
+
+/* Add a container to position the tag relative to */
+.character-image-container {
+    position: relative;
+    display: inline-block;
+    /* Helps contain the absolute element */
+}
+
+/* Base style for all tags */
+.status-tag {
+    position: absolute;
+    bottom: 10px;
+    /* Position from the bottom of the image */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Fine-tune the centering */
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Tag Specific Colors --- */
+.status-tag.dead {
+    background-color: rgba(200, 50, 50, 1);
+    /* Red */
+    border: 1px solid #ff7272;
+}
+
+.status-tag.missing {
+    background-color: rgba(230, 170, 0, 1);
+    /* Yellow */
+    border: 1px solid #ffd700;
+}
+
+.status-tag.info {
+    background-color: rgba(70, 130, 180, 1);
+    /* Steel Blue */
+    border: 1px solid #87cefa;
+}

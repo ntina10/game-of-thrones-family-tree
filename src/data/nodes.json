@@ -1,0 +1,79 @@
+[
+  {
+    "id": "1",
+    "type": "character",
+    "position": { "x": 250, "y": 5 },
+    "data": { 
+      "name": "Eddard (Ned) Stark",
+      "image": "/characters/ned-stark.png",
+      "house": "Stark",
+      "states": [
+        { 
+          "episode": 1,
+          "location": "Winterfell", 
+          "title": "Lord of Winterfell" 
+        },
+        { 
+          "episode": 2, 
+          "location": "King's Landing",
+          "title": "Hand of the King"
+        },
+        { 
+          "episode": 9, 
+          "status": "Deceased"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "type": "character",
+    "position": { "x": 650, "y": 5 },
+    "data": { 
+      "name": "Catelyn (Cat) Tully",
+      "image": "/characters/catelyn-stark.png",
+      "house": "Tully"
+    }
+  },
+  {
+    "id": "3",
+    "type": "character",
+    "position": { "x": 250, "y": 350},
+    "data": { 
+      "name": "Jon Snow",
+      "image": "/characters/jon-snow.png",
+      "house": "Stark",
+      "states": [
+        { "episode": 1 },
+        { 
+          "episode": 2, 
+          "tag": { "text": "MISSING", "type": "missing" } 
+        },
+        {
+          "episode": 8,
+          "tag": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "4",
+    "type": "character",
+    "position": { "x": 550, "y": 350},
+    "data": { 
+      "name": "Bran Stark",
+      "image": "/characters/bran-stark.png",
+      "house": "Stark"
+    }
+  },
+  {
+    "id": "5",
+    "type": "character",
+    "position": { "x": 850, "y": 350},
+    "data": { 
+      "name": "Sansa Stark",
+      "image": "/characters/sansa-stark.png",
+      "house": "Stark"
+    }
+  }
+]
