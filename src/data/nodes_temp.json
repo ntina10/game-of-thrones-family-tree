@@ -1,131 +1,633 @@
 [
-  { "id": "house_lannister", "type": "house", "position": { "x": 0, "y": -500 }, "data": { "label": "House Lannister", "image": "/banners/house-lannister.png", "states": [
-        { "episode": 1 }
-    ] }},
-  { "id": "house_baratheon", "type": "house", "position": { "x": 800, "y": -200 }, "data": { "label": "House Baratheon", "image": "/banners/house-baratheon.png", "states": [
-        { "episode": 2 }
-    ] }},
-  { "id": "house_stark", "type": "house", "position": { "x": 1600, "y": -200 }, "data": { "label": "House Stark", "image": "/banners/house-stark.png", "states": [
-        { "episode": 1 }
-    ] }},
-  { "id": "house_arryn", "type": "house", "position": { "x": 2500, "y": -200 }, "data": { "label": "House Arryn", "image": "/banners/house-arryn.png", "states": [
-        { "episode": 1 }
-    ] }},
-  { "id": "house_targaryen", "type": "house", "position": { "x": 3100, "y": -200 }, "data": { "label": "House Targaryen", "image": "/banners/house-targaryen.png", "states": [
-        { "episode": 1 }
-    ] }},
-  
-  { "id": "tywin_lannister", "type": "character", "position": { "x": 0, "y": -100 }, "data": { "name": "Tywin Lannister", "image": "/characters/tywin-lannister.png", "house": "Lannister", "states": [
-        { "episode": 3 }
-    ] }},
-  { "id": "tyrion_lannister", "type": "character", "position": { "x": -200, "y": 200 }, "data": { "name": "Tyrion Lannister", "image": "/characters/tyrion-lannister.png", "house": "Lannister", "states": [
+  {
+    "id": "house_lannister",
+    "type": "house",
+    "position": { "x": 200, "y": -500 },
+    "data": {
+      "label": "House Lannister",
+      "image": "/banners/house-lannister.png",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "house_baratheon",
+    "type": "house",
+    "position": { "x": 800, "y": -200 },
+    "data": {
+      "label": "House Baratheon",
+      "image": "/banners/house-baratheon.png",
+      "states": [{ "episode": 2 }]
+    }
+  },
+  {
+    "id": "house_stark",
+    "type": "house",
+    "position": { "x": 1600, "y": -200 },
+    "data": {
+      "label": "House Stark",
+      "image": "/banners/house-stark.png",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "house_arryn",
+    "type": "house",
+    "position": { "x": 2500, "y": -200 },
+    "data": {
+      "label": "House Arryn",
+      "image": "/banners/house-arryn.png",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "house_targaryen",
+    "type": "house",
+    "position": { "x": 3100, "y": -200 },
+    "data": {
+      "label": "House Targaryen",
+      "image": "/banners/house-targaryen.png",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "house_tully",
+    "type": "house",
+    "position": { "x": 2000, "y": -200 },
+    "data": {
+      "label": "House Tully",
+      "image": "/banners/house-tully.png",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "house_greyjoy",
+    "type": "house",
+    "position": { "x": -900, "y": -200 },
+    "data": {
+      "label": "House Greyjoy",
+      "image": "/banners/house-greyjoy.png",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "house_clegane",
+    "type": "house",
+    "position": { "x": -500, "y": -200 },
+    "data": {
+      "label": "House Clegane",
+      "image": "/banners/house-clegane.png",
+      "states": [{ "episode": 3 }]
+    }
+  },
+
+  {
+    "id": "tywin_lannister",
+    "type": "character",
+    "position": { "x": 200, "y": -100 },
+    "data": {
+      "name": "Tywin Lannister",
+      "image": "/characters/tywin-lannister.png",
+      "house": "Lannister",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "tyrion_lannister",
+    "type": "character",
+    "position": { "x": 0, "y": 200 },
+    "data": {
+      "name": "Tyrion Lannister",
+      "image": "/characters/tyrion-lannister.png",
+      "house": "Lannister",
+      "states": [
         { "episode": 1 },
         { "episode": 10, "title": "Hand of the King" }
-    ] }},
-  { "id": "jaime_lannister", "type": "character", "position": { "x": 0, "y": 200 }, "data": { "name": "Jaime Lannister", "image": "/characters/jaime-lannister.png", "house": "Lannister", "states": [
+      ]
+    }
+  },
+  {
+    "id": "jaime_lannister",
+    "type": "character",
+    "position": { "x": 200, "y": 200 },
+    "data": {
+      "name": "Jaime Lannister",
+      "image": "/characters/jaime-lannister.png",
+      "house": "Lannister",
+      "states": [
         { "episode": 1 },
-        { 
-          "episode": 3, 
-          "tag": { "text": "KingSlayer", "type": "info" } 
+        {
+          "episode": 3,
+          "tag": { "text": "KingSlayer", "type": "info" }
         },
-        { "episode": 8, "tag": { "text": "Commander CityWatch", "type": "info" } }
-    ] }},
-  { "id": "cersei_lannister", "type": "character", "position": { "x": 200, "y": 200 }, "data": { "name": "Cersei Lannister", "image": "/characters/cersei-lannister.png", "house": "Lannister", "states": [
-        { "episode": 1 },
-        { "episode": 7, "title": "Evil" }
-    ] }},
+        {
+          "episode": 8,
+          "tag": { "text": "Commander CityWatch", "type": "info" }
+        }
+      ]
+    }
+  },
+  {
+    "id": "cersei_lannister",
+    "type": "character",
+    "position": { "x": 400, "y": 200 },
+    "data": {
+      "name": "Cersei Lannister",
+      "image": "/characters/cersei-lannister.png",
+      "house": "Lannister",
+      "states": [{ "episode": 1 }, { "episode": 7, "title": "Evil" }]
+    }
+  },
 
-  { "id": "robert_baratheon", "type": "character", "position": { "x": 800, "y": 200 }, "data": { "name": "Robert Baratheon", "image": "/characters/robert-baratheon.png", "house": "Baratheon", "states": [
+  {
+    "id": "robert_baratheon",
+    "type": "character",
+    "position": { "x": 700, "y": 200 },
+    "data": {
+      "name": "Robert Baratheon",
+      "image": "/characters/robert-baratheon.png",
+      "house": "Baratheon",
+      "states": [
         { "episode": 1, "title": "King" },
         { "episode": 7, "tag": { "text": "DEAD", "type": "dead" } },
-        { "episode": 8, "title": null}
-    ] }},
-  { "id": "joffrey_baratheon", "type": "character", "position": { "x": 200, "y": 500 }, "data": { "name": "Joffrey Baratheon", "image": "/characters/joffrey-baratheon.png", "house": "Baratheon", "states": [
+        { "episode": 8, "title": null }
+      ]
+    }
+  },
+  {
+    "id": "joffrey_baratheon",
+    "type": "character",
+    "position": { "x": 400, "y": 500 },
+    "data": {
+      "name": "Joffrey Baratheon",
+      "image": "/characters/joffrey-baratheon.png",
+      "house": "Baratheon",
+      "states": [
         { "episode": 1 },
         { "episode": 8, "title": "King" },
         { "episode": 9, "title": "Evil" }
-    ] }},
-  { "id": "the_hound", "type": "character", "position": { "x": -500, "y": 200 }, "data": { "name": "Sandor (The Hound) Clegane", "image": "/characters/sandor-clegane.png", "house": "Lannister", "states": [
-        { "episode": 1 }
-    ] }},
+      ]
+    }
+  },
+  {
+    "id": "the_hound",
+    "type": "character",
+    "position": { "x": -500, "y": 200 },
+    "data": {
+      "name": "Sandor (The Hound) Clegane",
+      "image": "/characters/sandor-clegane.png",
+      "house": "Lannister",
+      "states": [{ "episode": 1 }]
+    }
+  },
 
-  { "id": "lyanna_stark", "type": "character", "position": { "x": 1200, "y": 200 }, "data": { "name": "Lyanna Stark", "image": "/characters/lyanna-stark.png", "house": "Stark", "states": [
-        { "episode": 1, "tag": { "text": "DEAD", "type": "dead" }}
-    ] }},
-  { "id": "benjen_stark", "type": "character", "position": { "x": 1400, "y": 200 }, "data": { "name": "Benjen Stark", "image": "/characters/benjen-stark.png", "house": "Stark", "states": [
-        { "episode": 1,
-          "tag": { "text": "Night's Watch", "type": "info" } 
-        },
-        { 
-          "episode": 7, 
-          "tag": { "text": "MISSING", "type": "missing" } 
+  {
+    "id": "lyanna_stark",
+    "type": "character",
+    "position": { "x": 1200, "y": 200 },
+    "data": {
+      "name": "Lyanna Stark",
+      "image": "/characters/lyanna-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 1, "tag": { "text": "DEAD", "type": "dead" } }]
+    }
+  },
+  {
+    "id": "benjen_stark",
+    "type": "character",
+    "position": { "x": 1400, "y": 200 },
+    "data": {
+      "name": "Benjen Stark",
+      "image": "/characters/benjen-stark.png",
+      "house": "Stark",
+      "states": [
+        { "episode": 1, "tag": { "text": "Night's Watch", "type": "info" } },
+        {
+          "episode": 7,
+          "tag": { "text": "MISSING", "type": "missing" }
         }
-    ] }},
-  { "id": "catelyn_tully", "type": "character", "position": { "x": 1900, "y": 200 }, "data": { "name": "Catelyn Tully", "image": "/characters/catelyn-tully.png", "house": "Tully", "states": [{ "episode": 1 }] }},
-  { "id": "ned_stark",  "type": "character", "position": { "x": 1600, "y": 200 }, "data": { "name": "Eddard (Ned) Stark", "image": "/characters/ned-stark.png", "house": "Stark", "states": [
+      ]
+    }
+  },
+  {
+    "id": "catelyn_tully",
+    "type": "character",
+    "position": { "x": 1900, "y": 200 },
+    "data": {
+      "name": "Catelyn Tully",
+      "image": "/characters/catelyn-tully.png",
+      "house": "Tully",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "ned_stark",
+    "type": "character",
+    "position": { "x": 1600, "y": 200 },
+    "data": {
+      "name": "Eddard (Ned) Stark",
+      "image": "/characters/ned-stark.png",
+      "house": "Stark",
+      "states": [
         { "episode": 1 },
         { "episode": 3, "title": "Hand of the King" },
         { "episode": 5, "title": null },
         { "episode": 6, "title": "Hand of the King" },
         { "episode": 7, "title": null },
         { "episode": 9, "tag": { "text": "DEAD", "type": "dead" } }
-    ] }},
-  { "id": "jon_snow", "type": "character", "position": { "x": 1200, "y": 500 }, "data": { "name": "Jon Snow", "image": "/characters/jon-snow.png", "house": "Stark", "states": [
+      ]
+    }
+  },
+  {
+    "id": "jon_snow",
+    "type": "character",
+    "position": { "x": 1200, "y": 500 },
+    "data": {
+      "name": "Jon Snow",
+      "image": "/characters/jon-snow.png",
+      "house": "Stark",
+      "states": [
         { "episode": 1 },
-        { 
-          "episode": 2, 
-          "tag": { "text": "MISSING", "type": "missing" } 
+        {
+          "episode": 2,
+          "tag": { "text": "MISSING", "type": "missing" }
         },
-        { 
-          "episode": 7, 
-          "tag": { "text": "Night's Watch", "type": "info" } 
+        {
+          "episode": 7,
+          "tag": { "text": "Night's Watch", "type": "info" }
         }
-    ] }},
-  { "id": "robb_stark", "type": "character", "position": { "x": 1400, "y": 500 }, "data": { "name": "Robb Stark", "image": "/characters/robb-stark.png", "house": "Stark", "states": [{ "episode": 1 }] }},
-  { "id": "sansa_stark", "type": "character", "position": { "x": 1600, "y": 500 }, "data": { "name": "Sansa Stark", "image": "/characters/sansa-stark.png", "house": "Stark", "states": [{ "episode": 1 }] }},
-  { "id": "arya_stark", "type": "character", "position": { "x": 1800, "y": 500 }, "data": { "name": "Arya Stark", "image": "/characters/arya-stark.png", "house": "Stark", "states": [{ "episode": 1 }] }},
-  { "id": "bran_stark", "type": "character", "position": { "x": 2000, "y": 500 }, "data": { "name": "Bran Stark", "image": "/characters/bran-stark.png", "house": "Stark", "states": [
-        { "episode": 1, "status": "Unknown" }
-    ] }},
-  { "id": "rickon_stark", "type": "character", "position": { "x": 2200, "y": 500 }, "data": { "name": "Rickon Stark", "image": "/characters/rickon-stark.png", "house": "Stark", "states": [{ "episode": 2 }] }},
-  { "id": "ghost", "type": "character", "position": { "x": 1200, "y": 800 }, "data": { "name": "Ghost", "image": "/characters/ghost.png", "house": "Stark", "states": [
-        { "episode": 4 }
-    ] }},
-  { "id": "lady", "type": "character", "position": { "x": 1600, "y": 800 }, "data": { "name": "Lady", "image": "/characters/lady.png", "house": "Stark", "states": [
-        { "episode": 2, "tag": { "text": "DEAD", "type": "dead" }}
-    ] }},
-  { "id": "nymeria", "type": "character", "position": { "x": 1800, "y": 800 }, "data": { "name": "Nymeria", "image": "/characters/nymeria.png", "house": "Stark", "states": [
-        { "episode": 2, "tag": { "text": "MISSING", "type": "missing" }}
-    ] }},
-  { "id": "summer", "type": "character", "position": { "x": 2000, "y": 800 }, "data": { "name": "Summer", "image": "/characters/summer.png", "house": "Stark", "states": [
-        { "episode": 2 }
-    ] }},
-  { "id": "grey_wind", "type": "character", "position": { "x": 1400, "y": 800 }, "data": { "name": "Grey Wind", "image": "/characters/greywind.png", "house": "Stark", "states": [
-        { "episode": 9 }
-    ] }},
-  { "id": "shaggy_dog", "type": "character", "position": { "x": 2200, "y": 800 }, "data": { "name": "Shaggy Dog", "image": "/characters/shaggydog.png", "house": "Stark", "states": [
-        { "episode": 10 }
-    ] }},
+      ]
+    }
+  },
+  {
+    "id": "robb_stark",
+    "type": "character",
+    "position": { "x": 1400, "y": 500 },
+    "data": {
+      "name": "Robb Stark",
+      "image": "/characters/robb-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "sansa_stark",
+    "type": "character",
+    "position": { "x": 1600, "y": 500 },
+    "data": {
+      "name": "Sansa Stark",
+      "image": "/characters/sansa-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "arya_stark",
+    "type": "character",
+    "position": { "x": 1800, "y": 500 },
+    "data": {
+      "name": "Arya Stark",
+      "image": "/characters/arya-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "bran_stark",
+    "type": "character",
+    "position": { "x": 2000, "y": 500 },
+    "data": {
+      "name": "Bran Stark",
+      "image": "/characters/bran-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 1, "status": "Unknown" }]
+    }
+  },
+  {
+    "id": "rickon_stark",
+    "type": "character",
+    "position": { "x": 2200, "y": 500 },
+    "data": {
+      "name": "Rickon Stark",
+      "image": "/characters/rickon-stark.png",
+      "house": "Stark",
+      "states": [{ "episode": 2 }]
+    }
+  },
+  {
+    "id": "ghost",
+    "type": "character",
+    "position": { "x": 1200, "y": 800 },
+    "data": {
+      "name": "Ghost",
+      "image": "/characters/ghost.png",
+      "house": "Stark",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "lady",
+    "type": "character",
+    "position": { "x": 1600, "y": 800 },
+    "data": {
+      "name": "Lady",
+      "image": "/characters/lady.png",
+      "house": "Stark",
+      "states": [{ "episode": 2, "tag": { "text": "DEAD", "type": "dead" } }]
+    }
+  },
+  {
+    "id": "nymeria",
+    "type": "character",
+    "position": { "x": 1800, "y": 800 },
+    "data": {
+      "name": "Nymeria",
+      "image": "/characters/nymeria.png",
+      "house": "Stark",
+      "states": [
+        { "episode": 2, "tag": { "text": "MISSING", "type": "missing" } }
+      ]
+    }
+  },
+  {
+    "id": "summer",
+    "type": "character",
+    "position": { "x": 2000, "y": 800 },
+    "data": {
+      "name": "Summer",
+      "image": "/characters/summer.png",
+      "house": "Stark",
+      "states": [{ "episode": 2 }]
+    }
+  },
+  {
+    "id": "grey_wind",
+    "type": "character",
+    "position": { "x": 1400, "y": 800 },
+    "data": {
+      "name": "Grey Wind",
+      "image": "/characters/greywind.png",
+      "house": "Stark",
+      "states": [{ "episode": 9 }]
+    }
+  },
+  {
+    "id": "shaggy_dog",
+    "type": "character",
+    "position": { "x": 2200, "y": 800 },
+    "data": {
+      "name": "Shaggy Dog",
+      "image": "/characters/shaggydog.png",
+      "house": "Stark",
+      "states": [{ "episode": 10 }]
+    }
+  },
 
-  { "id": "jon_arryn", "type": "character", "position": { "x": 2600, "y": 200 }, "data": { "name": "Jon Arryn", "image": "/characters/jon-arryn.png", "house": "Arryn", "states": [
-        { "episode": 1, "tag": { "text": "DEAD", "type": "dead" }}
-    ] }},
-  { "id": "lysa_tully", "type": "character", "position": { "x": 2400, "y": 200 }, "data": { "name": "Lysa Tully", "image": "/characters/lysa-tully.png", "house": "Arryn", "states": [
-        { "episode": 1 }
-    ] }},
+  {
+    "id": "jon_arryn",
+    "type": "character",
+    "position": { "x": 2600, "y": 200 },
+    "data": {
+      "name": "Jon Arryn",
+      "image": "/characters/jon-arryn.png",
+      "house": "Arryn",
+      "states": [{ "episode": 1, "tag": { "text": "DEAD", "type": "dead" } }]
+    }
+  },
+  {
+    "id": "lysa_tully",
+    "type": "character",
+    "position": { "x": 2400, "y": 200 },
+    "data": {
+      "name": "Lysa Tully",
+      "image": "/characters/lysa-tully.png",
+      "house": "Arryn",
+      "states": [{ "episode": 1 }]
+    }
+  },
 
-  { "id": "illyrio", "type": "character", "position": { "x": 3000, "y": 200 }, "data": { "name": "Illyrio Mopatis", "image": "/characters/illyrio.png", "house": "Targaryen", "states": [{ "episode": 1 }] }},
-  { "id": "viserys_targaryen", "type": "character", "position": { "x": 3200, "y": 200 }, "data": { "name": "Viserys Targaryen", "image": "/characters/viserys-targaryen.png", "house": "Targaryen", "states": [
+  {
+    "id": "illyrio",
+    "type": "character",
+    "position": { "x": 3000, "y": 200 },
+    "data": {
+      "name": "Illyrio Mopatis",
+      "image": "/characters/illyrio.png",
+      "house": "Targaryen",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "viserys_targaryen",
+    "type": "character",
+    "position": { "x": 3200, "y": 200 },
+    "data": {
+      "name": "Viserys Targaryen",
+      "image": "/characters/viserys-targaryen.png",
+      "house": "Targaryen",
+      "states": [
         { "episode": 1 },
-        { "episode": 6, "tag": { "text": "DEAD", "type": "dead" }}
-    ] }},
-  { "id": "daenerys_targaryen", "type": "character", "position": { "x": 3400, "y": 200 }, "data": { "name": "Daenerys Targaryen", "image": "/characters/daenerys-targaryen.png", "house": "Targaryen", "states": [{ "episode": 1 }] }},
-  { "id": "khal_drogo", "type": "character", "position": { "x": 3600, "y": 200 }, "data": { "name": "Khal Drogo", "image": "/characters/khal-drogo.png", "house": "Targaryen", "states": [
+        { "episode": 6, "tag": { "text": "DEAD", "type": "dead" } }
+      ]
+    }
+  },
+  {
+    "id": "daenerys_targaryen",
+    "type": "character",
+    "position": { "x": 3400, "y": 200 },
+    "data": {
+      "name": "Daenerys Targaryen",
+      "image": "/characters/daenerys-targaryen.png",
+      "house": "Targaryen",
+      "states": [{ "episode": 1 }]
+    }
+  },
+  {
+    "id": "khal_drogo",
+    "type": "character",
+    "position": { "x": 3600, "y": 200 },
+    "data": {
+      "name": "Khal Drogo",
+      "image": "/characters/khal-drogo.png",
+      "house": "Targaryen",
+      "states": [
         { "episode": 1 },
-        { "episode": 10, "tag": { "text": "DEAD", "type": "dead" }}
-    ] }},
-  { "id": "jorah_mormont", "type": "character", "position": { "x": 3800, "y": 200 }, "data": { "name": "Jorah Mormont", "image": "/characters/jorah-mormont.png", "house": "Targaryen", "states": [
-        { "episode": 2 },
-        { "episode": 4, "title": "Helper"}
-    ] }}
+        { "episode": 10, "tag": { "text": "DEAD", "type": "dead" } }
+      ]
+    }
+  },
+  {
+    "id": "jorah_mormont",
+    "type": "character",
+    "position": { "x": 3800, "y": 200 },
+    "data": {
+      "name": "Jorah Mormont",
+      "image": "/characters/jorah-mormont.png",
+      "house": "Targaryen",
+      "states": [{ "episode": 2 }, { "episode": 4, "title": "Helper" }]
+    }
+  },
+  {
+    "id": "maester_pycelle",
+    "type": "character",
+    "position": { "x": 1100, "y": 1200 },
+    "data": {
+      "name": "Grand Maester Pycelle",
+      "image": "/characters/pycelle.png",
+      "house": "King's Landing",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "lord_varys",
+    "type": "character",
+    "position": { "x": 1300, "y": 1200 },
+    "data": {
+      "name": "Lord Varys",
+      "image": "/characters/varys.png",
+      "house": "King's Landing",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "littlefinger",
+    "type": "character",
+    "position": { "x": 1500, "y": 1200 },
+    "data": {
+      "name": "Petyr Baelish",
+      "image": "/characters/littlefinger.png",
+      "house": "King's Landing",
+      "states": [
+        {
+          "episode": 3,
+          "tag": { "text": "Littlefinger", "type": "info" }
+        }
+      ]
+    }
+  },
+  {
+    "id": "renly_baratheon",
+    "type": "character",
+    "position": { "x": 900, "y": 200 },
+    "data": {
+      "name": "Renly Baratheon",
+      "image": "/characters/renly-baratheon.png",
+      "house": "Baratheon",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "lancel_lannister",
+    "type": "character",
+    "position": { "x": 400, "y": 400 },
+    "data": {
+      "name": "Lancel Lannister",
+      "image": "/characters/lancel-lannister.png",
+      "house": "Lannister",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "syrio_forel",
+    "type": "character",
+    "position": { "x": 1800, "y": 650 },
+    "data": {
+      "name": "Syrio Forel",
+      "image": "/characters/syrio-forel.png",
+      "house": "Stark",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "balon_greyjoy",
+    "type": "character",
+    "position": { "x": -800, "y": 200 },
+    "data": {
+      "name": "Balon Greyjoy",
+      "image": "/characters/balon-greyjoy.png",
+      "house": "Greyjoy",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "theon_greyjoy",
+    "type": "character",
+    "position": { "x": -800, "y": 500 },
+    "data": {
+      "name": "Theon Greyjoy",
+      "image": "/characters/theon-greyjoy.png",
+      "house": "Greyjoy",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "myrcella_baratheon",
+    "type": "character",
+    "position": { "x": 800, "y": 500 },
+    "data": {
+      "name": "Myrcella Baratheon",
+      "image": "/characters/myrcella-baratheon.png",
+      "house": "Baratheon",
+      "states": [{ "episode": 3 }]
+    }
+  },
+  {
+    "id": "gendry",
+    "type": "character",
+    "position": { "x": 1300, "y": 400 },
+    "data": {
+      "name": "Gendry",
+      "image": "/characters/gendry.png",
+      "house": "King's Landing",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "jory_cassel",
+    "type": "character",
+    "position": { "x": 1600, "y": 650 },
+    "data": {
+      "name": "Jory Cassel",
+      "image": "/characters/jory-cassel.png",
+      "house": "Stark",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "hodor",
+    "type": "character",
+    "position": { "x": 2000, "y": 650 },
+    "data": {
+      "name": "Hodor",
+      "image": "/characters/hodor.png",
+      "house": "Stark",
+      "states": [{ "episode": 4 }]
+    }
+  },
+  {
+    "id": "hugh_of_the_vale",
+    "type": "character",
+    "position": { "x": 2500, "y": 400 },
+    "data": {
+      "name": "Hugh of the Vale",
+      "image": "/characters/hugh-of-the-vale.png",
+      "house": "Arryn",
+      "states": [{ "episode": 4, "tag": { "text": "DEAD", "type": "dead" } }]
+    }
+  },
+  {
+    "id": "gregor_clegane",
+    "type": "character",
+    "position": { "x": 0, "y": 600 },
+    "data": {
+      "name": "Gregor Clegane",
+      "image": "/characters/gregor-clegane.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "episode": 4,
+          "tag": { "text": "The Mountain", "type": "info" }
+        }
+      ]
+    }
+  }
 ]

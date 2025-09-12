@@ -1,16 +1,22 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import { ReactFlowProvider } from '@xyflow/react';
-import ReactFlow, { applyNodeChanges, applyEdgeChanges, addEdge, Controls, SmoothStepEdge } from 'reactflow'; 
+import React, { useState, useMemo, useCallback } from "react";
+import { ReactFlowProvider } from "@xyflow/react";
+import ReactFlow, {
+  applyNodeChanges,
+  applyEdgeChanges,
+  addEdge,
+  Controls,
+  SmoothStepEdge,
+} from "reactflow";
 import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
-import 'reactflow/dist/style.css'; // Important: import the styles
-import CharacterNode from './CharacterNode';
-import HouseNode from './HouseNode';
-import EpisodeSlider from './EpisodeSlider';
-import { getStateForEpisode } from '../utils/getStateForEpisode';
+import "reactflow/dist/style.css"; // Important: import the styles
+import CharacterNode from "./CharacterNode";
+import HouseNode from "./HouseNode";
+import EpisodeSlider from "./EpisodeSlider";
+import { getStateForEpisode } from "../utils/getStateForEpisode";
 
 // Import your initial data
-import initialNodes from '../data/nodes_temp.json';
-import initialEdges from '../data/edges_temp.json';
+import initialNodes from "../data/nodes_temp.json";
+import initialEdges from "../data/edges_temp.json";
 
 function GoTDiagram() {
   // Use state to manage nodes and edges
@@ -21,24 +27,32 @@ function GoTDiagram() {
   const [currentEpisode, setCurrentEpisode] = useState(1);
 
   // useMemo is a React hook that prevents the object from being recreated on every render
-  const nodeTypes = useMemo(() => ({ character: CharacterNode, house: HouseNode }), []);
- 
-  const edgeTypes = useMemo(() => ({ 
-        step: SmoothStepEdge,
-        // smart: SmartBezierEdge,
-    }), []);
+  const nodeTypes = useMemo(
+    () => ({ character: CharacterNode, house: HouseNode }),
+    []
+  );
+
+  const edgeTypes = useMemo(
+    () => ({
+      step: SmoothStepEdge,
+      // smart: SmartBezierEdge,
+    }),
+    []
+  );
 
   const onNodesChange = useCallback(
-    (changes) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
-    [],
+    (changes) =>
+      setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
+    []
   );
   const onEdgesChange = useCallback(
-    (changes) => setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
-    [],
+    (changes) =>
+      setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
+    []
   );
   const onConnect = useCallback(
     (params) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
-    [],
+    []
   );
 
   const activeNodes = useMemo(() => {
@@ -65,20 +79,43 @@ function GoTDiagram() {
 
   return (
     // Set a height for the container, otherwise it won't be visible
-    <div style={{ height: '100vh', width: '100vw' }}>
-      <ReactFlow
-        nodes={activeNodes}
-        edges={edges}
-        nodeTypes={nodeTypes} 
-        edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div
+        style={{
+          padding: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
       >
-        <Controls />
-      </ReactFlow>
+        <h2 style={{ margin: 0, padding: "10px", textAlign: "center" }}>
+          GAME OF THRONES Family Tree
+        </h2>
+        <p>by Konstantina & Alejandro</p>
+      </div>
 
+      <div style={{ flex: 1 }}>
+        <ReactFlow
+          nodes={activeNodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          fitView
+          minZoom={0.1}
+        >
+          <Controls />
+        </ReactFlow>
+      </div>
       <EpisodeSlider
         currentEpisode={currentEpisode}
         setCurrentEpisode={setCurrentEpisode}
