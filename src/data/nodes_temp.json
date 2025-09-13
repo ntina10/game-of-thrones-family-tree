@@ -6,6 +6,7 @@
     "data": {
       "label": "The Night's Watch",
       "image": "/banners/nights-watch.png",
+      "house": "Night's Watch",
       "states": [{ "episode": 1 }]
     }
   },
@@ -16,6 +17,7 @@
     "data": {
       "label": "House Stark",
       "image": "/banners/house-stark.png",
+      "house": "Stark",
       "states": [{ "episode": 1 }]
     }
   },
@@ -26,6 +28,7 @@
     "data": {
       "label": "House Tully",
       "image": "/banners/house-tully.png",
+      "house": "Tully",
       "states": [{ "episode": 1 }]
     }
   },
@@ -36,6 +39,7 @@
     "data": {
       "label": "House Arryn",
       "image": "/banners/house-arryn.png",
+      "house": "Arryn",
       "states": [{ "episode": 1 }]
     }
   },
@@ -46,6 +50,7 @@
     "data": {
       "label": "House Lannister",
       "image": "/banners/house-lannister.png",
+      "house": "Lannister",
       "states": [{ "episode": 1 }]
     }
   },
@@ -56,6 +61,7 @@
     "data": {
       "label": "House Baratheon",
       "image": "/banners/house-baratheon.png",
+      "house": "Baratheon",
       "states": [{ "episode": 1 }]
     }
   },
@@ -66,6 +72,7 @@
     "data": {
       "label": "House Targaryen",
       "image": "/banners/house-targaryen.png",
+      "house": "Targaryen",
       "states": [{ "episode": 1 }]
     }
   },
@@ -76,6 +83,7 @@
     "data": {
       "label": "House Clegane",
       "image": "/banners/house-clegane.png",
+      "house": "Clegane",
       "states": [{ "episode": 1 }]
     }
   },
@@ -86,6 +94,7 @@
     "data": {
       "label": "House Greyjoy",
       "image": "/banners/house-greyjoy.png",
+      "house": "Greyjoy",
       "states": [{ "episode": 1 }]
     }
   },
@@ -96,6 +105,7 @@
     "data": {
       "label": "House Frey",
       "image": "/banners/house-frey.png",
+      "house": "Frey",
       "states": [{ "episode": 9 }]
     }
   },
@@ -106,6 +116,7 @@
     "data": {
       "label": "House Tyrell",
       "image": "/banners/house-tyrell.png",
+      "house": "Tyrell",
       "states": [{ "episode": 5 }]
     }
   },

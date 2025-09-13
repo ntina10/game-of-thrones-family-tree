@@ -13,15 +13,21 @@ import CharacterNode from "./CharacterNode";
 import HouseNode from "./HouseNode";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
+import { createHybridLayout } from "../utils/getLayoutedElements";
 
 // Import your initial data
-import initialNodes from "../data/nodes_temp.json";
+import initialNodes from "../data/nodes.json";
 import initialEdges from "../data/edges_temp.json";
+
+const { nodes: layoutedNodes, edges: layoutedEdges } = createHybridLayout(
+  initialNodes,
+  initialEdges
+);
 
 function GoTDiagram() {
   // Use state to manage nodes and edges
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
+  const [nodes, setNodes] = useState(layoutedNodes);
+  const [edges, setEdges] = useState(layoutedEdges);
 
   // Use state for the slider
   const [currentEpisode, setCurrentEpisode] = useState(1);
