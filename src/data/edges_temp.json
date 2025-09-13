@@ -24,30 +24,318 @@
     "targetHandle": "partner"
   },
 
-  { "id": "pc-tywin-jaime", "source": "tywin_lannister", "sourceHandle": "parent", "target": "jaime_lannister", "targetHandle": "child" },
-  { "id": "pc-tywin-cersei", "source": "tywin_lannister", "sourceHandle": "parent", "target": "cersei_lannister", "targetHandle": "child" },
-  { "id": "pc-tywin-tyrion", "source": "tywin_lannister", "sourceHandle": "parent", "target": "tyrion_lannister", "targetHandle": "child" },
+  {
+    "id": "pc-tywin-jaime",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "jaime_lannister",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-tywin-cersei",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "cersei_lannister",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-tywin-tyrion",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "tyrion_lannister",
+    "targetHandle": "child"
+  },
 
-  { "id": "pc-robert-joffrey", "source": "robert_baratheon", "sourceHandle": "parent", "target": "joffrey_baratheon", "targetHandle": "child" },
-  { "id": "pc-cersei-joffrey", "source": "cersei_lannister", "sourceHandle": "parent", "target": "joffrey_baratheon", "targetHandle": "child" },
+  {
+    "id": "pc-robert-joffrey",
+    "source": "robert_baratheon",
+    "sourceHandle": "parent",
+    "target": "joffrey_baratheon",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-cersei-joffrey",
+    "source": "cersei_lannister",
+    "sourceHandle": "parent",
+    "target": "joffrey_baratheon",
+    "targetHandle": "child"
+  },
 
-  { "id": "pc-ned-robb", "source": "ned_stark", "sourceHandle": "parent", "target": "robb_stark", "targetHandle": "child" },
-  { "id": "pc-catelyn-robb", "source": "catelyn_tully", "sourceHandle": "parent", "target": "robb_stark", "targetHandle": "child" },
-  { "id": "pc-ned-sansa", "source": "ned_stark", "sourceHandle": "parent", "target": "sansa_stark", "targetHandle": "child" },
-  { "id": "pc-catelyn-sansa", "source": "catelyn_tully", "sourceHandle": "parent", "target": "sansa_stark", "targetHandle": "child" },
-  { "id": "pc-ned-arya", "source": "ned_stark", "sourceHandle": "parent", "target": "arya_stark", "targetHandle": "child" },
-  { "id": "pc-catelyn-arya", "source": "catelyn_tully", "sourceHandle": "parent", "target": "arya_stark", "targetHandle": "child" },
-  { "id": "pc-ned-bran", "source": "ned_stark", "sourceHandle": "parent", "target": "bran_stark", "targetHandle": "child" },
-  { "id": "pc-catelyn-bran", "source": "catelyn_tully", "sourceHandle": "parent", "target": "bran_stark", "targetHandle": "child" },
-  { "id": "pc-ned-rickon", "source": "ned_stark", "sourceHandle": "parent", "target": "rickon_stark", "targetHandle": "child" },
-  { "id": "pc-catelyn-rickon", "source": "catelyn_tully", "sourceHandle": "parent", "target": "rickon_stark", "targetHandle": "child" },
+  {
+    "id": "pc-ned-robb",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "robb_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-catelyn-robb",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "robb_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-ned-sansa",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "sansa_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-catelyn-sansa",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "sansa_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-ned-arya",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "arya_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-catelyn-arya",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "arya_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-ned-bran",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "bran_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-catelyn-bran",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "bran_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-ned-rickon",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "rickon_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-catelyn-rickon",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "rickon_stark",
+    "targetHandle": "child"
+  },
 
-  { "id": "pc-ned-jon", "source": "ned_stark", "sourceHandle": "parent", "target": "jon_snow", "targetHandle": "child" },
+  {
+    "id": "pc-ned-jon",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "jon_snow",
+    "targetHandle": "child"
+  },
 
-   { "id": "e-robb-greywind", "source": "robb_stark", "sourceHandle": "parent", "target": "grey_wind", "targetHandle": "child" },
-   { "id": "e-sansa-lady", "source": "sansa_stark", "sourceHandle": "parent", "target": "lady", "targetHandle": "child" },
-   { "id": "e-arya-nymeria", "source": "arya_stark", "sourceHandle": "parent", "target": "nymeria", "targetHandle": "child" },
-   { "id": "e-jon-ghost", "source": "jon_snow", "sourceHandle": "parent", "target": "ghost", "targetHandle": "child" },
-   { "id": "e-bran-summer", "source": "bran_stark", "sourceHandle": "parent", "target": "summer", "targetHandle": "child" },
-   { "id": "e-rickon-shaggydog", "source": "rickon_stark", "sourceHandle": "parent", "target": "shaggy_dog", "targetHandle": "child" }
+  {
+    "id": "e-robb-greywind",
+    "source": "robb_stark",
+    "sourceHandle": "parent",
+    "target": "grey_wind",
+    "targetHandle": "child"
+  },
+  {
+    "id": "e-sansa-lady",
+    "source": "sansa_stark",
+    "sourceHandle": "parent",
+    "target": "lady",
+    "targetHandle": "child"
+  },
+  {
+    "id": "e-arya-nymeria",
+    "source": "arya_stark",
+    "sourceHandle": "parent",
+    "target": "nymeria",
+    "targetHandle": "child"
+  },
+  {
+    "id": "e-jon-ghost",
+    "source": "jon_snow",
+    "sourceHandle": "parent",
+    "target": "ghost",
+    "targetHandle": "child"
+  },
+  {
+    "id": "e-bran-summer",
+    "source": "bran_stark",
+    "sourceHandle": "parent",
+    "target": "summer",
+    "targetHandle": "child"
+  },
+  {
+    "id": "e-rickon-shaggydog",
+    "source": "rickon_stark",
+    "sourceHandle": "parent",
+    "target": "shaggy_dog",
+    "targetHandle": "child"
+  },
+
+  {
+    "id": "m-lysa-jon",
+    "source": "lysa_tully",
+    "target": "jon_arryn",
+    "label": "Married",
+    "sourceHandle": "partner",
+    "targetHandle": "partner"
+  },
+  {
+    "id": "pc-lysa-robin",
+    "source": "lysa_tully",
+    "sourceHandle": "parent",
+    "target": "robin_arryn",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-jon-robin",
+    "source": "jon_arryn",
+    "sourceHandle": "parent",
+    "target": "robin_arryn",
+    "targetHandle": "child"
+  },
+
+  {
+    "id": "pc-rickard-lyanna",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "lyanna_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-rickard-brandon",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "brandon_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-rickard-benjen",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "benjen_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-rickard-ned",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "ned_stark",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-aegon-aerys",
+    "source": "aegon_v_targaryen",
+    "sourceHandle": "parent",
+    "target": "aerys_targaryen",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-aerys-rhaegar",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "rhaegar_targaryen",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-aerys-viserys",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "viserys_targaryen",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-aerys-daenerys",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "daenerys_targaryen",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-daenerys-rhaego",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "rhaego",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-drogo-rhaego",
+    "source": "khal_drogo",
+    "sourceHandle": "parent",
+    "target": "rhaego",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-balon-theon",
+    "source": "balon_greyjoy",
+    "sourceHandle": "parent",
+    "target": "theon_greyjoy",
+    "targetHandle": "child"
+  },
+  {
+    "id": "pc-kevan-lancel",
+    "source": "kevan_lannister",
+    "sourceHandle": "parent",
+    "target": "lancel_lannister",
+    "targetHandle": "child"
+  },
+
+  {
+    "id": "l-cersei-lancel",
+    "source": "cersei_lannister",
+    "sourceHandle": "lover",
+    "target": "lancel_lannister",
+    "targetHandle": "lover",
+    "type": "smoothstep"
+  },
+  {
+    "id": "l-jaime-cersei",
+    "source": "jaime_lannister",
+    "sourceHandle": "lover",
+    "target": "cersei_lannister",
+    "targetHandle": "lover",
+    "type": "smoothstep"
+  },
+  {
+    "id": "l-tyrion-shae",
+    "source": "tyrion_lannister",
+    "sourceHandle": "lover",
+    "target": "shae",
+    "targetHandle": "lover",
+    "type": "smoothstep"
+  },
+  {
+    "id": "l-renly-loras",
+    "source": "renly_baratheon",
+    "sourceHandle": "lover",
+    "target": "loras_tyrell",
+    "targetHandle": "lover",
+    "type": "smoothstep"
+  },
+  {
+    "id": "l-theon-ros",
+    "source": "theon_greyjoy",
+    "sourceHandle": "lover",
+    "target": "ros",
+    "targetHandle": "lover",
+    "type": "smoothstep"
+  },
+  {
+    "id": "pc-walder-waldron",
+    "source": "walder_frey",
+    "sourceHandle": "parent",
+    "target": "waldron_frey",
+    "targetHandle": "child"
+  }
 ]
