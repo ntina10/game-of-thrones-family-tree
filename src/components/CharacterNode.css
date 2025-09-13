@@ -22,6 +22,25 @@
     border: 2px solid #dddddd;
 }
 
+.character-info {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.character-info-item {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .character-name {
     background: white;
     margin-top: 8px;
