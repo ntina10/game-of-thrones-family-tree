@@ -1,12 +1,106 @@
-# React + Vite
+# Game of Thrones Family Tree
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive family-tree and relationship map for _Game of Thrones_ Season 1, built with React, Vite, and React Flow.
 
-Currently, two official plugins are available:
+The app renders houses, characters, and unions as a graph, lays them out automatically with ELK, and lets you move through episodes with a slider so characters only appear once they have been introduced.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Interactive node graph built with `@xyflow/react`
+- Automatic layout using `elkjs`
+- Episode-based reveal system for character and house states
+- Custom node types for houses, characters, and unions
+- Local JSON data source for nodes and edges
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React 19
+- Vite 7
+- React Flow / XYFlow
+- ELK.js
+- Font Awesome
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ recommended
+- npm
+
+### Install
+
+```bash
+npm install
+```
+
+### Run the app locally
+
+```bash
+npm run dev
+```
+
+Vite will start a local development server and print the URL in the terminal, usually `http://localhost:5173`.
+
+## Available Scripts
+
+```bash
+npm run dev      # start the development server
+npm run build    # create a production build
+npm run preview  # preview the production build locally
+npm run lint     # run ESLint
+```
+
+## How the Project Works
+
+### Data
+
+The diagram is driven by JSON files in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data`](./src/data):
+
+- [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data/nodes.json`](./src/data/nodes.json): houses, characters, and union nodes
+- [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data/edges_temp.json`](./src/data/edges_temp.json): relationships between nodes used by the current diagram
+
+Each node includes a `type` and a `data` object. Many nodes also include `states`, which determine when a character or house becomes visible and what metadata should be shown at a given episode.
+
+### Rendering
+
+The main diagram lives in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/components/GoTDiagram.jsx`](./src/components/GoTDiagram.jsx).
+
+It:
+
+- loads the node and edge data
+- computes positions with ELK on mount
+- applies episode-specific state through `getStateForEpisode`
+- renders the graph with React Flow
+- exposes an episode slider at the bottom of the screen
+
+### Layout
+
+Layout logic is handled in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/utils/layoutHelper.js`](./src/utils/layoutHelper.js).
+
+The current layout process only sends parent-child and parent-union relationships into ELK so the graph stays readable, while all original edges are still rendered afterward.
+
+## Project Structure
+
+```text
+src/
+  components/     React components for the graph and custom nodes
+  data/           JSON data for characters, houses, unions, and edges
+  utils/          Episode-state and layout helpers
+public/
+  banners/        House banner images
+  characters/     Character portraits
+```
+
+## Notes
+
+- The current episode slider is configured for episodes `1` through `10`.
+- The app currently imports `edges_temp.json` rather than `edges.json`.
+- This project appears focused on Season 1 data and progression.
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+The production output will be generated in the `dist/` directory.

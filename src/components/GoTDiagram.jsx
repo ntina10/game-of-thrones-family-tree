@@ -1,41 +1,60 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { ReactFlowProvider } from "@xyflow/react";
-import ReactFlow, {
+import React, { useState, useMemo, useCallback, useEffect } from "react";
+// Make sure all imports come from the same package! '@xyflow/react' is the new standard
+import {
+  ReactFlow,
+  ReactFlowProvider,
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
   Controls,
   SmoothStepEdge,
-} from "reactflow";
+  Background,
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css"; // Updated stylesheet path for xyflow
+
 import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
-import "reactflow/dist/style.css"; // Important: import the styles
 import CharacterNode from "./CharacterNode";
 import HouseNode from "./HouseNode";
+import UnionNode from "./UnionNode";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
-import { createHybridLayout } from "../utils/getLayoutedElements";
+
+// Import the new ELK layout helper
+import { getElkLayout } from "../utils/layoutHelper";
 
 // Import your initial data
 import initialNodes from "../data/nodes.json";
 import initialEdges from "../data/edges_temp.json";
 
-const { nodes: layoutedNodes, edges: layoutedEdges } = createHybridLayout(
-  initialNodes,
-  initialEdges
-);
-
 function GoTDiagram() {
-  // Use state to manage nodes and edges
-  const [nodes, setNodes] = useState(layoutedNodes);
-  const [edges, setEdges] = useState(layoutedEdges);
+  // 1. Initialize state with the RAW, un-layouted data (or empty arrays)
+  const [nodes, setNodes] = useState(initialNodes);
+  const [edges, setEdges] = useState(initialEdges);
+  const [isLayoutReady, setIsLayoutReady] = useState(false); // Helps prevent jumping UI
 
-  // Use state for the slider
   const [currentEpisode, setCurrentEpisode] = useState(1);
 
-  // useMemo is a React hook that prevents the object from being recreated on every render
+  // 2. Run ELK Layout asynchronously when the component mounts
+  useEffect(() => {
+    const calculateLayout = async () => {
+      // Fetch the layouted nodes and edges
+      const { nodes: layoutedNodes, edges: layoutedEdges } = await getElkLayout(
+        initialNodes,
+        initialEdges,
+      );
+
+      // Update the state with the new X/Y positions
+      setNodes(layoutedNodes);
+      setEdges(layoutedEdges);
+      setIsLayoutReady(true);
+    };
+
+    calculateLayout();
+  }, []); // Empty dependency array ensures this runs exactly once on mount
+
   const nodeTypes = useMemo(
-    () => ({ character: CharacterNode, house: HouseNode }),
-    []
+    () => ({ character: CharacterNode, house: HouseNode, union: UnionNode }),
+    [],
   );
 
   const edgeTypes = useMemo(
@@ -43,38 +62,36 @@ function GoTDiagram() {
       step: SmoothStepEdge,
       // smart: SmartBezierEdge,
     }),
-    []
+    [],
   );
 
   const onNodesChange = useCallback(
     (changes) =>
       setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
-    []
+    [],
   );
   const onEdgesChange = useCallback(
     (changes) =>
       setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot)),
-    []
+    [],
   );
   const onConnect = useCallback(
     (params) => setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot)),
-    []
+    [],
   );
 
   const activeNodes = useMemo(() => {
     return nodes.map((node) => {
-      // Get the state for the current episode
-      const currentState = getStateForEpisode(node.data.states, currentEpisode);
-
-      // Check if the character has been introduced yet.
-      // An empty currentState object means they have not.
+      const currentState = getStateForEpisode(
+        node.data?.states || [],
+        currentEpisode,
+      );
       const hasBeenIntroduced = Object.keys(currentState).length > 0;
 
       return {
-        ...node, // Keep original id, position, etc.
-        // Use React Flow's 'hidden' property to control visibility
+        ...node,
+        // Hide nodes that haven't been introduced yet
         hidden: !hasBeenIntroduced,
-        // Merge the calculated state into the node's data
         data: {
           ...node.data,
           ...currentState,
@@ -84,7 +101,6 @@ function GoTDiagram() {
   }, [currentEpisode, nodes]);
 
   return (
-    // Set a height for the container, otherwise it won't be visible
     <div
       style={{
         height: "100vh",
@@ -108,20 +124,36 @@ function GoTDiagram() {
       </div>
 
       <div style={{ flex: 1 }}>
-        <ReactFlow
-          nodes={activeNodes}
-          edges={edges}
-          nodeTypes={nodeTypes}
-          edgeTypes={edgeTypes}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          fitView
-          minZoom={0.1}
-        >
-          <Controls />
-        </ReactFlow>
+        {/* Only render ReactFlow if the layout math is finished */}
+        {isLayoutReady ? (
+          <ReactFlow
+            nodes={activeNodes}
+            edges={edges}
+            nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            fitView
+            minZoom={0.1}
+          >
+            <Controls />
+            <Background />
+          </ReactFlow>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <h3>Drawing the Realm...</h3> {/* Simple loading state */}
+          </div>
+        )}
       </div>
+
       <EpisodeSlider
         currentEpisode={currentEpisode}
         setCurrentEpisode={setCurrentEpisode}
@@ -130,4 +162,11 @@ function GoTDiagram() {
   );
 }
 
-export default GoTDiagram;
+// Wrap in provider if you need hooks like useReactFlow elsewhere
+export default function DiagramWrapper() {
+  return (
+    <ReactFlowProvider>
+      <GoTDiagram />
+    </ReactFlowProvider>
+  );
+}
