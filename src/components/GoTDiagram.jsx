@@ -18,6 +18,7 @@ import HouseNode from "./HouseNode";
 import UnionNode from "./UnionNode";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
+import { totalEpisodesThroughSeason } from "../utils/episodeIndex";
 
 // Import the new ELK layout helper
 import { getElkLayout } from "../utils/layoutHelper";
@@ -33,6 +34,10 @@ function GoTDiagram() {
   const [isLayoutReady, setIsLayoutReady] = useState(false); // Helps prevent jumping UI
 
   const [currentEpisode, setCurrentEpisode] = useState(1);
+  const maxEpisode = useMemo(
+    () => totalEpisodesThroughSeason(4) ?? 40,
+    [],
+  );
 
   // 2. Run ELK Layout asynchronously when the component mounts
   useEffect(() => {
@@ -157,6 +162,7 @@ function GoTDiagram() {
       <EpisodeSlider
         currentEpisode={currentEpisode}
         setCurrentEpisode={setCurrentEpisode}
+        maxEpisode={maxEpisode}
       />
     </div>
   );
