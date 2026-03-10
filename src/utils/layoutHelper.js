@@ -1,6 +1,5 @@
 import ELK from "elkjs/lib/elk.bundled.js";
 
-const elk = new ELK();
 const NODE_WIDTH = 170;
 const NODE_HEIGHT = 210;
 
@@ -9,7 +8,9 @@ const GRID_COLS = 3;
 const GRID_X_SPACING = 30; // Horizontal space
 const GRID_Y_SPACING = 30; // Vertical space
 
-export const getElkLayout = async (initialNodes, initialEdges) => {
+const defaultElk = new ELK();
+
+export function buildElkLayoutInput(initialNodes, initialEdges) {
   // 1. STRIP PARENT IDS: Prevent React Flow from messing with absolute math
   const cleanNodes = initialNodes.map((node) => {
     const newNode = { ...node };
@@ -112,8 +113,17 @@ export const getElkLayout = async (initialNodes, initialEdges) => {
     })),
   };
 
+  return { graph, cleanNodes, connectedIds, unconnectedByHouse };
+}
+
+export const getElkLayout = async (initialNodes, initialEdges, options = {}) => {
+  const { elkInstance = defaultElk } = options;
+
+  const { graph, cleanNodes, connectedIds, unconnectedByHouse } =
+    buildElkLayoutInput(initialNodes, initialEdges);
+
   try {
-    const layoutedGraph = await elk.layout(graph);
+    const layoutedGraph = await elkInstance.layout(graph);
     const finalNodes = [];
 
     // A. Map the normal family tree nodes based on ELK's results

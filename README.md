@@ -54,16 +54,16 @@ npm run lint     # run ESLint
 
 ### Data
 
-The diagram is driven by JSON files in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data`](./src/data):
+The diagram is driven by JSON files in [`./src/data`](./src/data):
 
-- [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data/nodes.json`](./src/data/nodes.json): houses, characters, and union nodes
-- [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/data/edges_temp.json`](./src/data/edges_temp.json): relationships between nodes used by the current diagram
+- [`./src/data/nodes.json`](./src/data/nodes.json): houses, characters, and union nodes
+- [`./src/data/edges_temp.json`](./src/data/edges_temp.json): relationships between nodes used by the current diagram
 
 Each node includes a `type` and a `data` object. Many nodes also include `states`, which determine when a character or house becomes visible and what metadata should be shown at a given episode.
 
 ### Rendering
 
-The main diagram lives in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/components/GoTDiagram.jsx`](./src/components/GoTDiagram.jsx).
+The main diagram lives in [`./src/components/GoTDiagram.jsx`](./src/components/GoTDiagram.jsx).
 
 It:
 
@@ -75,7 +75,7 @@ It:
 
 ### Layout
 
-Layout logic is handled in [`/Users/konstantinafreri/Documents/game-of-thrones-family-tree/src/utils/layoutHelper.js`](./src/utils/layoutHelper.js).
+Layout logic is handled in [`./src/utils/layoutHelper.js`](./src/utils/layoutHelper.js).
 
 The current layout process only sends parent-child and parent-union relationships into ELK so the graph stays readable, while all original edges are still rendered afterward.
 

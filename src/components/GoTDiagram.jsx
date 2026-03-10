@@ -25,7 +25,7 @@ import { getElkLayout } from "../utils/layoutHelper";
 
 // Import your initial data
 import initialNodes from "../data/nodes.json";
-import initialEdges from "../data/edges_temp.json";
+import initialEdges from "../data/edges.json";
 
 function GoTDiagram() {
   // 1. Initialize state with the RAW, un-layouted data (or empty arrays)
@@ -34,10 +34,7 @@ function GoTDiagram() {
   const [isLayoutReady, setIsLayoutReady] = useState(false); // Helps prevent jumping UI
 
   const [currentEpisode, setCurrentEpisode] = useState(1);
-  const maxEpisode = useMemo(
-    () => totalEpisodesThroughSeason(4) ?? 40,
-    [],
-  );
+  const maxEpisode = useMemo(() => totalEpisodesThroughSeason(4) ?? 40, []);
 
   // 2. Run ELK Layout asynchronously when the component mounts
   useEffect(() => {

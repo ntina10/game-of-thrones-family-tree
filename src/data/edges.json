@@ -1,8 +1,505 @@
 [
-  { "id": "e1-2", "source": "1", "target": "2", "label": "Married", "sourceHandle": "partner" },
-  { "id": "e1-3", "source": "1", "sourceHandle": "parent", "target": "3", "targetHandle": "child" },
-  { "id": "e1-4", "source": "1", "sourceHandle": "parent", "target": "4", "targetHandle": "child" },
-  { "id": "e1-5", "source": "1", "sourceHandle": "parent", "target": "5", "targetHandle": "child", "type": "smoothstep"  },
-  { "id": "e3-5", "source": "3", "sourceHandle": "partner", "target": "5", "targetHandle": "partner", "type": "smart" }
-  
+  {
+    "id": "pc-house_nights_watch-jeor",
+    "source": "house_nights_watch",
+    "sourceHandle": "parent",
+    "target": "jeor_mormont",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_stark-rickard",
+    "source": "house_stark",
+    "sourceHandle": "parent",
+    "target": "rickard_stark",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tully-catelyn",
+    "source": "house_tully",
+    "sourceHandle": "parent",
+    "target": "catelyn_tully",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tully-lysa",
+    "source": "house_tully",
+    "sourceHandle": "parent",
+    "target": "lysa_tully",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_arryn-jon",
+    "source": "house_arryn",
+    "sourceHandle": "parent",
+    "target": "jon_arryn",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_lannister-kevan",
+    "source": "house_lannister",
+    "sourceHandle": "parent",
+    "target": "kevan_lannister",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_lannister-tywin",
+    "source": "house_lannister",
+    "sourceHandle": "parent",
+    "target": "tywin_lannister",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_baratheon-robert",
+    "source": "house_baratheon",
+    "sourceHandle": "parent",
+    "target": "robert_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_baratheon-renly",
+    "source": "house_baratheon",
+    "sourceHandle": "parent",
+    "target": "renly_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_baratheon-stannis",
+    "source": "house_baratheon",
+    "sourceHandle": "parent",
+    "target": "stannis_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tyrell-loras",
+    "source": "house_tyrell",
+    "sourceHandle": "parent",
+    "target": "loras_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_clegane-gregor",
+    "source": "house_clegane",
+    "sourceHandle": "parent",
+    "target": "gregor_clegane",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_clegane-sandor",
+    "source": "house_clegane",
+    "sourceHandle": "parent",
+    "target": "the_hound",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_greyjoy-balon",
+    "source": "house_greyjoy",
+    "sourceHandle": "parent",
+    "target": "balon_greyjoy",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_frey-walder",
+    "source": "house_frey",
+    "sourceHandle": "parent",
+    "target": "walder_frey",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_targaryen-aegon",
+    "source": "house_targaryen",
+    "sourceHandle": "parent",
+    "target": "aegon_v_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+
+  {
+    "id": "pu-ned-u_ned_cat",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "u_ned_cat",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-catelyn-u_ned_cat",
+    "source": "catelyn_tully",
+    "sourceHandle": "parent",
+    "target": "u_ned_cat",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_ned_cat-robb",
+    "source": "u_ned_cat",
+    "sourceHandle": "bottom",
+    "target": "robb_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_ned_cat-sansa",
+    "source": "u_ned_cat",
+    "sourceHandle": "bottom",
+    "target": "sansa_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_ned_cat-arya",
+    "source": "u_ned_cat",
+    "sourceHandle": "bottom",
+    "target": "arya_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_ned_cat-bran",
+    "source": "u_ned_cat",
+    "sourceHandle": "bottom",
+    "target": "bran_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_ned_cat-rickon",
+    "source": "u_ned_cat",
+    "sourceHandle": "bottom",
+    "target": "rickon_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pu-cersei-u_cersei_robert",
+    "source": "cersei_lannister",
+    "sourceHandle": "parent",
+    "target": "u_cersei_robert",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-robert-u_cersei_robert",
+    "source": "robert_baratheon",
+    "sourceHandle": "parent",
+    "target": "u_cersei_robert",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_cersei_robert-joffrey",
+    "source": "u_cersei_robert",
+    "sourceHandle": "bottom",
+    "target": "joffrey_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_cersei_robert-myrcella",
+    "source": "u_cersei_robert",
+    "sourceHandle": "bottom",
+    "target": "myrcella_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_cersei_robert-tommen",
+    "source": "u_cersei_robert",
+    "sourceHandle": "bottom",
+    "target": "tommen_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pu-daenerys-u_daenerys_drogo",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "u_daenerys_drogo",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-drogo-u_daenerys_drogo",
+    "source": "khal_drogo",
+    "sourceHandle": "parent",
+    "target": "u_daenerys_drogo",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_daenerys_drogo-rhaego",
+    "source": "u_daenerys_drogo",
+    "sourceHandle": "bottom",
+    "target": "rhaego",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pu-lysa-u_lysa_jon",
+    "source": "lysa_tully",
+    "sourceHandle": "parent",
+    "target": "u_lysa_jon",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-jon-u_lysa_jon",
+    "source": "jon_arryn",
+    "sourceHandle": "parent",
+    "target": "u_lysa_jon",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_lysa_jon-robin",
+    "source": "u_lysa_jon",
+    "sourceHandle": "bottom",
+    "target": "robin_arryn",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pc-tywin-jaime",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "jaime_lannister",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-tywin-cersei",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "cersei_lannister",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-tywin-tyrion",
+    "source": "tywin_lannister",
+    "sourceHandle": "parent",
+    "target": "tyrion_lannister",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-ned-jon",
+    "source": "ned_stark",
+    "sourceHandle": "parent",
+    "target": "jon_snow",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-robert-gendry",
+    "source": "robert_baratheon",
+    "sourceHandle": "parent",
+    "target": "gendry",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pc-rickard-lyanna",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "lyanna_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-rickard-brandon",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "brandon_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-rickard-benjen",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "benjen_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-rickard-ned",
+    "source": "rickard_stark",
+    "sourceHandle": "parent",
+    "target": "ned_stark",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pc-aegon-aerys",
+    "source": "aegon_v_targaryen",
+    "sourceHandle": "parent",
+    "target": "aerys_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-aerys-rhaegar",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "rhaegar_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-aerys-viserys",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "viserys_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-aerys-daenerys",
+    "source": "aerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "daenerys_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pc-balon-theon",
+    "source": "balon_greyjoy",
+    "sourceHandle": "parent",
+    "target": "theon_greyjoy",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-kevan-lancel",
+    "source": "kevan_lannister",
+    "sourceHandle": "parent",
+    "target": "lancel_lannister",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-walder-waldron",
+    "source": "walder_frey",
+    "sourceHandle": "parent",
+    "target": "waldron_frey",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "pc-robb-greywind",
+    "source": "robb_stark",
+    "sourceHandle": "parent",
+    "target": "grey_wind",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-sansa-lady",
+    "source": "sansa_stark",
+    "sourceHandle": "parent",
+    "target": "lady",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-arya-nymeria",
+    "source": "arya_stark",
+    "sourceHandle": "parent",
+    "target": "nymeria",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-jon-ghost",
+    "source": "jon_snow",
+    "sourceHandle": "parent",
+    "target": "ghost",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-bran-summer",
+    "source": "bran_stark",
+    "sourceHandle": "parent",
+    "target": "summer",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-rickon-shaggydog",
+    "source": "rickon_stark",
+    "sourceHandle": "parent",
+    "target": "shaggy_dog",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+
+  {
+    "id": "l-cersei-lancel",
+    "source": "cersei_lannister",
+    "sourceHandle": "lover",
+    "target": "lancel_lannister",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only"
+  },
+  {
+    "id": "l-jaime-cersei",
+    "source": "jaime_lannister",
+    "sourceHandle": "lover",
+    "target": "cersei_lannister",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only"
+  },
+  {
+    "id": "l-tyrion-shae",
+    "source": "tyrion_lannister",
+    "sourceHandle": "lover",
+    "target": "shae",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only"
+  },
+  {
+    "id": "l-renly-loras",
+    "source": "renly_baratheon",
+    "sourceHandle": "lover",
+    "target": "loras_tyrell",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only"
+  },
+  {
+    "id": "l-theon-ros",
+    "source": "theon_greyjoy",
+    "sourceHandle": "lover",
+    "target": "ros",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only"
+  }
 ]

@@ -1,9 +1,11 @@
 import { stateToAbsoluteEpisode } from "./episodeIndex";
 
 export function getStateForEpisode(characterStates = [], currentAbsoluteEpisode) {
+  const states = Array.isArray(characterStates) ? characterStates : [];
+
   // Find all state changes that have occurred up to the current absolute episode.
   // Supports both the new `{ season, episode, absolute_episode }` schema and the old `{ episode }` (absolute) schema.
-  const relevantStates = characterStates
+  const relevantStates = states
     .map((state) => ({
       state,
       absoluteEpisode: stateToAbsoluteEpisode(state),
