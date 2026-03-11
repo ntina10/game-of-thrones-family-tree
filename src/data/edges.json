@@ -482,7 +482,13 @@
     "target": "shae",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only"
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        { "season": 1, "episode": 9, "active": true },
+        { "season": 3, "episode": 9, "active": false }
+      ]
+    }
   },
   {
     "id": "l-renly-loras",

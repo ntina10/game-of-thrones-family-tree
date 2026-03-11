@@ -81,10 +81,18 @@
     background: #fff9d9;
 }
 
-.character-node.NightWatch {
+.character-node.NightsWatch {
     border-color: #333;
     /* Night's Watch Black */
     background: #ddd;
+}
+
+.character-node.is-dead {
+    opacity: 0.55;
+}
+
+.character-node.is-dead .character-image {
+    filter: grayscale(1);
 }
 
 

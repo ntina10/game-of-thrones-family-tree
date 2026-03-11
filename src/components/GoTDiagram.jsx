@@ -7,7 +7,6 @@ import {
   applyEdgeChanges,
   addEdge,
   Controls,
-  SmoothStepEdge,
   Background,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css"; // Updated stylesheet path for xyflow
@@ -19,6 +18,11 @@ import UnionNode from "./UnionNode";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
 import { totalEpisodesThroughSeason } from "../utils/episodeIndex";
+import {
+  buildNodeIntroMap,
+  getEdgeEpisodeStatus,
+  isEdgeVisible,
+} from "../utils/diagramVisibility";
 
 // Import the new ELK layout helper
 import { getElkLayout } from "../utils/layoutHelper";
@@ -61,8 +65,7 @@ function GoTDiagram() {
 
   const edgeTypes = useMemo(
     () => ({
-      step: SmoothStepEdge,
-      // smart: SmartBezierEdge,
+      smart: SmartBezierEdge,
     }),
     [],
   );
@@ -102,6 +105,40 @@ function GoTDiagram() {
     });
   }, [currentEpisode, nodes]);
 
+  const nodeIntroById = useMemo(() => buildNodeIntroMap(nodes), [nodes]);
+  const nodeHiddenById = useMemo(() => {
+    const hiddenById = {};
+    activeNodes.forEach((n) => {
+      hiddenById[n.id] = Boolean(n.hidden);
+    });
+    return hiddenById;
+  }, [activeNodes]);
+
+  const activeEdges = useMemo(() => {
+    const stable = new Set(["banner", "child", "partner"]);
+
+    return edges.map((edge) => {
+      const visible = isEdgeVisible({
+        edge,
+        currentAbsoluteEpisode: currentEpisode,
+        nodeIntroById,
+        nodeHiddenById,
+      });
+
+      const status = getEdgeEpisodeStatus(edge, currentEpisode);
+      const mergedState = status.mode === "override" ? status.merged : null;
+
+      const shouldBeSmart = !stable.has(edge.relationshipType);
+
+      return {
+        ...edge,
+        hidden: !visible,
+        type: shouldBeSmart ? "smart" : edge.type,
+        data: mergedState ? { ...(edge.data ?? {}), ...mergedState } : edge.data,
+      };
+    });
+  }, [currentEpisode, edges, nodeIntroById, nodeHiddenById]);
+
   return (
     <div
       style={{
@@ -130,7 +167,7 @@ function GoTDiagram() {
         {isLayoutReady ? (
           <ReactFlow
             nodes={activeNodes}
-            edges={edges}
+            edges={activeEdges}
             nodeTypes={nodeTypes}
             edgeTypes={edgeTypes}
             onNodesChange={onNodesChange}

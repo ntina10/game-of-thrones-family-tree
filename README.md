@@ -57,7 +57,7 @@ npm run lint     # run ESLint
 The diagram is driven by JSON files in [`./src/data`](./src/data):
 
 - [`./src/data/nodes.json`](./src/data/nodes.json): houses, characters, and union nodes
-- [`./src/data/edges_temp.json`](./src/data/edges_temp.json): relationships between nodes used by the current diagram
+- [`./src/data/edges.json`](./src/data/edges.json): relationships between nodes used by the current diagram
 
 Each node includes a `type` and a `data` object. Many nodes also include `states`, which determine when a character or house becomes visible and what metadata should be shown at a given episode.
 
@@ -94,7 +94,7 @@ public/
 ## Notes
 
 - The current episode slider is configured for episodes `1` through `10`.
-- The app currently imports `edges_temp.json` rather than `edges.json`.
+- The app currently imports `edges.json`.
 - This project appears focused on Season 1 data and progression.
 
 ## Build for Production

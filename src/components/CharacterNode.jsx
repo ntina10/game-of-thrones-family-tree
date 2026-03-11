@@ -8,6 +8,7 @@ import {
   faHandshake,
   faFaceAngry,
 } from "@fortawesome/free-solid-svg-icons";
+import { toCssClass } from "../utils/toCssClass";
 
 const titleInfo = {
   King: { icon: faCrown, color: "#FFD700" }, // A gold color for the king
@@ -21,8 +22,9 @@ const opinionInfo = {
 
 // The data prop is passed automatically by React Flow
 function CharacterNode({ data }) {
-  // We can create a dynamic class string
-  const nodeClasses = `character-node ${data.house || ""}`;
+  const houseClass = toCssClass(data.house);
+  const isDead = data.tag?.type === "dead";
+  const nodeClasses = `character-node ${houseClass} ${isDead ? "is-dead" : ""}`;
 
   const infoToRender = data.title ? titleInfo[data.title] : null;
   const infoToRen = data.opinion ? opinionInfo[data.opinion] : null;
