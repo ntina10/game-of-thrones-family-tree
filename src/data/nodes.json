@@ -853,7 +853,7 @@
     "type": "character",
     "data": {
       "name": "Gendry",
-      "image": "/characters/gendry.png",
+      "image": "/characters/gendry-storm.png",
       "house": "Baratheon",
       "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
     }
