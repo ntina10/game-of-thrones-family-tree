@@ -15,6 +15,7 @@ import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
 import CharacterNode from "./CharacterNode";
 import HouseNode from "./HouseNode";
 import UnionNode from "./UnionNode";
+import RelationshipEdge from "./RelationshipEdge";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
 import { totalEpisodesThroughSeason } from "../utils/episodeIndex";
@@ -24,8 +25,7 @@ import {
   isEdgeVisible,
 } from "../utils/diagramVisibility";
 
-// Import the new ELK layout helper
-import { getElkLayout } from "../utils/layoutHelper";
+import { getSemanticLayout } from "../utils/layoutHelper";
 
 // Import your initial data
 import initialNodes from "../data/nodes.json";
@@ -40,14 +40,15 @@ function GoTDiagram() {
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const maxEpisode = useMemo(() => totalEpisodesThroughSeason(4) ?? 40, []);
 
-  // 2. Run ELK Layout asynchronously when the component mounts
+  // 2. Run semantic layout asynchronously when the component mounts
   useEffect(() => {
     const calculateLayout = async () => {
       // Fetch the layouted nodes and edges
-      const { nodes: layoutedNodes, edges: layoutedEdges } = await getElkLayout(
-        initialNodes,
-        initialEdges,
-      );
+      const { nodes: layoutedNodes, edges: layoutedEdges } =
+        await getSemanticLayout(
+          initialNodes,
+          initialEdges,
+        );
 
       // Update the state with the new X/Y positions
       setNodes(layoutedNodes);
@@ -66,6 +67,7 @@ function GoTDiagram() {
   const edgeTypes = useMemo(
     () => ({
       smart: SmartBezierEdge,
+      relationship: RelationshipEdge,
     }),
     [],
   );
@@ -128,13 +130,33 @@ function GoTDiagram() {
       const status = getEdgeEpisodeStatus(edge, currentEpisode);
       const mergedState = status.mode === "override" ? status.merged : null;
 
-      const shouldBeSmart = !stable.has(edge.relationshipType);
+      const isRelationshipOverlay =
+        edge.relationshipType === "lover" ||
+        edge.relationshipType === "partner_overlay" ||
+        edge.sourceHandle === "lover" ||
+        edge.targetHandle === "lover" ||
+        edge.relationshipType === "visual_only";
+      const shouldBeSmart =
+        !stable.has(edge.relationshipType) && !isRelationshipOverlay;
+      const nextType = isRelationshipOverlay
+        ? "relationship"
+        : shouldBeSmart
+          ? "smart"
+          : edge.type;
 
       return {
         ...edge,
         hidden: !visible,
-        type: shouldBeSmart ? "smart" : edge.type,
-        data: mergedState ? { ...(edge.data ?? {}), ...mergedState } : edge.data,
+        type: nextType,
+        data: {
+          ...(edge.data ?? {}),
+          ...(mergedState ?? {}),
+          relationshipType:
+            edge.relationshipType === "visual_only" &&
+            (edge.sourceHandle === "lover" || edge.targetHandle === "lover")
+              ? "lover"
+              : edge.relationshipType,
+        },
       };
     });
   }, [currentEpisode, edges, nodeIntroById, nodeHiddenById]);
