@@ -18,7 +18,10 @@ import UnionNode from "./UnionNode";
 import RelationshipEdge from "./RelationshipEdge";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
-import { totalEpisodesThroughSeason } from "../utils/episodeIndex";
+import {
+  seasonEpisodeToAbsolute,
+  totalEpisodesThroughSeason,
+} from "../utils/episodeIndex";
 import {
   buildNodeIntroMap,
   getEdgeEpisodeStatus,
@@ -38,7 +41,10 @@ function GoTDiagram() {
   const [isLayoutReady, setIsLayoutReady] = useState(false); // Helps prevent jumping UI
 
   const [currentEpisode, setCurrentEpisode] = useState(1);
-  const maxEpisode = useMemo(() => totalEpisodesThroughSeason(4) ?? 40, []);
+  const maxEpisode = useMemo(
+    () => seasonEpisodeToAbsolute(5, 2) ?? totalEpisodesThroughSeason(4) ?? 40,
+    [],
+  );
 
   // 2. Run semantic layout asynchronously when the component mounts
   useEffect(() => {

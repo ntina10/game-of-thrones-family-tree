@@ -127,7 +127,6 @@
     "targetHandle": "child",
     "relationshipType": "banner"
   },
-
   {
     "id": "pu-ned-u_ned_cat",
     "source": "ned_stark",
@@ -184,7 +183,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pu-cersei-u_cersei_robert",
     "source": "cersei_lannister",
@@ -225,7 +223,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pu-daenerys-u_daenerys_drogo",
     "source": "daenerys_targaryen",
@@ -250,7 +247,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pu-lysa-u_lysa_jon",
     "source": "lysa_tully",
@@ -275,7 +271,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pc-tywin-jaime",
     "source": "tywin_lannister",
@@ -316,7 +311,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pc-rickard-lyanna",
     "source": "rickard_stark",
@@ -349,7 +343,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pc-aegon-aerys",
     "source": "aegon_v_targaryen",
@@ -382,7 +375,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pc-balon-theon",
     "source": "balon_greyjoy",
@@ -407,7 +399,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "pc-robb-greywind",
     "source": "robb_stark",
@@ -456,7 +447,6 @@
     "targetHandle": "child",
     "relationshipType": "child"
   },
-
   {
     "id": "l-cersei-lancel",
     "source": "cersei_lannister",
@@ -464,7 +454,23 @@
     "target": "lancel_lannister",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only"
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4,
+          "active": true
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "active": false
+        }
+      ]
+    }
   },
   {
     "id": "l-jaime-cersei",
@@ -485,8 +491,16 @@
     "relationshipType": "visual_only",
     "data": {
       "states": [
-        { "season": 1, "episode": 9, "active": true },
-        { "season": 3, "episode": 9, "active": false }
+        {
+          "season": 1,
+          "episode": 9,
+          "active": true
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "active": false
+        }
       ]
     }
   },
@@ -497,7 +511,23 @@
     "target": "loras_tyrell",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only"
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5,
+          "active": true
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "absolute_episode": 15,
+          "active": false
+        }
+      ]
+    }
   },
   {
     "id": "l-theon-ros",
@@ -506,6 +536,349 @@
     "target": "ros",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only"
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1,
+          "active": true
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12,
+          "active": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "pc-house_bolton-roose",
+    "source": "house_bolton",
+    "sourceHandle": "parent",
+    "target": "roose_bolton",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_royce-waymar",
+    "source": "house_royce",
+    "sourceHandle": "parent",
+    "target": "waymar_royce",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tully-hoster",
+    "source": "house_tully",
+    "sourceHandle": "parent",
+    "target": "hoster_tully",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tyrell-mace",
+    "source": "house_tyrell",
+    "sourceHandle": "parent",
+    "target": "mace_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_martell-oberyn",
+    "source": "house_martell",
+    "sourceHandle": "parent",
+    "target": "oberyn_martell",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_martell-doran",
+    "source": "house_martell",
+    "sourceHandle": "parent",
+    "target": "doran_martell",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pu-stannis-u_stannis_selyse",
+    "source": "stannis_baratheon",
+    "sourceHandle": "parent",
+    "target": "u_stannis_selyse",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-selyse-u_stannis_selyse",
+    "source": "selyse_baratheon",
+    "sourceHandle": "parent",
+    "target": "u_stannis_selyse",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_stannis_selyse-shireen",
+    "source": "u_stannis_selyse",
+    "sourceHandle": "bottom",
+    "target": "shireen_baratheon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-jeor-jorah",
+    "source": "jeor_mormont",
+    "sourceHandle": "parent",
+    "target": "jorah_mormont",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-gilly-sam",
+    "source": "gilly",
+    "sourceHandle": "parent",
+    "target": "sam",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-roose-ramsay",
+    "source": "roose_bolton",
+    "sourceHandle": "parent",
+    "target": "ramsay_bolton",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-hoster-catelyn",
+    "source": "hoster_tully",
+    "sourceHandle": "parent",
+    "target": "catelyn_tully",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-hoster-lysa",
+    "source": "hoster_tully",
+    "sourceHandle": "parent",
+    "target": "lysa_tully",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-hoster-edmure",
+    "source": "hoster_tully",
+    "sourceHandle": "parent",
+    "target": "edmure_tully",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-balon-yara",
+    "source": "balon_greyjoy",
+    "sourceHandle": "parent",
+    "target": "yara_greyjoy",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-mace-loras",
+    "source": "mace_tyrell",
+    "sourceHandle": "parent",
+    "target": "loras_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-mace-margaery",
+    "source": "mace_tyrell",
+    "sourceHandle": "parent",
+    "target": "margaery_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-walder-roslin",
+    "source": "walder_frey",
+    "sourceHandle": "parent",
+    "target": "roslin_frey",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-daenerys-drogon",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "drogon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-daenerys-rhaegal",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "rhaegal",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-daenerys-viseryon",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "parent",
+    "target": "viseryon",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "l-robb-talisa",
+    "source": "robb_stark",
+    "sourceHandle": "lover",
+    "target": "talisa_maegyr",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 2,
+          "episode": 4,
+          "absolute_episode": 14,
+          "active": true
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "active": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-jon-ygritte",
+    "source": "jon_snow",
+    "sourceHandle": "lover",
+    "target": "ygritte",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 3,
+          "episode": 5,
+          "absolute_episode": 25,
+          "active": true
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "absolute_episode": 39,
+          "active": false
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-oberyn-ellaria",
+    "source": "oberyn_martell",
+    "sourceHandle": "lover",
+    "target": "ellaria_sand",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "active": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-daenerys-daario",
+    "source": "daenerys_targaryen",
+    "sourceHandle": "lover",
+    "target": "daario_naharis",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 4,
+          "episode": 4,
+          "absolute_episode": 34,
+          "active": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-roose-walda",
+    "source": "roose_bolton",
+    "sourceHandle": "lover",
+    "target": "walda_frey",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 4,
+          "episode": 8,
+          "absolute_episode": 38,
+          "active": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-loras-olyvar",
+    "source": "loras_tyrell",
+    "sourceHandle": "lover",
+    "target": "olyvar",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 3,
+          "episode": 6,
+          "absolute_episode": 26,
+          "active": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "l-walder-joyeuse",
+    "source": "walder_frey",
+    "sourceHandle": "lover",
+    "target": "joyeuse_frey",
+    "targetHandle": "lover",
+    "type": "smoothstep",
+    "relationshipType": "visual_only",
+    "data": {
+      "states": [
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "active": true
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "active": false
+        }
+      ]
+    }
   }
 ]

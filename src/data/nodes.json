@@ -6,7 +6,13 @@
       "label": "The Night's Watch",
       "image": "/banners/nights-watch.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -16,7 +22,29 @@
       "label": "House Stark",
       "image": "/banners/house-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "house_bolton",
+    "type": "house",
+    "data": {
+      "label": "House Bolton",
+      "image": "/banners/house-bolton.png",
+      "house": "Bolton",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
     }
   },
   {
@@ -26,7 +54,13 @@
       "label": "House Tully",
       "image": "/banners/house-tully.png",
       "house": "Tully",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -36,7 +70,29 @@
       "label": "House Arryn",
       "image": "/banners/house-arryn.png",
       "house": "Arryn",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "house_royce",
+    "type": "house",
+    "data": {
+      "label": "House Royce",
+      "image": "/banners/house-royce.png",
+      "house": "Royce",
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -46,7 +102,13 @@
       "label": "House Lannister",
       "image": "/banners/house-lannister.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -56,7 +118,13 @@
       "label": "House Baratheon",
       "image": "/banners/house-baratheon.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -66,7 +134,13 @@
       "label": "House Targaryen",
       "image": "/banners/house-targaryen.png",
       "house": "Targaryen",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -76,7 +150,13 @@
       "label": "House Clegane",
       "image": "/banners/house-clegane.png",
       "house": "Clegane",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -86,7 +166,13 @@
       "label": "House Greyjoy",
       "image": "/banners/house-greyjoy.png",
       "house": "Greyjoy",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -96,7 +182,13 @@
       "label": "House Frey",
       "image": "/banners/house-frey.png",
       "house": "Frey",
-      "states": [{ "season": 1, "episode": 9, "absolute_episode": 9 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9
+        }
+      ]
     }
   },
   {
@@ -106,16 +198,43 @@
       "label": "House Tyrell",
       "image": "/banners/house-tyrell.png",
       "house": "Tyrell",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
-
+  {
+    "id": "house_martell",
+    "type": "house",
+    "data": {
+      "label": "House Martell",
+      "image": "/banners/house-martell.png",
+      "house": "Martell",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31
+        }
+      ]
+    }
+  },
   {
     "id": "u_ned_cat",
     "type": "union",
     "data": {
       "label": "Ned & Cat",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -123,7 +242,13 @@
     "type": "union",
     "data": {
       "label": "Cersei & Robert",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -131,7 +256,13 @@
     "type": "union",
     "data": {
       "label": "Daenerys & Drogo",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -139,10 +270,29 @@
     "type": "union",
     "data": {
       "label": "Lysa & Jon Arryn",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
-
+  {
+    "id": "u_stannis_selyse",
+    "type": "union",
+    "data": {
+      "label": "Stannis & Selyse",
+      "states": [
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11
+        }
+      ]
+    }
+  },
   {
     "id": "jeor_mormont",
     "type": "character",
@@ -155,7 +305,19 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "Commander", "type": "info" }
+          "tag": {
+            "text": "Commander",
+            "type": "info"
+          }
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -168,7 +330,13 @@
       "name": "Alliser Thorne",
       "image": "/characters/alliser-thorne.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 3, "absolute_episode": 3 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        }
+      ]
     }
   },
   {
@@ -179,7 +347,13 @@
       "name": "Maester Aemon",
       "image": "/characters/maester-aemon.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 3, "absolute_episode": 3 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        }
+      ]
     }
   },
   {
@@ -190,7 +364,22 @@
       "name": "Yoren",
       "image": "/characters/yoren.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 3, "absolute_episode": 3 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        },
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -201,7 +390,13 @@
       "name": "Samwell Tarly",
       "image": "/characters/samwell-tarly.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4
+        }
+      ]
     }
   },
   {
@@ -212,7 +407,22 @@
       "name": "Pyp",
       "image": "/characters/pyp.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "absolute_episode": 39,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -223,7 +433,22 @@
       "name": "Grenn",
       "image": "/characters/grenn.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "absolute_episode": 39,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -234,10 +459,24 @@
       "name": "Rast",
       "image": "/characters/rast.png",
       "house": "Night's Watch",
-      "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "absolute_episode": 35,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
-
   {
     "id": "jon_snow",
     "type": "character",
@@ -246,12 +485,28 @@
       "image": "/characters/jon-snow.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "Night's Watch", "type": "info" }
+          "tag": {
+            "text": "Night's Watch",
+            "type": "info"
+          }
+        },
+        {
+          "season": 5,
+          "episode": 2,
+          "absolute_episode": 42,
+          "tag": {
+            "text": "Lord Commander",
+            "type": "info"
+          }
         }
       ]
     }
@@ -263,7 +518,13 @@
       "name": "Ghost",
       "image": "/characters/ghost.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -278,13 +539,19 @@
           "season": 1,
           "episode": 1,
           "absolute_episode": 1,
-          "tag": { "text": "Night's Watch", "type": "info" }
+          "tag": {
+            "text": "Night's Watch",
+            "type": "info"
+          }
         },
         {
           "season": 1,
           "episode": 7,
           "absolute_episode": 7,
-          "tag": { "text": "MISSING", "type": "missing" }
+          "tag": {
+            "text": "MISSING",
+            "type": "missing"
+          }
         }
       ]
     }
@@ -297,19 +564,31 @@
       "image": "/characters/ned-stark.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
           "title": "Hand of the King"
         },
-        { "season": 1, "episode": 7, "absolute_episode": 7, "title": null },
+        {
+          "season": 1,
+          "episode": 7,
+          "absolute_episode": 7,
+          "title": null
+        },
         {
           "season": 1,
           "episode": 9,
           "absolute_episode": 9,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -326,7 +605,10 @@
           "season": 1,
           "episode": 1,
           "absolute_episode": 1,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -338,7 +620,22 @@
       "name": "Robb Stark",
       "image": "/characters/robb-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -348,7 +645,13 @@
       "name": "Sansa Stark",
       "image": "/characters/sansa-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -358,7 +661,13 @@
       "name": "Arya Stark",
       "image": "/characters/arya-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -368,7 +677,13 @@
       "name": "Bran Stark",
       "image": "/characters/bran-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -378,7 +693,13 @@
       "name": "Rickon Stark",
       "image": "/characters/rickon-stark.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -388,7 +709,22 @@
       "name": "Grey Wind",
       "image": "/characters/greywind.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -403,7 +739,10 @@
           "season": 1,
           "episode": 2,
           "absolute_episode": 2,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -420,7 +759,10 @@
           "season": 1,
           "episode": 2,
           "absolute_episode": 2,
-          "tag": { "text": "MISSING", "type": "missing" }
+          "tag": {
+            "text": "MISSING",
+            "type": "missing"
+          }
         }
       ]
     }
@@ -432,7 +774,13 @@
       "name": "Summer",
       "image": "/characters/summer.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -442,7 +790,13 @@
       "name": "Shaggy Dog",
       "image": "/characters/shaggydog.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -454,12 +808,20 @@
       "image": "/characters/jory-cassel.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 4, "absolute_episode": 4, "title": "Helper" },
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4,
+          "title": "Helper"
+        },
         {
           "season": 1,
           "episode": 5,
           "absolute_episode": 5,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -473,12 +835,19 @@
       "image": "/characters/syrio-forel.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 3, "absolute_episode": 3 },
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        },
         {
           "season": 1,
           "episode": 8,
           "absolute_episode": 8,
-          "tag": { "text": "DEAD?", "type": "dead" }
+          "tag": {
+            "text": "DEAD?",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -492,7 +861,12 @@
       "image": "/characters/hodor.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 4, "absolute_episode": 4, "title": "Helper" }
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4,
+          "title": "Helper"
+        }
       ]
     }
   },
@@ -504,7 +878,13 @@
       "name": "Beric Dondarrion",
       "image": "/characters/beric-dondarrion.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
   {
@@ -515,7 +895,22 @@
       "name": "Ros",
       "image": "/characters/ros.png",
       "house": "Stark",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 3,
+          "episode": 6,
+          "absolute_episode": 26,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -527,7 +922,21 @@
       "image": "/characters/maester-luwin.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 5, "absolute_episode": 5, "title": "Helper" }
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5,
+          "title": "Helper"
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
       ]
     }
   },
@@ -540,7 +949,21 @@
       "image": "/characters/septa-mordane.png",
       "house": "Stark",
       "states": [
-        { "season": 1, "episode": 5, "absolute_episode": 5, "title": "Helper" }
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5,
+          "title": "Helper"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
       ]
     }
   },
@@ -556,7 +979,10 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -573,12 +999,14 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
   },
-
   {
     "id": "catelyn_tully",
     "type": "character",
@@ -586,7 +1014,22 @@
       "name": "Catelyn Tully",
       "image": "/characters/catelyn-tully.png",
       "house": "Tully",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -594,12 +1037,26 @@
     "type": "character",
     "data": {
       "name": "Lysa Tully",
-      "image": "/characters/lysa-tully.png",
+      "image": "/characters/lysa-arryn.png",
       "house": "Tully",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 4,
+          "episode": 7,
+          "absolute_episode": 37,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
-
   {
     "id": "robin_arryn",
     "type": "character",
@@ -607,7 +1064,13 @@
       "name": "Robin Arryn",
       "image": "/characters/robin-arryn.png",
       "house": "Arryn",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
   {
@@ -622,7 +1085,10 @@
           "season": 1,
           "episode": 1,
           "absolute_episode": 1,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -640,12 +1106,14 @@
           "season": 1,
           "episode": 4,
           "absolute_episode": 4,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
   },
-
   {
     "id": "tywin_lannister",
     "type": "character",
@@ -654,12 +1122,25 @@
       "image": "/characters/tywin-lannister.png",
       "house": "Lannister",
       "states": [
-        { "season": 1, "episode": 7, "absolute_episode": 7 },
+        {
+          "season": 1,
+          "episode": 7,
+          "absolute_episode": 7
+        },
         {
           "season": 1,
           "episode": 9,
           "absolute_episode": 9,
           "title": "Hand of the King"
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -671,7 +1152,13 @@
       "name": "Kevan Lannister",
       "image": "/characters/kevan-lannister.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 8, "absolute_episode": 8 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 8,
+          "absolute_episode": 8
+        }
+      ]
     }
   },
   {
@@ -682,12 +1169,22 @@
       "image": "/characters/tyrion-lannister.png",
       "house": "Lannister",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 10,
           "absolute_episode": 10,
           "title": "Hand of the King"
+        },
+        {
+          "season": 3,
+          "episode": 1,
+          "absolute_episode": 21,
+          "title": null
         }
       ]
     }
@@ -700,12 +1197,19 @@
       "image": "/characters/jaime-lannister.png",
       "house": "Lannister",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 4,
           "absolute_episode": 4,
-          "tag": { "text": "KingSlayer", "type": "info" }
+          "tag": {
+            "text": "KingSlayer",
+            "type": "info"
+          }
         }
       ]
     }
@@ -718,8 +1222,17 @@
       "image": "/characters/cersei-lannister.png",
       "house": "Lannister",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
-        { "season": 1, "episode": 7, "absolute_episode": 7, "opinion": "Evil" }
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 7,
+          "absolute_episode": 7,
+          "opinion": "Evil"
+        }
       ]
     }
   },
@@ -730,7 +1243,13 @@
       "name": "Lancel Lannister",
       "image": "/characters/lancel-lannister.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 2, "absolute_episode": 2 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 2,
+          "absolute_episode": 2
+        }
+      ]
     }
   },
   {
@@ -741,7 +1260,13 @@
       "name": "Bronn",
       "image": "/characters/bronn.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
   {
@@ -752,7 +1277,22 @@
       "name": "Shae",
       "image": "/characters/shae.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 9, "absolute_episode": 9 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -763,10 +1303,15 @@
       "name": "Shagga",
       "image": "/characters/shagga.png",
       "house": "Lannister",
-      "states": [{ "season": 1, "episode": 6, "absolute_episode": 6 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 6,
+          "absolute_episode": 6
+        }
+      ]
     }
   },
-
   {
     "id": "robert_baratheon",
     "type": "character",
@@ -775,14 +1320,21 @@
       "image": "/characters/robert-baratheon.png",
       "house": "Baratheon",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1, "title": "King" },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1,
+          "title": "King"
+        },
         {
           "season": 1,
           "episode": 7,
           "absolute_episode": 7,
-          "tag": { "text": "DEAD", "type": "dead" }
-        },
-        { "season": 1, "episode": 8, "absolute_episode": 8, "title": null }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
       ]
     }
   },
@@ -793,7 +1345,22 @@
       "name": "Renly Baratheon",
       "image": "/characters/renly-baratheon.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 2,
+          "episode": 5,
+          "absolute_episode": 15,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
     }
   },
   {
@@ -801,10 +1368,14 @@
     "type": "character",
     "data": {
       "name": "Stannis Baratheon",
-      "image": "/characters/profile.png",
+      "image": "/characters/stannis-baratheon.png",
       "house": "Baratheon",
       "states": [
-        { "season": 1, "episode": 5, "absolute_episode": 5 },
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        },
         {
           "season": 2,
           "episode": 1,
@@ -822,9 +1393,32 @@
       "image": "/characters/joffrey-baratheon.png",
       "house": "Baratheon",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
-        { "season": 1, "episode": 8, "absolute_episode": 8, "title": "King" },
-        { "season": 1, "episode": 9, "absolute_episode": 9, "opinion": "Evil" }
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 8,
+          "absolute_episode": 8,
+          "title": "King"
+        },
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9,
+          "opinion": "Evil"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "absolute_episode": 32,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
       ]
     }
   },
@@ -835,7 +1429,13 @@
       "name": "Myrcella Baratheon",
       "image": "/characters/myrcella-baratheon.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -845,7 +1445,25 @@
       "name": "Tommen Baratheon",
       "image": "/characters/profile.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "image": "/characters/tommen-baratheon2.png"
+        },
+        {
+          "season": 4,
+          "episode": 2,
+          "absolute_episode": 32,
+          "title": "King"
+        }
+      ]
     }
   },
   {
@@ -855,7 +1473,13 @@
       "name": "Gendry",
       "image": "/characters/gendry-storm.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 4, "absolute_episode": 4 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4
+        }
+      ]
     }
   },
   {
@@ -871,7 +1495,10 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "Littlefinger", "type": "info" }
+          "tag": {
+            "text": "Littlefinger",
+            "type": "info"
+          }
         }
       ]
     }
@@ -884,7 +1511,13 @@
       "name": "Lord Varys",
       "image": "/characters/varys.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 3, "absolute_episode": 3 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        }
+      ]
     }
   },
   {
@@ -895,7 +1528,13 @@
       "name": "Grand Maester Pycelle",
       "image": "/characters/maester-pycelle.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 3, "absolute_episode": 3 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        }
+      ]
     }
   },
   {
@@ -906,7 +1545,13 @@
       "name": "Janos Slynt",
       "image": "/characters/janos-slynt.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
   {
@@ -917,17 +1562,22 @@
       "name": "Meryn Trant",
       "image": "/characters/meryn-trant.png",
       "house": "Baratheon",
-      "states": [{ "season": 1, "episode": 8, "absolute_episode": 8 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 8,
+          "absolute_episode": 8
+        }
+      ]
     }
   },
-
   {
     "id": "melisandre",
     "type": "character",
     "parentId": "house_baratheon",
     "data": {
       "name": "Melisandre",
-      "image": "/characters/profile.png",
+      "image": "/characters/melissandre.png",
       "house": "Baratheon",
       "states": [
         {
@@ -945,7 +1595,7 @@
     "parentId": "house_baratheon",
     "data": {
       "name": "Davos Seaworth",
-      "image": "/characters/profile.png",
+      "image": "/characters/davos-seaworth.png",
       "house": "Baratheon",
       "states": [
         {
@@ -963,7 +1613,7 @@
     "parentId": "house_baratheon",
     "data": {
       "name": "Brienne of Tarth",
-      "image": "/characters/profile.png",
+      "image": "/characters/brienne-of-tarth.png",
       "house": "Baratheon",
       "states": [
         {
@@ -975,7 +1625,6 @@
       ]
     }
   },
-
   {
     "id": "gregor_clegane",
     "type": "character",
@@ -988,7 +1637,10 @@
           "season": 1,
           "episode": 4,
           "absolute_episode": 4,
-          "tag": { "text": "The Mountain", "type": "info" }
+          "tag": {
+            "text": "The Mountain",
+            "type": "info"
+          }
         }
       ]
     }
@@ -1005,21 +1657,36 @@
           "season": 1,
           "episode": 1,
           "absolute_episode": 1,
-          "tag": { "text": "The Hound", "type": "info" }
+          "tag": {
+            "text": "The Hound",
+            "type": "info"
+          }
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40,
+          "tag": {
+            "text": "MISSING",
+            "type": "missing"
+          }
         }
       ]
     }
   },
-
   {
     "id": "balon_greyjoy",
     "type": "character",
     "data": {
       "name": "Balon Greyjoy",
-      "image": "/characters/profile.png",
+      "image": "/characters/balon-greyjoy.png",
       "house": "Greyjoy",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 2,
           "episode": 2,
@@ -1036,10 +1703,24 @@
       "name": "Theon Greyjoy",
       "image": "/characters/theon-greyjoy.png",
       "house": "Greyjoy",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "tag": {
+            "text": "Reek",
+            "type": "info"
+          }
+        }
+      ]
     }
   },
-
   {
     "id": "loras_tyrell",
     "type": "character",
@@ -1047,7 +1728,13 @@
       "name": "Loras Tyrell",
       "image": "/characters/loras-tyrell.png",
       "house": "Tyrell",
-      "states": [{ "season": 1, "episode": 5, "absolute_episode": 5 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 5,
+          "absolute_episode": 5
+        }
+      ]
     }
   },
   {
@@ -1055,12 +1742,17 @@
     "type": "character",
     "data": {
       "name": "Margaery Tyrell",
-      "image": "/characters/profile.png",
+      "image": "/characters/margery-tyrell.png",
       "house": "Tyrell",
-      "states": [{ "season": 2, "episode": 3, "absolute_episode": 13 }]
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
     }
   },
-
   {
     "id": "viserys_targaryen",
     "type": "character",
@@ -1069,12 +1761,19 @@
       "image": "/characters/viserys-targaryen.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 6,
           "absolute_episode": 6,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1087,7 +1786,11 @@
       "image": "/characters/daenerys-targaryen.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 10,
@@ -1105,12 +1808,19 @@
       "image": "/characters/khal-drogo.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 10,
           "absolute_episode": 10,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1127,7 +1837,10 @@
           "season": 1,
           "episode": 9,
           "absolute_episode": 9,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1144,7 +1857,10 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1161,7 +1877,10 @@
           "season": 1,
           "episode": 4,
           "absolute_episode": 4,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1178,7 +1897,10 @@
           "season": 1,
           "episode": 10,
           "absolute_episode": 10,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1191,7 +1913,13 @@
       "name": "Illyrio Mopatis",
       "image": "/characters/illyrio.png",
       "house": "Targaryen",
-      "states": [{ "season": 1, "episode": 1, "absolute_episode": 1 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        }
+      ]
     }
   },
   {
@@ -1203,8 +1931,17 @@
       "image": "/characters/jorah-mormont.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
-        { "season": 1, "episode": 4, "absolute_episode": 4, "title": "Helper" }
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 4,
+          "absolute_episode": 4,
+          "title": "Helper"
+        }
       ]
     }
   },
@@ -1221,7 +1958,10 @@
           "season": 1,
           "episode": 10,
           "absolute_episode": 10,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1235,12 +1975,19 @@
       "image": "/characters/qotho.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 1, "absolute_episode": 1 },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
         {
           "season": 1,
           "episode": 10,
           "absolute_episode": 10,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1254,12 +2001,19 @@
       "image": "/characters/mago.png",
       "house": "Targaryen",
       "states": [
-        { "season": 1, "episode": 8, "absolute_episode": 8 },
+        {
+          "season": 1,
+          "episode": 8,
+          "absolute_episode": 8
+        },
         {
           "season": 1,
           "episode": 8,
           "absolute_episode": 8,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
@@ -1277,12 +2031,14 @@
           "season": 1,
           "episode": 8,
           "absolute_episode": 8,
-          "tag": { "text": "DEAD", "type": "dead" }
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
         }
       ]
     }
   },
-
   {
     "id": "walder_frey",
     "type": "character",
@@ -1290,7 +2046,13 @@
       "name": "Walder Frey",
       "image": "/characters/walden-frey.png",
       "house": "Frey",
-      "states": [{ "season": 1, "episode": 9, "absolute_episode": 9 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9
+        }
+      ]
     }
   },
   {
@@ -1300,7 +2062,1593 @@
       "name": "Waldron Frey",
       "image": "/characters/profile.png",
       "house": "Frey",
-      "states": [{ "season": 1, "episode": 9, "absolute_episode": 9 }]
+      "states": [
+        {
+          "season": 1,
+          "episode": 9,
+          "absolute_episode": 9
+        }
+      ]
+    }
+  },
+  {
+    "id": "waymar_royce",
+    "type": "character",
+    "data": {
+      "name": "Waymar Royce",
+      "image": "/characters/waymar-royce.png",
+      "house": "Royce",
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1,
+          "tag": {
+            "text": "Night's Watch",
+            "type": "info"
+          }
+        },
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "yohn_royce",
+    "type": "character",
+    "data": {
+      "name": "Yohn Royce",
+      "image": "/characters/yohn-royce.png",
+      "house": "Royce",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31
+        }
+      ]
+    }
+  },
+  {
+    "id": "roose_bolton",
+    "type": "character",
+    "data": {
+      "name": "Roose Bolton",
+      "image": "/characters/roose-bolton.png",
+      "house": "Bolton",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
+    }
+  },
+  {
+    "id": "ramsay_bolton",
+    "type": "character",
+    "data": {
+      "name": "Ramsay Bolton",
+      "image": "/characters/ramsay-bolton.png",
+      "house": "Bolton",
+      "states": [
+        {
+          "season": 3,
+          "episode": 3,
+          "absolute_episode": 23
+        }
+      ]
+    }
+  },
+  {
+    "id": "locke",
+    "type": "character",
+    "data": {
+      "name": "Locke",
+      "image": "/characters/locke.png",
+      "house": "Bolton",
+      "states": [
+        {
+          "season": 3,
+          "episode": 1,
+          "absolute_episode": 21
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "absolute_episode": 35,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "rodrick_cassel",
+    "type": "character",
+    "parentId": "house_stark",
+    "data": {
+      "name": "Rodrik Cassel",
+      "image": "/characters/rodrick-cassel.png",
+      "house": "Stark",
+      "states": [
+        {
+          "season": 1,
+          "episode": 2,
+          "absolute_episode": 2
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "osha",
+    "type": "character",
+    "parentId": "house_stark",
+    "data": {
+      "name": "Osha",
+      "image": "/characters/osha.png",
+      "house": "Stark",
+      "states": [
+        {
+          "season": 1,
+          "episode": 7,
+          "absolute_episode": 7
+        }
+      ]
+    }
+  },
+  {
+    "id": "greatjon_umber",
+    "type": "character",
+    "parentId": "house_stark",
+    "data": {
+      "name": "Greatjon Umber",
+      "image": "/characters/greatjon-umber.png",
+      "house": "Stark",
+      "states": [
+        {
+          "season": 1,
+          "episode": 8,
+          "absolute_episode": 8
+        }
+      ]
+    }
+  },
+  {
+    "id": "rickard_karstark",
+    "type": "character",
+    "parentId": "house_stark",
+    "data": {
+      "name": "Rickard Karstark",
+      "image": "/characters/karstark.png",
+      "house": "Stark",
+      "states": [
+        {
+          "season": 2,
+          "episode": 8,
+          "absolute_episode": 18
+        },
+        {
+          "season": 3,
+          "episode": 5,
+          "absolute_episode": 25,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "talisa_maegyr",
+    "type": "character",
+    "data": {
+      "name": "Talisa Maegyr",
+      "image": "/characters/talisa-maegyr.png",
+      "house": "Maegyr",
+      "states": [
+        {
+          "season": 2,
+          "episode": 4,
+          "absolute_episode": 14
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "hot_pie",
+    "type": "character",
+    "parentId": "house_stark",
+    "data": {
+      "name": "Hot Pie",
+      "image": "/characters/hot-pie.png",
+      "house": "Stark",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
+    }
+  },
+  {
+    "id": "jaqen_hghar",
+    "type": "character",
+    "data": {
+      "name": "Jaqen H'ghar",
+      "image": "/characters/jaqen-haqhar.png",
+      "house": "Faceless Men",
+      "states": [
+        {
+          "season": 2,
+          "episode": 8,
+          "absolute_episode": 18
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "thoros_of_myr",
+    "type": "character",
+    "data": {
+      "name": "Thoros of Myr",
+      "image": "/characters/thoros-of-myr.png",
+      "house": "Brotherhood Without Banners",
+      "states": [
+        {
+          "season": 3,
+          "episode": 3,
+          "absolute_episode": 23
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "jojen_reed",
+    "type": "character",
+    "data": {
+      "name": "Jojen Reed",
+      "image": "/characters/jojen-reed.png",
+      "house": "Reed",
+      "states": [
+        {
+          "season": 3,
+          "episode": 2,
+          "absolute_episode": 22
+        },
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "meera_reed",
+    "type": "character",
+    "data": {
+      "name": "Meera Reed",
+      "image": "/characters/meera-reed.png",
+      "house": "Reed",
+      "states": [
+        {
+          "season": 3,
+          "episode": 2,
+          "absolute_episode": 22
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "three_eyed_raven",
+    "type": "character",
+    "data": {
+      "name": "Three-Eyed Raven",
+      "image": "/characters/three-eyed-raven.png",
+      "house": "Ancient Magic",
+      "states": [
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "the_children",
+    "type": "character",
+    "data": {
+      "name": "Children of the Forest",
+      "image": "/characters/the-children.png",
+      "house": "Ancient Magic",
+      "states": [
+        {
+          "season": 4,
+          "episode": 10,
+          "absolute_episode": 40
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_stark"
+      }
+    }
+  },
+  {
+    "id": "qhorin_halfhand",
+    "type": "character",
+    "parentId": "house_nights_watch",
+    "data": {
+      "name": "Qhorin Halfhand",
+      "image": "/characters/qhorin-halfhand.png",
+      "house": "Night's Watch",
+      "states": [
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "absolute_episode": 19,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "craster",
+    "type": "character",
+    "data": {
+      "name": "Craster",
+      "image": "/characters/craster.png",
+      "house": "Craster's Keep",
+      "states": [
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "gilly",
+    "type": "character",
+    "data": {
+      "name": "Gilly",
+      "image": "/characters/gilly.png",
+      "house": "Craster's Keep",
+      "states": [
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "sam",
+    "type": "character",
+    "data": {
+      "name": "Sam",
+      "image": "/characters/sam.png",
+      "house": "Craster's Keep",
+      "states": [
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "edd",
+    "type": "character",
+    "parentId": "house_nights_watch",
+    "data": {
+      "name": "Edd",
+      "image": "/characters/edd.png",
+      "house": "Night's Watch",
+      "states": [
+        {
+          "season": 1,
+          "episode": 3,
+          "absolute_episode": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "mance_rayder",
+    "type": "character",
+    "data": {
+      "name": "Mance Rayder",
+      "image": "/characters/mance-rayder.png",
+      "house": "Free Folk",
+      "states": [
+        {
+          "season": 3,
+          "episode": 1,
+          "absolute_episode": 21
+        },
+        {
+          "season": 5,
+          "episode": 1,
+          "absolute_episode": 41,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "tormund_giantsbane",
+    "type": "character",
+    "data": {
+      "name": "Tormund Giantsbane",
+      "image": "/characters/tormund-giantsbane.png",
+      "house": "Free Folk",
+      "states": [
+        {
+          "season": 3,
+          "episode": 1,
+          "absolute_episode": 21
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "ygritte",
+    "type": "character",
+    "data": {
+      "name": "Ygritte",
+      "image": "/characters/ygritte.png",
+      "house": "Free Folk",
+      "states": [
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "absolute_episode": 39,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "orell",
+    "type": "character",
+    "data": {
+      "name": "Orell",
+      "image": "/characters/orell.png",
+      "house": "Free Folk",
+      "states": [
+        {
+          "season": 3,
+          "episode": 1,
+          "absolute_episode": 21
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "thenn",
+    "type": "character",
+    "data": {
+      "name": "Styr",
+      "image": "/characters/thenn.png",
+      "house": "Free Folk",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "tag": {
+            "text": "Thenn",
+            "type": "info"
+          }
+        },
+        {
+          "season": 4,
+          "episode": 9,
+          "absolute_episode": 39,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_nights_watch"
+      }
+    }
+  },
+  {
+    "id": "karl_tanner",
+    "type": "character",
+    "parentId": "house_nights_watch",
+    "data": {
+      "name": "Karl Tanner",
+      "image": "/characters/karl-tanner.png",
+      "house": "Night's Watch",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31
+        },
+        {
+          "season": 4,
+          "episode": 5,
+          "absolute_episode": 35,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "olly",
+    "type": "character",
+    "parentId": "house_nights_watch",
+    "data": {
+      "name": "Olly",
+      "image": "/characters/olly.png",
+      "house": "Night's Watch",
+      "states": [
+        {
+          "season": 4,
+          "episode": 8,
+          "absolute_episode": 38
+        }
+      ]
+    }
+  },
+  {
+    "id": "maester_cressen",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Maester Cressen",
+      "image": "/characters/maester-cressen.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "salladhor_saan",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Salladhor Saan",
+      "image": "/characters/salladhor-saan.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16
+        }
+      ]
+    }
+  },
+  {
+    "id": "mathos_seaworth",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Mathos Seaworth",
+      "image": "/characters/mathos-seaworth.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11
+        },
+        {
+          "season": 2,
+          "episode": 9,
+          "absolute_episode": 19,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "selyse_baratheon",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Selyse Baratheon",
+      "image": "/characters/selyse-baratheon.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11
+        }
+      ]
+    }
+  },
+  {
+    "id": "shireen_baratheon",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Shireen Baratheon",
+      "image": "/characters/shireen-baratheon.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24
+        }
+      ]
+    }
+  },
+  {
+    "id": "ilyn_payne",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Ilyn Payne",
+      "image": "/characters/ilyn-payne.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 1,
+          "episode": 2,
+          "absolute_episode": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "dontos_hollard",
+    "type": "character",
+    "parentId": "house_baratheon",
+    "data": {
+      "name": "Dontos Hollard",
+      "image": "/characters/dontos-hollard.png",
+      "house": "Baratheon",
+      "states": [
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "podrick_payne",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Podrick Payne",
+      "image": "/characters/podrick-payne.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
+    }
+  },
+  {
+    "id": "lollys_stokeworth",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Lollys Stokeworth",
+      "image": "/characters/lollys-stokeworth.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29
+        }
+      ]
+    }
+  },
+  {
+    "id": "qyburn",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Qyburn",
+      "image": "/characters/maester-qyburn.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 3,
+          "episode": 3,
+          "absolute_episode": 23
+        }
+      ]
+    }
+  },
+  {
+    "id": "olyvar",
+    "type": "character",
+    "parentId": "house_tyrell",
+    "data": {
+      "name": "Olyvar",
+      "image": "/characters/olyvar.png",
+      "house": "Tyrell",
+      "states": [
+        {
+          "season": 3,
+          "episode": 6,
+          "absolute_episode": 26
+        }
+      ]
+    }
+  },
+  {
+    "id": "alton_lannister",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Alton Lannister",
+      "image": "/characters/alton-lannister.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 2,
+          "episode": 7,
+          "absolute_episode": 17
+        },
+        {
+          "season": 2,
+          "episode": 7,
+          "absolute_episode": 17,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "amory_lorch",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Amory Lorch",
+      "image": "/characters/amory-lorch.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16
+        },
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "polliver",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "Polliver",
+      "image": "/characters/polliver.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "tickler",
+    "type": "character",
+    "parentId": "house_lannister",
+    "data": {
+      "name": "The Tickler",
+      "image": "/characters/tickler.png",
+      "house": "Lannister",
+      "states": [
+        {
+          "season": 2,
+          "episode": 7,
+          "absolute_episode": 17
+        },
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "hoster_tully",
+    "type": "character",
+    "data": {
+      "name": "Hoster Tully",
+      "image": "/characters/hoster-tully.png",
+      "house": "Tully",
+      "states": [
+        {
+          "season": 3,
+          "episode": 3,
+          "absolute_episode": 23,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "edmure_tully",
+    "type": "character",
+    "data": {
+      "name": "Edmure Tully",
+      "image": "/characters/edmure-tully.png",
+      "house": "Tully",
+      "states": [
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28
+        }
+      ]
+    }
+  },
+  {
+    "id": "blackfish",
+    "type": "character",
+    "data": {
+      "name": "Brynden \"Blackfish\" Tully",
+      "image": "/characters/blackfish.png",
+      "house": "Tully",
+      "states": [
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28,
+          "tag": {
+            "text": "Blackfish",
+            "type": "info"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "roslin_frey",
+    "type": "character",
+    "data": {
+      "name": "Roslin Frey",
+      "image": "/characters/roslin-frey.png",
+      "house": "Frey",
+      "states": [
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29
+        }
+      ]
+    }
+  },
+  {
+    "id": "joyeuse_frey",
+    "type": "character",
+    "data": {
+      "name": "Joyeuse Frey",
+      "image": "/characters/joyeuse-frey.png",
+      "house": "Frey",
+      "states": [
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29
+        },
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "walda_frey",
+    "type": "character",
+    "data": {
+      "name": "Walda Frey",
+      "image": "/characters/walda-frey.png",
+      "house": "Frey",
+      "states": [
+        {
+          "season": 4,
+          "episode": 8,
+          "absolute_episode": 38
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_bolton"
+      }
+    }
+  },
+  {
+    "id": "yara_greyjoy",
+    "type": "character",
+    "data": {
+      "name": "Yara Greyjoy",
+      "image": "/characters/yara-greyjoy.png",
+      "house": "Greyjoy",
+      "states": [
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12
+        }
+      ]
+    }
+  },
+  {
+    "id": "dagmer_cleftjaw",
+    "type": "character",
+    "parentId": "house_greyjoy",
+    "data": {
+      "name": "Dagmer Cleftjaw",
+      "image": "/characters/dagmar.png",
+      "house": "Greyjoy",
+      "states": [
+        {
+          "season": 2,
+          "episode": 3,
+          "absolute_episode": 13
+        }
+      ]
+    }
+  },
+  {
+    "id": "lady_olenna",
+    "type": "character",
+    "data": {
+      "name": "Olenna Tyrell",
+      "image": "/characters/lady-olenna.png",
+      "house": "Tyrell",
+      "states": [
+        {
+          "season": 3,
+          "episode": 2,
+          "absolute_episode": 22
+        }
+      ]
+    }
+  },
+  {
+    "id": "mace_tyrell",
+    "type": "character",
+    "data": {
+      "name": "Mace Tyrell",
+      "image": "/characters/mance-tyrell.png",
+      "house": "Tyrell",
+      "states": [
+        {
+          "season": 4,
+          "episode": 3,
+          "absolute_episode": 33
+        }
+      ]
+    }
+  },
+  {
+    "id": "doran_martell",
+    "type": "character",
+    "data": {
+      "name": "Doran Martell",
+      "image": "/characters/doran-martell.png",
+      "house": "Martell",
+      "states": [
+        {
+          "season": 5,
+          "episode": 1,
+          "absolute_episode": 41
+        }
+      ]
+    }
+  },
+  {
+    "id": "oberyn_martell",
+    "type": "character",
+    "data": {
+      "name": "Oberyn Martell",
+      "image": "/characters/oberyn-martell.png",
+      "house": "Martell",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31
+        },
+        {
+          "season": 4,
+          "episode": 8,
+          "absolute_episode": 38,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ellaria_sand",
+    "type": "character",
+    "data": {
+      "name": "Ellaria Sand",
+      "image": "/characters/ellaria-sand.png",
+      "house": "Sand",
+      "states": [
+        {
+          "season": 4,
+          "episode": 1,
+          "absolute_episode": 31
+        }
+      ],
+      "layout": {
+        "houseAffinity": "house_martell"
+      }
+    }
+  },
+  {
+    "id": "barristan_selmy",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Barristan Selmy",
+      "image": "/characters/barristan-selmy.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 2,
+          "absolute_episode": 22
+        }
+      ]
+    }
+  },
+  {
+    "id": "doreah",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Doreah",
+      "image": "/characters/doreah.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "irri",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Irri",
+      "image": "/characters/irri.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "rakharo",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Rakharo",
+      "image": "/characters/rakharo.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 1,
+          "absolute_episode": 1
+        },
+        {
+          "season": 2,
+          "episode": 1,
+          "absolute_episode": 11,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "pyat_pree",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Pyat Pree",
+      "image": "/characters/pyat-pree.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "xaro_xhoan_daxos",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Xaro Xhoan Daxos",
+      "image": "/characters/xaro-xhoan-daxos.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 2,
+          "episode": 2,
+          "absolute_episode": 12
+        },
+        {
+          "season": 2,
+          "episode": 10,
+          "absolute_episode": 20,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "spice_master",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Spice King",
+      "image": "/characters/spice-master.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 2,
+          "episode": 6,
+          "absolute_episode": 16
+        }
+      ]
+    }
+  },
+  {
+    "id": "kraznys_mo_nakloz",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Kraznys mo Nakloz",
+      "image": "/characters/master-kraznys.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24
+        },
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "grey_worm",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Grey Worm",
+      "image": "/characters/grey-worm.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24
+        }
+      ]
+    }
+  },
+  {
+    "id": "missandei",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Missandei",
+      "image": "/characters/missandrei.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 4,
+          "absolute_episode": 24
+        }
+      ]
+    }
+  },
+  {
+    "id": "razdal_mo_eraz",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Razdal mo Eraz",
+      "image": "/characters/master-eraz.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 7,
+          "absolute_episode": 27
+        }
+      ]
+    }
+  },
+  {
+    "id": "mero",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Mero",
+      "image": "/characters/mero.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28
+        },
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "prendhal_na_ghezn",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Prendahl na Ghezn",
+      "image": "/characters/prendhal-na-ghezn.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28
+        },
+        {
+          "season": 3,
+          "episode": 10,
+          "absolute_episode": 30,
+          "tag": {
+            "text": "DEAD",
+            "type": "dead"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "daario_naharis",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Daario Naharis",
+      "image": "/characters/daario-naharis.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 8,
+          "absolute_episode": 28
+        }
+      ]
+    }
+  },
+  {
+    "id": "drogon",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Drogon",
+      "image": "/characters/drogon.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 10,
+          "absolute_episode": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "rhaegal",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Rhaegal",
+      "image": "/characters/rhaegal.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 10,
+          "absolute_episode": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "viseryon",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Viserion",
+      "image": "/characters/viseryon.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 1,
+          "episode": 10,
+          "absolute_episode": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "hizdahr_zo_loraq",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Hizdahr zo Loraq",
+      "image": "/characters/hizdahr-zo-loraq.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 4,
+          "episode": 5,
+          "absolute_episode": 35
+        }
+      ]
     }
   }
 ]
