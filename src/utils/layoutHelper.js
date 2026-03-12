@@ -18,6 +18,10 @@ const SPACING = {
   unionOffsetY: 42,
 };
 
+const HOUSE_AFFINITY_ALIASES = {
+  Sand: "house_martell",
+};
+
 function getNodeLayout(node) {
   return node?.data?.layout ?? {};
 }
@@ -37,6 +41,20 @@ function getNodeSize(node) {
 function resolveHouseId(value, houseIdByName) {
   if (!value) return null;
   return houseIdByName.get(value) ?? value;
+}
+
+function resolveCharacterHouseId(node, houseIdByName) {
+  const layout = getNodeLayout(node);
+  const explicitHouse =
+    resolveHouseId(layout.houseAffinity, houseIdByName) ??
+    resolveHouseId(node.data?.house, houseIdByName);
+
+  if (explicitHouse && houseIdByName.has(explicitHouse)) {
+    return explicitHouse;
+  }
+
+  const alias = HOUSE_AFFINITY_ALIASES[node.data?.house];
+  return resolveHouseId(alias, houseIdByName) ?? explicitHouse;
 }
 
 function isVisualRelationship(edge) {
@@ -72,6 +90,15 @@ function getCharacterImportance(node, participatesInStructure) {
   if (layout.preserveAnchor) return "primary";
   if (participatesInStructure) return "secondary";
   return "satellite";
+}
+
+function getGenerationSeed(node) {
+  const layout = getNodeLayout(node);
+
+  if (Number.isFinite(layout.generationSeed)) return Number(layout.generationSeed);
+  if (Number.isFinite(layout.generation)) return Number(layout.generation);
+
+  return null;
 }
 
 function addWeightedConnection(weightMap, leftId, rightId, weight) {
@@ -126,7 +153,7 @@ function optimizeHouseOrder(houseIds, weightMap) {
 }
 
 function unique(values) {
-  return [...new Set(values.filter(Boolean))];
+  return [...new Set(values.filter((value) => value != null))];
 }
 
 function getMedian(values) {
@@ -194,19 +221,226 @@ function getRowStartX(
     ),
   );
 
-  if (hasLeftCouple && !hasRightCouple) {
-    return placement.coreLeft;
-  }
-
-  if (hasRightCouple && !hasLeftCouple) {
-    return placement.coreRight - totalWidth;
-  }
+  if (hasLeftCouple && !hasRightCouple) return placement.coreLeft;
+  if (hasRightCouple && !hasLeftCouple) return placement.coreRight - totalWidth;
 
   const preferredStart = targetCenterX - totalWidth / 2;
   return Math.min(
     placement.coreRight - totalWidth,
     Math.max(placement.coreLeft, preferredStart),
   );
+}
+
+function addToSetMap(map, key, value) {
+  if (!map.has(key)) {
+    map.set(key, new Set());
+  }
+  map.get(key).add(value);
+}
+
+function buildCharacterLineage({
+  childEdges,
+  bannerEdges,
+  nodeById,
+  partnerEdgesByUnion,
+}) {
+  const childIdsByParent = new Map();
+  const parentIdsByChild = new Map();
+  const bannerChildrenByHouse = new Map();
+
+  bannerEdges.forEach((edge) => {
+    const sourceNode = nodeById.get(edge.source);
+    const targetNode = nodeById.get(edge.target);
+    if (sourceNode?.type !== "house" || targetNode?.type !== "character") return;
+
+    addToSetMap(bannerChildrenByHouse, sourceNode.id, targetNode.id);
+  });
+
+  childEdges.forEach((edge) => {
+    const targetNode = nodeById.get(edge.target);
+    if (targetNode?.type !== "character") return;
+
+    const sourceNode = nodeById.get(edge.source);
+    if (!sourceNode) return;
+
+    let parentIds = [];
+
+    if (sourceNode.type === "character") {
+      parentIds = [sourceNode.id];
+    } else if (sourceNode.type === "union") {
+      parentIds = unique(
+        (partnerEdgesByUnion.get(sourceNode.id) ?? []).map(
+          (partnerEdge) => partnerEdge.source,
+        ),
+      );
+    }
+
+    parentIds.forEach((parentId) => {
+      const parentNode = nodeById.get(parentId);
+      if (parentNode?.type !== "character") return;
+
+      addToSetMap(childIdsByParent, parentId, targetNode.id);
+      addToSetMap(parentIdsByChild, targetNode.id, parentId);
+    });
+  });
+
+  return { childIdsByParent, parentIdsByChild, bannerChildrenByHouse };
+}
+
+function deriveCharacterGenerations({
+  characterNodes,
+  childIdsByParent,
+  parentIdsByChild,
+  bannerChildrenByHouse,
+  partnerEdgesByUnion,
+  primaryUnionIds,
+  nodeById,
+}) {
+  const explicitGenerationByCharacter = new Map();
+  const derivedGenerationByCharacter = new Map();
+  const conflicts = [];
+  const queue = [];
+
+  characterNodes.forEach((node) => {
+    const seed = getGenerationSeed(node);
+    if (!Number.isFinite(seed)) return;
+
+    explicitGenerationByCharacter.set(node.id, seed);
+    derivedGenerationByCharacter.set(node.id, seed);
+    queue.push(node.id);
+  });
+
+  const assignGeneration = (characterId, generation, reason) => {
+    const explicitGeneration = explicitGenerationByCharacter.get(characterId);
+    if (explicitGeneration != null) {
+      if (explicitGeneration !== generation) {
+        conflicts.push({
+          characterId,
+          expected: explicitGeneration,
+          received: generation,
+          reason,
+          explicit: true,
+        });
+      }
+      return false;
+    }
+
+    const existing = derivedGenerationByCharacter.get(characterId);
+    if (existing == null) {
+      derivedGenerationByCharacter.set(characterId, generation);
+      queue.push(characterId);
+      return true;
+    }
+
+    if (existing !== generation) {
+      conflicts.push({
+        characterId,
+        expected: existing,
+        received: generation,
+        reason,
+        explicit: false,
+      });
+    }
+
+    return false;
+  };
+
+  const processLineageQueue = () => {
+    let changed = false;
+
+    while (queue.length > 0) {
+      const characterId = queue.shift();
+      const generation = derivedGenerationByCharacter.get(characterId);
+
+      (childIdsByParent.get(characterId) ?? []).forEach((childId) => {
+        changed =
+          assignGeneration(childId, generation + 1, {
+            type: "child",
+            sourceId: characterId,
+          }) || changed;
+      });
+
+      (parentIdsByChild.get(characterId) ?? []).forEach((parentId) => {
+        changed =
+          assignGeneration(parentId, generation - 1, {
+            type: "parent",
+            sourceId: characterId,
+          }) || changed;
+      });
+    }
+
+    return changed;
+  };
+
+  const isMarriedUnion = (unionNode) =>
+    unionNode?.data?.relationship === "married" ||
+    unionNode?.data?.layout?.primary !== false;
+
+  processLineageQueue();
+
+  let progress = true;
+  while (progress) {
+    progress = false;
+
+    bannerChildrenByHouse.forEach((characterIds, houseId) => {
+      const resolvedGenerations = [...characterIds]
+        .map((characterId) => derivedGenerationByCharacter.get(characterId))
+        .filter((generation) => generation != null);
+
+      if (resolvedGenerations.length === 0) return;
+
+      const candidateGeneration = Math.round(getMedian(resolvedGenerations));
+      [...characterIds]
+        .filter((characterId) => !derivedGenerationByCharacter.has(characterId))
+        .forEach((characterId) => {
+          progress =
+            assignGeneration(characterId, candidateGeneration, {
+              type: "banner",
+              sourceId: houseId,
+            }) || progress;
+        });
+    });
+
+    primaryUnionIds.forEach((unionId) => {
+      const unionNode = nodeById.get(unionId);
+      if (!isMarriedUnion(unionNode)) return;
+
+      const partnerIds = unique(
+        (partnerEdgesByUnion.get(unionId) ?? []).map((edge) => edge.source),
+      );
+      const resolvedPartners = partnerIds.filter((partnerId) =>
+        derivedGenerationByCharacter.has(partnerId),
+      );
+      const unresolvedPartners = partnerIds.filter(
+        (partnerId) => !derivedGenerationByCharacter.has(partnerId),
+      );
+
+      if (resolvedPartners.length === 0 || unresolvedPartners.length === 0) return;
+
+      const resolvedGenerations = resolvedPartners.map((partnerId) =>
+        derivedGenerationByCharacter.get(partnerId),
+      );
+      const candidateGeneration = Math.round(getMedian(resolvedGenerations));
+
+      unresolvedPartners.forEach((partnerId) => {
+        progress =
+          assignGeneration(partnerId, candidateGeneration, {
+            type: "spouse",
+            sourceId: unionId,
+          }) || progress;
+      });
+    });
+
+    if (progress) {
+      processLineageQueue();
+    }
+  }
+
+  return {
+    explicitGenerationByCharacter,
+    derivedGenerationByCharacter,
+    conflicts,
+  };
 }
 
 export function buildLayoutModel(initialNodes, initialEdges) {
@@ -218,6 +452,7 @@ export function buildLayoutModel(initialNodes, initialEdges) {
 
   const nodeById = new Map(cleanNodes.map((node) => [node.id, node]));
   const houses = cleanNodes.filter((node) => node.type === "house");
+  const characterNodes = cleanNodes.filter((node) => node.type === "character");
   const houseIdByName = new Map();
 
   houses.forEach((house) => {
@@ -231,8 +466,9 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   );
   const bannerEdges = structuralEdges.filter(
     (edge) =>
-      edge.relationshipType === "banner" ||
-      nodeById.get(edge.source)?.type === "house",
+      edge.relationshipType === "banner" &&
+      nodeById.get(edge.source)?.type === "house" &&
+      nodeById.get(edge.target)?.type === "character",
   );
   const childEdges = structuralEdges.filter(
     (edge) =>
@@ -254,15 +490,9 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   });
 
   const characterHouseById = new Map();
-  cleanNodes
-    .filter((node) => node.type === "character")
-    .forEach((node) => {
-      const layout = getNodeLayout(node);
-      const houseId =
-        resolveHouseId(layout.houseAffinity, houseIdByName) ??
-        resolveHouseId(node.data?.house, houseIdByName);
-      characterHouseById.set(node.id, houseId);
-    });
+  characterNodes.forEach((node) => {
+    characterHouseById.set(node.id, resolveCharacterHouseId(node, houseIdByName));
+  });
 
   const partnerEdgesByUnion = new Map();
   partnerEdges.forEach((edge) => {
@@ -287,7 +517,6 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   const houseConnectionWeights = new Map();
   partnerEdgesByUnion.forEach((edges, unionId) => {
     if (!primaryUnionIds.has(unionId)) return;
-
     const partnerHouses = unique(
       edges.map((edge) => characterHouseById.get(edge.source)),
     );
@@ -307,135 +536,84 @@ export function buildLayoutModel(initialNodes, initialEdges) {
     houseConnectionWeights,
   );
 
-  const incomingGenerationalEdges = new Map();
-  [...bannerEdges, ...childEdges].forEach((edge) => {
-    if (!incomingGenerationalEdges.has(edge.target)) {
-      incomingGenerationalEdges.set(edge.target, []);
-    }
-    incomingGenerationalEdges.get(edge.target).push(edge);
+  const { childIdsByParent, parentIdsByChild, bannerChildrenByHouse } = buildCharacterLineage({
+    childEdges,
+    bannerEdges,
+    nodeById,
+    partnerEdgesByUnion,
   });
 
-  const characterGeneration = new Map();
-  const unionGeneration = new Map();
-
-  function getUnionGeneration(unionId, visiting = new Set()) {
-    if (unionGeneration.has(unionId)) return unionGeneration.get(unionId);
-
-    const partnerEntries = partnerEdgesByUnion.get(unionId) ?? [];
-    const partnerGenerations = partnerEntries
-      .map((edge) => getCharacterGeneration(edge.source, visiting))
-      .filter((value) => value != null);
-
-    const nextGeneration =
-      partnerGenerations.length > 0 ? Math.max(...partnerGenerations) : null;
-    unionGeneration.set(unionId, nextGeneration);
-    return nextGeneration;
-  }
-
-  function getCharacterGeneration(characterId, visiting = new Set()) {
-    if (characterGeneration.has(characterId)) {
-      return characterGeneration.get(characterId);
-    }
-
-    if (visiting.has(characterId)) return null;
-    visiting.add(characterId);
-
-    const incoming = incomingGenerationalEdges.get(characterId) ?? [];
-    let nextGeneration = null;
-
-    incoming.forEach((edge) => {
-      const sourceNode = nodeById.get(edge.source);
-      if (!sourceNode) return;
-
-      let candidate = null;
-
-      if (sourceNode.type === "house" || edge.relationshipType === "banner") {
-        candidate = 0;
-      } else if (sourceNode.type === "union") {
-        const sourceGeneration = getUnionGeneration(edge.source, visiting);
-        candidate = sourceGeneration == null ? null : sourceGeneration + 1;
-      } else if (sourceNode.type === "character") {
-        const sourceGeneration = getCharacterGeneration(edge.source, visiting);
-        candidate = sourceGeneration == null ? null : sourceGeneration + 1;
-      }
-
-      if (candidate != null) {
-        nextGeneration =
-          nextGeneration == null ? candidate : Math.max(nextGeneration, candidate);
-      }
-    });
-
-    visiting.delete(characterId);
-    characterGeneration.set(characterId, nextGeneration);
-    return nextGeneration;
-  }
-
-  cleanNodes
-    .filter((node) => node.type === "character")
-    .forEach((node) => {
-      getCharacterGeneration(node.id);
-    });
-
-  primaryUnionIds.forEach((unionId) => {
-    getUnionGeneration(unionId);
-  });
-
-  primaryUnionIds.forEach((unionId) => {
-    const partnerEntries = partnerEdgesByUnion.get(unionId) ?? [];
-    const knownGenerations = partnerEntries
-      .map((edge) => characterGeneration.get(edge.source))
-      .filter((value) => value != null);
-
-    if (knownGenerations.length === 0) return;
-
-    unionGeneration.set(unionId, Math.max(...knownGenerations));
+  const {
+    explicitGenerationByCharacter,
+    derivedGenerationByCharacter,
+    conflicts,
+  } = deriveCharacterGenerations({
+    characterNodes,
+    childIdsByParent,
+    parentIdsByChild,
+    bannerChildrenByHouse,
+    partnerEdgesByUnion,
+    primaryUnionIds,
+    nodeById,
   });
 
   const characterImportance = new Map();
-  cleanNodes
-    .filter((node) => node.type === "character")
-    .forEach((node) => {
-      characterImportance.set(
-        node.id,
-        getCharacterImportance(node, structuralParticipation.has(node.id)),
-      );
-    });
+  const resolvedGenerationByHouse = new Map();
 
-  const houseKnownGenerations = new Map();
-  cleanNodes
-    .filter((node) => node.type === "character")
-    .forEach((node) => {
-      const houseId = characterHouseById.get(node.id);
-      const generation = characterGeneration.get(node.id);
+  characterNodes.forEach((node) => {
+    const importance = getCharacterImportance(
+      node,
+      structuralParticipation.has(node.id),
+    );
+    characterImportance.set(node.id, importance);
 
-      if (!houseId || generation == null) return;
-      if (!houseKnownGenerations.has(houseId)) houseKnownGenerations.set(houseId, []);
-      houseKnownGenerations.get(houseId).push(generation);
-    });
+    const houseId = characterHouseById.get(node.id);
+    const generation = derivedGenerationByCharacter.get(node.id);
 
-  cleanNodes
-    .filter((node) => node.type === "character")
-    .forEach((node) => {
-      if (characterImportance.get(node.id) === "satellite") return;
-      if (characterGeneration.get(node.id) != null) return;
+    if (!houseId || generation == null) return;
+    if (!resolvedGenerationByHouse.has(houseId)) {
+      resolvedGenerationByHouse.set(houseId, []);
+    }
+    resolvedGenerationByHouse.get(houseId).push(generation);
+  });
 
-      const houseId = characterHouseById.get(node.id);
-      const fallbackGeneration = houseId
-        ? Math.round(getMedian(houseKnownGenerations.get(houseId) ?? [0]))
-        : 0;
-      characterGeneration.set(node.id, fallbackGeneration);
-    });
+  const resolvedGenerations = [...derivedGenerationByCharacter.values()];
+  const minResolvedGeneration =
+    resolvedGenerations.length > 0 ? Math.min(...resolvedGenerations) : 0;
+  const generationShift = minResolvedGeneration < 0 ? -minResolvedGeneration : 0;
 
+  const displayRowByCharacter = new Map();
+  characterNodes.forEach((node) => {
+    const generation = derivedGenerationByCharacter.get(node.id);
+    if (generation == null) return;
+    displayRowByCharacter.set(node.id, generation + generationShift);
+  });
+
+  const unresolvedCharacters = new Set(
+    characterNodes
+      .filter((node) => !displayRowByCharacter.has(node.id))
+      .map((node) => node.id),
+  );
+
+  const fallbackGenerationByCharacter = new Map();
+  unresolvedCharacters.forEach((characterId) => {
+    const houseId = characterHouseById.get(characterId);
+    const medianGeneration = houseId
+      ? getMedian(resolvedGenerationByHouse.get(houseId) ?? [0])
+      : 0;
+    fallbackGenerationByCharacter.set(characterId, medianGeneration);
+  });
+
+  const displayRowByUnion = new Map();
   primaryUnionIds.forEach((unionId) => {
-    const nextGeneration =
-      unionGeneration.get(unionId) ??
-      Math.max(
-        0,
-        ...((partnerEdgesByUnion.get(unionId) ?? [])
-          .map((edge) => characterGeneration.get(edge.source))
-          .filter((value) => value != null)),
-      );
-    unionGeneration.set(unionId, nextGeneration);
+    const partnerRows = (partnerEdgesByUnion.get(unionId) ?? [])
+      .map((edge) => displayRowByCharacter.get(edge.source))
+      .filter((value) => value != null);
+
+    displayRowByUnion.set(
+      unionId,
+      partnerRows.length > 0 ? Math.max(...partnerRows) : generationShift,
+    );
   });
 
   return {
@@ -446,11 +624,19 @@ export function buildLayoutModel(initialNodes, initialEdges) {
     houses,
     orderedHouseIds,
     characterHouseById,
-    characterGeneration,
-    unionGeneration,
     characterImportance,
+    explicitGenerationByCharacter,
+    derivedGenerationByCharacter,
+    displayRowByCharacter,
+    unresolvedCharacters,
+    fallbackGenerationByCharacter,
+    displayRowByUnion,
     partnerEdgesByUnion,
     primaryUnionIds,
+    childIdsByParent,
+    parentIdsByChild,
+    bannerChildrenByHouse,
+    conflicts,
   };
 }
 
@@ -461,7 +647,8 @@ function buildHousePlacement(model) {
     cleanNodes,
     characterHouseById,
     characterImportance,
-    characterGeneration,
+    displayRowByCharacter,
+    unresolvedCharacters,
   } = model;
   const houseById = new Map(houses.map((house) => [house.id, house]));
   const placements = new Map();
@@ -474,30 +661,46 @@ function buildHousePlacement(model) {
       (node) =>
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
-        characterImportance.get(node.id) !== "satellite",
+        characterImportance.get(node.id) !== "satellite" &&
+        displayRowByCharacter.has(node.id),
     );
-    const rowCountByGeneration = new Map();
+    const fallbackNodes = cleanNodes.filter(
+      (node) =>
+        node.type === "character" &&
+        characterHouseById.get(node.id) === houseId &&
+        (characterImportance.get(node.id) === "satellite" ||
+          unresolvedCharacters.has(node.id)),
+    );
+    const rowCountByDisplay = new Map();
 
     coreNodes.forEach((node) => {
-      const generation = characterGeneration.get(node.id) ?? 0;
-      rowCountByGeneration.set(
-        generation,
-        (rowCountByGeneration.get(generation) ?? 0) + 1,
+      const displayRow = displayRowByCharacter.get(node.id) ?? 0;
+      rowCountByDisplay.set(
+        displayRow,
+        (rowCountByDisplay.get(displayRow) ?? 0) + 1,
       );
     });
 
     const maxRowWidth = Math.max(
       0,
-      ...[...rowCountByGeneration.values()].map(
+      ...[...rowCountByDisplay.values()].map(
         (count) =>
           count * DEFAULT_SIZES.character.width +
           Math.max(0, count - 1) * SPACING.cardGap,
       ),
     );
+    const fallbackCols =
+      fallbackNodes.length >= 3 ? 3 : Math.max(1, fallbackNodes.length);
+    const fallbackWidth =
+      fallbackNodes.length > 0
+        ? fallbackCols * DEFAULT_SIZES.character.width +
+          Math.max(0, fallbackCols - 1) * SPACING.satelliteGap
+        : 0;
     const coreWidth = Math.max(
       SPACING.coreLaneMinWidth,
       bannerSize.width + SPACING.cardGap,
       maxRowWidth,
+      fallbackWidth,
     );
     const territoryLeft = cursorX - SPACING.territoryPadding;
     const territoryWidth = SPACING.territoryPadding * 2 + coreWidth;
@@ -510,8 +713,6 @@ function buildHousePlacement(model) {
       coreRight: cursorX + coreWidth,
       coreWidth,
       coreCenterX: cursorX + coreWidth / 2,
-      bannerX: cursorX + coreWidth / 2 - bannerSize.width / 2,
-      bannerY: SPACING.canvasPaddingY,
     });
 
     cursorX += coreWidth + SPACING.territoryGap;
@@ -529,17 +730,23 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
     nodeById,
     orderedHouseIds,
     characterHouseById,
-    characterGeneration,
+    displayRowByCharacter,
+    displayRowByUnion,
     childEdges,
-    unionGeneration,
     characterImportance,
     partnerEdgesByUnion,
     primaryUnionIds,
+    unresolvedCharacters,
   } = model;
 
   const positionedNodes = new Map();
   const primaryPartnerHouseIdsByCharacter = new Map();
   const childEdgesByTarget = new Map();
+  const rowTop = (displayRow) =>
+    SPACING.canvasPaddingY +
+    DEFAULT_SIZES.house.height +
+    SPACING.bannerToContentGap +
+    displayRow * (DEFAULT_SIZES.character.height + SPACING.rowGap);
 
   childEdges.forEach((edge) => {
     if (!childEdgesByTarget.has(edge.target)) {
@@ -550,19 +757,16 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
 
   houses.forEach((house) => {
     const placement = housePlacement.get(house.id);
+    const bannerSize = getNodeSize(house);
+
     positionedNodes.set(house.id, {
       ...house,
-      position: { x: placement.bannerX, y: placement.bannerY },
+      position: {
+        x: placement.coreCenterX - bannerSize.width / 2,
+        y: SPACING.canvasPaddingY,
+      },
     });
   });
-
-  const firstRowY =
-    SPACING.canvasPaddingY +
-    DEFAULT_SIZES.house.height +
-    SPACING.bannerToContentGap;
-
-  const rowY = (generation) =>
-    firstRowY + generation * (DEFAULT_SIZES.character.height + SPACING.rowGap);
 
   primaryUnionIds.forEach((unionId) => {
     const partnerEntries = partnerEdgesByUnion.get(unionId) ?? [];
@@ -579,24 +783,23 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
   });
 
   const rowCharactersByHouse = new Map();
-
   cleanNodes
     .filter((node) => node.type === "character")
     .forEach((node) => {
       if (characterImportance.get(node.id) === "satellite") return;
+      if (!displayRowByCharacter.has(node.id)) return;
 
       const houseId = characterHouseById.get(node.id);
       if (!houseId || !housePlacement.has(houseId)) return;
+      const displayRow = displayRowByCharacter.get(node.id);
 
-      const generation = characterGeneration.get(node.id) ?? 0;
       if (!rowCharactersByHouse.has(houseId)) {
         rowCharactersByHouse.set(houseId, new Map());
       }
-      if (!rowCharactersByHouse.get(houseId).has(generation)) {
-        rowCharactersByHouse.get(houseId).set(generation, []);
+      if (!rowCharactersByHouse.get(houseId).has(displayRow)) {
+        rowCharactersByHouse.get(houseId).set(displayRow, []);
       }
-
-      rowCharactersByHouse.get(houseId).get(generation).push(node);
+      rowCharactersByHouse.get(houseId).get(displayRow).push(node);
     });
 
   orderedHouseIds.forEach((houseId) => {
@@ -605,9 +808,9 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
 
     [...houseRows.keys()]
       .sort((left, right) => left - right)
-      .forEach((generation) => {
+      .forEach((displayRow) => {
         const rowNodes = sortRowNodes(
-          houseRows.get(generation),
+          houseRows.get(displayRow),
           houseId,
           orderedHouseIds,
           primaryPartnerHouseIdsByCharacter,
@@ -643,7 +846,7 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
             ...node,
             position: {
               x: startX + index * (DEFAULT_SIZES.character.width + SPACING.cardGap),
-              y: rowY(generation),
+              y: rowTop(displayRow),
             },
           });
         });
@@ -661,21 +864,26 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
 
     const leftPartner = partners[0];
     const rightPartner = partners[partners.length - 1];
-    const leftWidth = getNodeSize(leftPartner).width;
-    const rightWidth = getNodeSize(rightPartner).width;
-    const desiredRightX = leftPartner.position.x + leftWidth + SPACING.partnerGap;
-    const rightHouseId = characterHouseById.get(rightPartner.id);
-    const rightPlacement = housePlacement.get(rightHouseId);
+    const leftRow = displayRowByCharacter.get(leftPartner.id);
+    const rightRow = displayRowByCharacter.get(rightPartner.id);
 
-    if (rightPartner.position.x < desiredRightX) {
-      const adjustedRightX = Math.min(
-        desiredRightX,
-        (rightPlacement?.coreRight ?? desiredRightX) - rightWidth,
-      );
-      positionedNodes.set(rightPartner.id, {
-        ...rightPartner,
-        position: { ...rightPartner.position, x: adjustedRightX },
-      });
+    if (leftRow === rightRow) {
+      const leftWidth = getNodeSize(leftPartner).width;
+      const rightWidth = getNodeSize(rightPartner).width;
+      const desiredRightX = leftPartner.position.x + leftWidth + SPACING.partnerGap;
+      const rightHouseId = characterHouseById.get(rightPartner.id);
+      const rightPlacement = housePlacement.get(rightHouseId);
+
+      if (rightPartner.position.x < desiredRightX) {
+        const adjustedRightX = Math.min(
+          desiredRightX,
+          (rightPlacement?.coreRight ?? desiredRightX) - rightWidth,
+        );
+        positionedNodes.set(rightPartner.id, {
+          ...rightPartner,
+          position: { ...rightPartner.position, x: adjustedRightX },
+        });
+      }
     }
 
     const refreshedLeft = positionedNodes.get(leftPartner.id);
@@ -700,16 +908,17 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
 
   orderedHouseIds.forEach((houseId) => {
     const placement = housePlacement.get(houseId);
-    const satellites = cleanNodes.filter(
+    const fallbackNodes = cleanNodes.filter(
       (node) =>
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
-        characterImportance.get(node.id) === "satellite",
+        (characterImportance.get(node.id) === "satellite" ||
+          unresolvedCharacters.has(node.id)),
     );
 
-    if (satellites.length === 0) return;
+    if (fallbackNodes.length === 0) return;
 
-    const satelliteCols = satellites.length >= 4 ? 2 : 1;
+    const satelliteCols = fallbackNodes.length >= 3 ? 3 : fallbackNodes.length;
     const satelliteGridWidth =
       satelliteCols * DEFAULT_SIZES.character.width +
       Math.max(0, satelliteCols - 1) * SPACING.satelliteGap;
@@ -718,17 +927,17 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
         (node) =>
           node.type === "character" &&
           characterHouseById.get(node.id) === houseId &&
-          characterImportance.get(node.id) !== "satellite",
+          positionedNodes.has(node.id),
       )
       .map((node) => positionedNodes.get(node.id)?.position?.y)
       .filter((value) => value != null);
     const startY =
-      (houseCoreYValues.length > 0 ? Math.max(...houseCoreYValues) : firstRowY) +
+      (houseCoreYValues.length > 0 ? Math.max(...houseCoreYValues) : rowTop(0)) +
       DEFAULT_SIZES.character.height +
       SPACING.rowGap;
     const startX = placement.coreCenterX - satelliteGridWidth / 2;
 
-    satellites.forEach((node, index) => {
+    fallbackNodes.forEach((node, index) => {
       const col = index % satelliteCols;
       const row = Math.floor(index / satelliteCols);
       const x = startX + col * (DEFAULT_SIZES.character.width + SPACING.satelliteGap);
@@ -774,7 +983,7 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
         ...unionNode,
         position: {
           x: SPACING.canvasPaddingX,
-          y: rowY(unionGeneration.get(unionNode.id) ?? 0),
+          y: rowTop(displayRowByUnion.get(unionNode.id) ?? 0),
         },
       });
     });
@@ -795,7 +1004,7 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
       ...node,
       position: {
         x: fallbackX,
-        y: firstRowY + fallbackIndex * (DEFAULT_SIZES.character.height + 40),
+        y: rowTop(0) + fallbackIndex * (DEFAULT_SIZES.character.height + 40),
       },
     });
     fallbackIndex += 1;

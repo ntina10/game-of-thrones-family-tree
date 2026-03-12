@@ -294,12 +294,72 @@
     }
   },
   {
+    "id": "u_olenna_mace",
+    "type": "union",
+    "data": {
+      "label": "Olenna & Mace",
+      "states": [
+        {
+          "season": 4,
+          "episode": 3,
+          "absolute_episode": 33
+        }
+      ]
+    }
+  },
+  {
+    "id": "u_walder_joyeuse",
+    "type": "union",
+    "data": {
+      "label": "Walder & Joyeuse",
+      "states": [
+        {
+          "season": 3,
+          "episode": 9,
+          "absolute_episode": 29
+        }
+      ]
+    }
+  },
+  {
+    "id": "u_roose_walda",
+    "type": "union",
+    "data": {
+      "label": "Roose & Walda",
+      "states": [
+        {
+          "season": 4,
+          "episode": 8,
+          "absolute_episode": 38
+        }
+      ]
+    }
+  },
+  {
+    "id": "u_robb_talisa",
+    "type": "union",
+    "data": {
+      "label": "Robb & Talisa",
+      "states": [
+        {
+          "season": 3,
+          "episode": 7,
+          "absolute_episode": 27
+        }
+      ]
+    }
+  },
+  {
     "id": "jeor_mormont",
     "type": "character",
     "data": {
       "name": "Jeor Mormont",
       "image": "/characters/jeor-mormont.png",
       "house": "Night's Watch",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -352,6 +412,23 @@
           "season": 1,
           "episode": 3,
           "absolute_episode": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "maester_aemon_targaryen",
+    "type": "character",
+    "parentId": "house_targaryen",
+    "data": {
+      "name": "Maester Aemon Targaryen",
+      "image": "/characters/maester-aemon.png",
+      "house": "Targaryen",
+      "states": [
+        {
+          "season": 3,
+          "episode": 3,
+          "absolute_episode": 33
         }
       ]
     }
@@ -563,6 +640,10 @@
       "name": "Eddard (Ned) Stark",
       "image": "/characters/ned-stark.png",
       "house": "Stark",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1014,6 +1095,10 @@
       "name": "Catelyn Tully",
       "image": "/characters/catelyn-tully.png",
       "house": "Tully",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1039,6 +1124,10 @@
       "name": "Lysa Tully",
       "image": "/characters/lysa-arryn.png",
       "house": "Tully",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1080,6 +1169,10 @@
       "name": "Jon Arryn",
       "image": "/characters/jon-arryn.png",
       "house": "Arryn",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1168,6 +1261,10 @@
       "name": "Tyrion Lannister",
       "image": "/characters/tyrion-lannister.png",
       "house": "Lannister",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1196,6 +1293,10 @@
       "name": "Jaime Lannister",
       "image": "/characters/jaime-lannister.png",
       "house": "Lannister",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1221,6 +1322,10 @@
       "name": "Cersei Lannister",
       "image": "/characters/cersei-lannister.png",
       "house": "Lannister",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1319,6 +1424,10 @@
       "name": "Robert Baratheon",
       "image": "/characters/robert-baratheon.png",
       "house": "Baratheon",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1345,6 +1454,10 @@
       "name": "Renly Baratheon",
       "image": "/characters/renly-baratheon.png",
       "house": "Baratheon",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1370,6 +1483,10 @@
       "name": "Stannis Baratheon",
       "image": "/characters/stannis-baratheon.png",
       "house": "Baratheon",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1632,6 +1749,10 @@
       "name": "Gregor Clegane",
       "image": "/characters/gregor-clegane.png",
       "house": "Clegane",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1652,6 +1773,10 @@
       "name": "Sandor Clegane",
       "image": "/characters/sandor-clegane.png",
       "house": "Clegane",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1681,6 +1806,10 @@
       "name": "Balon Greyjoy",
       "image": "/characters/balon-greyjoy.png",
       "house": "Greyjoy",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1728,6 +1857,10 @@
       "name": "Loras Tyrell",
       "image": "/characters/loras-tyrell.png",
       "house": "Tyrell",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1744,6 +1877,10 @@
       "name": "Margaery Tyrell",
       "image": "/characters/margery-tyrell.png",
       "house": "Tyrell",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 2,
@@ -1785,6 +1922,10 @@
       "name": "Daenerys Targaryen",
       "image": "/characters/daenerys-targaryen.png",
       "house": "Targaryen",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -1807,6 +1948,10 @@
       "name": "Khal Drogo",
       "image": "/characters/khal-drogo.png",
       "house": "Targaryen",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 1,
@@ -2107,6 +2252,10 @@
       "name": "Yohn Royce",
       "image": "/characters/yohn-royce.png",
       "house": "Royce",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 4,
@@ -2123,6 +2272,10 @@
       "name": "Roose Bolton",
       "image": "/characters/roose-bolton.png",
       "house": "Bolton",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 2,
@@ -3049,7 +3202,10 @@
             "type": "dead"
           }
         }
-      ]
+      ],
+      "layout": {
+        "importance": "primary"
+      }
     }
   },
   {
@@ -3085,7 +3241,10 @@
             "type": "info"
           }
         }
-      ]
+      ],
+      "layout": {
+        "importance": "primary"
+      }
     }
   },
   {
@@ -3095,6 +3254,10 @@
       "name": "Roslin Frey",
       "image": "/characters/roslin-frey.png",
       "house": "Frey",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 3,
@@ -3142,10 +3305,7 @@
           "episode": 8,
           "absolute_episode": 38
         }
-      ],
-      "layout": {
-        "houseAffinity": "house_bolton"
-      }
+      ]
     }
   },
   {
@@ -3220,6 +3380,10 @@
       "name": "Doran Martell",
       "image": "/characters/doran-martell.png",
       "house": "Martell",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 5,
@@ -3236,6 +3400,10 @@
       "name": "Oberyn Martell",
       "image": "/characters/oberyn-martell.png",
       "house": "Martell",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 4,
@@ -3261,16 +3429,17 @@
       "name": "Ellaria Sand",
       "image": "/characters/ellaria-sand.png",
       "house": "Sand",
+      "layout": {
+        "generationSeed": 0,
+        "importance": "primary"
+      },
       "states": [
         {
           "season": 4,
           "episode": 1,
           "absolute_episode": 31
         }
-      ],
-      "layout": {
-        "houseAffinity": "house_martell"
-      }
+      ]
     }
   },
   {

@@ -16,22 +16,6 @@
     "relationshipType": "banner"
   },
   {
-    "id": "pc-house_tully-catelyn",
-    "source": "house_tully",
-    "sourceHandle": "parent",
-    "target": "catelyn_tully",
-    "targetHandle": "child",
-    "relationshipType": "banner"
-  },
-  {
-    "id": "pc-house_tully-lysa",
-    "source": "house_tully",
-    "sourceHandle": "parent",
-    "target": "lysa_tully",
-    "targetHandle": "child",
-    "relationshipType": "banner"
-  },
-  {
     "id": "pc-house_arryn-jon",
     "source": "house_arryn",
     "sourceHandle": "parent",
@@ -80,14 +64,6 @@
     "relationshipType": "banner"
   },
   {
-    "id": "pc-house_tyrell-loras",
-    "source": "house_tyrell",
-    "sourceHandle": "parent",
-    "target": "loras_tyrell",
-    "targetHandle": "child",
-    "relationshipType": "banner"
-  },
-  {
     "id": "pc-house_clegane-gregor",
     "source": "house_clegane",
     "sourceHandle": "parent",
@@ -124,6 +100,14 @@
     "source": "house_targaryen",
     "sourceHandle": "parent",
     "target": "aegon_v_targaryen",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_targaryen-master_Aemon_targaryen",
+    "source": "house_targaryen",
+    "sourceHandle": "parent",
+    "target": "maester_aemon_targaryen",
     "targetHandle": "child",
     "relationshipType": "banner"
   },
@@ -563,10 +547,10 @@
     "relationshipType": "banner"
   },
   {
-    "id": "pc-house_royce-waymar",
+    "id": "pc-house_royce-yohn_royce",
     "source": "house_royce",
     "sourceHandle": "parent",
-    "target": "waymar_royce",
+    "target": "yohn_royce",
     "targetHandle": "child",
     "relationshipType": "banner"
   },
@@ -579,10 +563,18 @@
     "relationshipType": "banner"
   },
   {
-    "id": "pc-house_tyrell-mace",
+    "id": "pc-house_tully-blackfish",
+    "source": "house_tully",
+    "sourceHandle": "parent",
+    "target": "blackfish",
+    "targetHandle": "child",
+    "relationshipType": "banner"
+  },
+  {
+    "id": "pc-house_tyrell-olenna",
     "source": "house_tyrell",
     "sourceHandle": "parent",
-    "target": "mace_tyrell",
+    "target": "lady_olenna",
     "targetHandle": "child",
     "relationshipType": "banner"
   },
@@ -683,22 +675,6 @@
     "relationshipType": "child"
   },
   {
-    "id": "pc-mace-loras",
-    "source": "mace_tyrell",
-    "sourceHandle": "parent",
-    "target": "loras_tyrell",
-    "targetHandle": "child",
-    "relationshipType": "child"
-  },
-  {
-    "id": "pc-mace-margaery",
-    "source": "mace_tyrell",
-    "sourceHandle": "parent",
-    "target": "margaery_tyrell",
-    "targetHandle": "child",
-    "relationshipType": "child"
-  },
-  {
     "id": "pc-walder-roslin",
     "source": "walder_frey",
     "sourceHandle": "parent",
@@ -729,31 +705,6 @@
     "target": "viseryon",
     "targetHandle": "child",
     "relationshipType": "child"
-  },
-  {
-    "id": "l-robb-talisa",
-    "source": "robb_stark",
-    "sourceHandle": "lover",
-    "target": "talisa_maegyr",
-    "targetHandle": "lover",
-    "type": "smoothstep",
-    "relationshipType": "visual_only",
-    "data": {
-      "states": [
-        {
-          "season": 2,
-          "episode": 4,
-          "absolute_episode": 14,
-          "active": true
-        },
-        {
-          "season": 3,
-          "episode": 9,
-          "absolute_episode": 29,
-          "active": false
-        }
-      ]
-    }
   },
   {
     "id": "l-jon-ygritte",
@@ -819,25 +770,6 @@
     }
   },
   {
-    "id": "l-roose-walda",
-    "source": "roose_bolton",
-    "sourceHandle": "lover",
-    "target": "walda_frey",
-    "targetHandle": "lover",
-    "type": "smoothstep",
-    "relationshipType": "visual_only",
-    "data": {
-      "states": [
-        {
-          "season": 4,
-          "episode": 8,
-          "absolute_episode": 38,
-          "active": true
-        }
-      ]
-    }
-  },
-  {
     "id": "l-loras-olyvar",
     "source": "loras_tyrell",
     "sourceHandle": "lover",
@@ -857,28 +789,99 @@
     }
   },
   {
-    "id": "l-walder-joyeuse",
+    "id": "pu-olenna-u_olenna_mace",
+    "source": "lady_olenna",
+    "sourceHandle": "parent",
+    "target": "u_olenna_mace",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-mace-u_olenna_mace",
+    "source": "mace_tyrell",
+    "sourceHandle": "parent",
+    "target": "u_olenna_mace",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-u_olenna_mace-loras",
+    "source": "u_olenna_mace",
+    "sourceHandle": "bottom",
+    "target": "loras_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pc-u_olenna_mace-margaery",
+    "source": "u_olenna_mace",
+    "sourceHandle": "bottom",
+    "target": "margaery_tyrell",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pu-walder-u_walder_joyeuse",
     "source": "walder_frey",
-    "sourceHandle": "lover",
-    "target": "joyeuse_frey",
-    "targetHandle": "lover",
-    "type": "smoothstep",
-    "relationshipType": "visual_only",
-    "data": {
-      "states": [
-        {
-          "season": 3,
-          "episode": 9,
-          "absolute_episode": 29,
-          "active": true
-        },
-        {
-          "season": 3,
-          "episode": 9,
-          "absolute_episode": 29,
-          "active": false
-        }
-      ]
-    }
+    "sourceHandle": "parent",
+    "target": "u_walder_joyeuse",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-joyeuse-u_walder_joyeuse",
+    "source": "joyeuse_frey",
+    "sourceHandle": "parent",
+    "target": "u_walder_joyeuse",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-walder-walda",
+    "source": "walder_frey",
+    "sourceHandle": "parent",
+    "target": "walda_frey",
+    "targetHandle": "child",
+    "relationshipType": "child"
+  },
+  {
+    "id": "pu-roose-u_roose_walda",
+    "source": "roose_bolton",
+    "sourceHandle": "parent",
+    "target": "u_roose_walda",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-walda-u_roose_walda",
+    "source": "walda_frey",
+    "sourceHandle": "parent",
+    "target": "u_roose_walda",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-robb-u_robb_talisa",
+    "source": "robb_stark",
+    "sourceHandle": "parent",
+    "target": "u_robb_talisa",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pu-talisa-u_robb_talisa",
+    "source": "talisa_maegyr",
+    "sourceHandle": "parent",
+    "target": "u_robb_talisa",
+    "targetHandle": "top",
+    "relationshipType": "partner"
+  },
+  {
+    "id": "pc-yohn-waymar",
+    "source": "yohn_royce",
+    "sourceHandle": "parent",
+    "target": "waymar_royce",
+    "targetHandle": "child",
+    "relationshipType": "child"
   }
 ]
