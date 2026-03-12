@@ -244,6 +244,45 @@ describe("layoutHelper (global generations)", () => {
     expect(byId["house-stark"].position.y).toBe(byId["house-tully"].position.y);
   });
 
+  it("places grouped characters inside a house-affiliated group box", async () => {
+    const nodes = [
+      { id: "house-targaryen", type: "house", data: { house: "Targaryen" } },
+      {
+        id: "group-qarth",
+        type: "group",
+        data: {
+          label: "The Thirteen of Qarth",
+          houseAffinity: "house-targaryen",
+          members: ["xaro", "pyat", "spice"],
+        },
+      },
+      { id: "xaro", type: "character", data: { house: "Qarth" } },
+      { id: "pyat", type: "character", data: { house: "Qarth" } },
+      { id: "spice", type: "character", data: { house: "Qarth" } },
+      {
+        id: "daenerys",
+        type: "character",
+        data: {
+          house: "Targaryen",
+          layout: { generationSeed: 0, importance: "primary" },
+          states: [{ season: 1, episode: 1, absolute_episode: 1 }],
+        },
+      },
+    ];
+
+    const { nodes: layoutedNodes } = await getSemanticLayout(nodes, [], {
+      visibleNodeIds: ["xaro", "pyat", "spice", "daenerys"],
+    });
+    const byId = Object.fromEntries(layoutedNodes.map((node) => [node.id, node]));
+    const group = byId["group-qarth"];
+
+    expect(group.position.y).toBeGreaterThan(byId.daenerys.position.y);
+    expect(byId.xaro.position.x).toBeGreaterThanOrEqual(group.position.x);
+    expect(byId.pyat.position.x).toBeGreaterThanOrEqual(group.position.x);
+    expect(byId.spice.position.y).toBeGreaterThanOrEqual(group.position.y);
+    expect(group.data.layoutBox.width).toBeGreaterThan(0);
+  });
+
   it("matches the regression cases in the real dataset", () => {
     const nodes = [
       { id: "house-lannister", type: "house", data: { house: "Lannister" } },

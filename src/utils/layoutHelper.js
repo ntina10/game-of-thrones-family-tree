@@ -2,6 +2,7 @@ const DEFAULT_SIZES = {
   house: { width: 250, height: 190 },
   character: { width: 170, height: 210 },
   union: { width: 28, height: 28 },
+  group: { width: 320, height: 180 },
 };
 
 const SPACING = {
@@ -16,6 +17,9 @@ const SPACING = {
   partnerGap: 48,
   satelliteGap: 32,
   unionOffsetY: 42,
+  groupGap: 42,
+  groupPadding: 18,
+  groupTitleHeight: 44,
 };
 
 const HOUSE_AFFINITY_ALIASES = {
@@ -160,6 +164,95 @@ function getMedian(values) {
   if (values.length === 0) return 0;
   const sorted = [...values].sort((left, right) => left - right);
   return sorted[Math.floor(sorted.length / 2)];
+}
+
+function getGroupMembers(groupNode) {
+  return Array.isArray(groupNode?.data?.members) ? groupNode.data.members : [];
+}
+
+function getVisibleGroupMembers(groupNode, visibleNodeIdSet) {
+  const members = getGroupMembers(groupNode);
+  if (!(visibleNodeIdSet instanceof Set) || visibleNodeIdSet.size === 0) {
+    return members;
+  }
+  return members.filter((memberId) => visibleNodeIdSet.has(memberId));
+}
+
+function getGroupLayoutMetrics(groupNode, visibleMembers) {
+  const layout = getNodeLayout(groupNode);
+  const memberCount = visibleMembers.length;
+  const memberColumns = Math.max(
+    1,
+    Number(layout.memberColumns) || 3,
+  );
+  const padding = Math.max(12, Number(layout.padding) || SPACING.groupPadding);
+  const titleHeight = Math.max(
+    36,
+    Number(layout.titleHeight) || SPACING.groupTitleHeight,
+  );
+  const columnCount = memberCount > 0 ? Math.min(memberColumns, memberCount) : 1;
+  const rowCount = memberCount > 0 ? Math.ceil(memberCount / columnCount) : 1;
+  const contentWidth =
+    columnCount * DEFAULT_SIZES.character.width +
+    Math.max(0, columnCount - 1) * SPACING.cardGap;
+  const contentHeight =
+    rowCount * DEFAULT_SIZES.character.height +
+    Math.max(0, rowCount - 1) * SPACING.satelliteGap;
+  const width = Math.max(
+    Number(layout.width) || DEFAULT_SIZES.group.width,
+    contentWidth + padding * 2,
+  );
+  const height = Math.max(
+    Number(layout.height) || DEFAULT_SIZES.group.height,
+    titleHeight + contentHeight + padding * 2,
+  );
+
+  return {
+    width,
+    height,
+    titleHeight,
+    padding,
+    memberColumns: columnCount,
+    rowCount,
+    contentWidth,
+    contentHeight,
+  };
+}
+
+function sortFallbackNodes(nodes, childEdgesByTarget) {
+  const nodeIds = new Set(nodes.map((node) => node.id));
+  const depthByNode = new Map();
+
+  const getDepth = (nodeId, visiting = new Set()) => {
+    if (depthByNode.has(nodeId)) return depthByNode.get(nodeId);
+    if (visiting.has(nodeId)) return 0;
+
+    visiting.add(nodeId);
+    const parentEdges = (childEdgesByTarget.get(nodeId) ?? []).filter((edge) =>
+      nodeIds.has(edge.source),
+    );
+    const depth =
+      parentEdges.length === 0
+        ? 0
+        : Math.max(
+            ...parentEdges.map((edge) => getDepth(edge.source, visiting) + 1),
+          );
+    visiting.delete(nodeId);
+    depthByNode.set(nodeId, depth);
+    return depth;
+  };
+
+  nodes.forEach((node) => {
+    getDepth(node.id);
+  });
+
+  return [...nodes].sort((leftNode, rightNode) => {
+    const leftDepth = depthByNode.get(leftNode.id) ?? 0;
+    const rightDepth = depthByNode.get(rightNode.id) ?? 0;
+
+    if (leftDepth !== rightDepth) return leftDepth - rightDepth;
+    return leftNode._layoutOrder - rightNode._layoutOrder;
+  });
 }
 
 function getHouseIndex(houseId, orderedHouseIds) {
@@ -453,6 +546,7 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   const nodeById = new Map(cleanNodes.map((node) => [node.id, node]));
   const houses = cleanNodes.filter((node) => node.type === "house");
   const characterNodes = cleanNodes.filter((node) => node.type === "character");
+  const groupNodes = cleanNodes.filter((node) => node.type === "group");
   const houseIdByName = new Map();
 
   houses.forEach((house) => {
@@ -492,6 +586,19 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   const characterHouseById = new Map();
   characterNodes.forEach((node) => {
     characterHouseById.set(node.id, resolveCharacterHouseId(node, houseIdByName));
+  });
+
+  const groupHouseById = new Map();
+  const groupMembershipByCharacter = new Map();
+  groupNodes.forEach((node) => {
+    const houseId = resolveHouseId(node.data?.houseAffinity, houseIdByName);
+    groupHouseById.set(node.id, houseId);
+
+    getGroupMembers(node).forEach((characterId) => {
+      if (!groupMembershipByCharacter.has(characterId)) {
+        groupMembershipByCharacter.set(characterId, node.id);
+      }
+    });
   });
 
   const partnerEdgesByUnion = new Map();
@@ -622,8 +729,11 @@ export function buildLayoutModel(initialNodes, initialEdges) {
     childEdges,
     nodeById,
     houses,
+    groupNodes,
     orderedHouseIds,
     characterHouseById,
+    groupHouseById,
+    groupMembershipByCharacter,
     characterImportance,
     explicitGenerationByCharacter,
     derivedGenerationByCharacter,
@@ -640,12 +750,15 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   };
 }
 
-function buildHousePlacement(model) {
+function buildHousePlacement(model, visibleNodeIdSet) {
   const {
     houses,
+    groupNodes,
     orderedHouseIds,
     cleanNodes,
     characterHouseById,
+    groupHouseById,
+    groupMembershipByCharacter,
     characterImportance,
     displayRowByCharacter,
     unresolvedCharacters,
@@ -661,6 +774,7 @@ function buildHousePlacement(model) {
       (node) =>
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
+        !groupMembershipByCharacter.has(node.id) &&
         characterImportance.get(node.id) !== "satellite" &&
         displayRowByCharacter.has(node.id),
     );
@@ -668,8 +782,19 @@ function buildHousePlacement(model) {
       (node) =>
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
+        !groupMembershipByCharacter.has(node.id) &&
         (characterImportance.get(node.id) === "satellite" ||
           unresolvedCharacters.has(node.id)),
+    );
+    const groupWidth = Math.max(
+      0,
+      ...groupNodes
+        .filter((node) => groupHouseById.get(node.id) === houseId)
+        .map((node) => {
+          const visibleMembers = getVisibleGroupMembers(node, visibleNodeIdSet);
+          if (visibleMembers.length === 0) return 0;
+          return getGroupLayoutMetrics(node, visibleMembers).width;
+        }),
     );
     const rowCountByDisplay = new Map();
 
@@ -701,6 +826,7 @@ function buildHousePlacement(model) {
       bannerSize.width + SPACING.cardGap,
       maxRowWidth,
       fallbackWidth,
+      groupWidth,
     );
     const territoryLeft = cursorX - SPACING.territoryPadding;
     const territoryWidth = SPACING.territoryPadding * 2 + coreWidth;
@@ -721,15 +847,19 @@ function buildHousePlacement(model) {
   return placements;
 }
 
-export async function getSemanticLayout(initialNodes, initialEdges) {
+export async function getSemanticLayout(initialNodes, initialEdges, options = {}) {
   const model = buildLayoutModel(initialNodes, initialEdges);
-  const housePlacement = buildHousePlacement(model);
+  const visibleNodeIdSet = new Set(options.visibleNodeIds ?? []);
+  const housePlacement = buildHousePlacement(model, visibleNodeIdSet);
   const {
     cleanNodes,
     houses,
+    groupNodes,
     nodeById,
     orderedHouseIds,
     characterHouseById,
+    groupHouseById,
+    groupMembershipByCharacter,
     displayRowByCharacter,
     displayRowByUnion,
     childEdges,
@@ -787,6 +917,7 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
     .filter((node) => node.type === "character")
     .forEach((node) => {
       if (characterImportance.get(node.id) === "satellite") return;
+      if (groupMembershipByCharacter.has(node.id)) return;
       if (!displayRowByCharacter.has(node.id)) return;
 
       const houseId = characterHouseById.get(node.id);
@@ -853,6 +984,23 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
       });
   });
 
+  const getHouseContentBottom = (houseId) => {
+    const houseCharacterBottoms = cleanNodes
+      .filter(
+        (node) =>
+          node.type === "character" &&
+          characterHouseById.get(node.id) === houseId &&
+          positionedNodes.has(node.id),
+      )
+      .map((node) => {
+        const positioned = positionedNodes.get(node.id);
+        return positioned.position.y + DEFAULT_SIZES.character.height;
+      });
+    return houseCharacterBottoms.length > 0
+      ? Math.max(...houseCharacterBottoms)
+      : rowTop(0);
+  };
+
   primaryUnionIds.forEach((unionId) => {
     const partnerEntries = partnerEdgesByUnion.get(unionId) ?? [];
     const partners = unique(partnerEntries.map((edge) => edge.source))
@@ -912,6 +1060,7 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
       (node) =>
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
+        !groupMembershipByCharacter.has(node.id) &&
         (characterImportance.get(node.id) === "satellite" ||
           unresolvedCharacters.has(node.id)),
     );
@@ -925,19 +1074,29 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
     const houseCoreYValues = cleanNodes
       .filter(
         (node) =>
-          node.type === "character" &&
-          characterHouseById.get(node.id) === houseId &&
-          positionedNodes.has(node.id),
+          (node.type === "character" || node.type === "group") &&
+          ((node.type === "character" &&
+            characterHouseById.get(node.id) === houseId &&
+            positionedNodes.has(node.id)) ||
+            (node.type === "group" &&
+              groupHouseById.get(node.id) === houseId &&
+              positionedNodes.has(node.id))),
       )
-      .map((node) => positionedNodes.get(node.id)?.position?.y)
+      .map((node) => {
+        const positioned = positionedNodes.get(node.id);
+        const size =
+          node.type === "group"
+            ? positioned?.data?.layoutBox ?? getNodeSize(node)
+            : { height: DEFAULT_SIZES.character.height };
+        return positioned?.position?.y + size.height;
+      })
       .filter((value) => value != null);
     const startY =
       (houseCoreYValues.length > 0 ? Math.max(...houseCoreYValues) : rowTop(0)) +
-      DEFAULT_SIZES.character.height +
       SPACING.rowGap;
     const startX = placement.coreCenterX - satelliteGridWidth / 2;
 
-    fallbackNodes.forEach((node, index) => {
+    sortFallbackNodes(fallbackNodes, childEdgesByTarget).forEach((node, index) => {
       const col = index % satelliteCols;
       const row = Math.floor(index / satelliteCols);
       const x = startX + col * (DEFAULT_SIZES.character.width + SPACING.satelliteGap);
@@ -947,6 +1106,69 @@ export async function getSemanticLayout(initialNodes, initialEdges) {
         ...node,
         position: { x, y },
       });
+    });
+  });
+
+  orderedHouseIds.forEach((houseId) => {
+    const placement = housePlacement.get(houseId);
+    const groups = groupNodes
+      .filter((node) => groupHouseById.get(node.id) === houseId)
+      .sort((left, right) => left._layoutOrder - right._layoutOrder);
+
+    if (groups.length === 0) return;
+
+    let nextGroupY = getHouseContentBottom(houseId) + SPACING.rowGap;
+
+    groups.forEach((groupNode) => {
+      const visibleMembers = getVisibleGroupMembers(groupNode, visibleNodeIdSet);
+      if (visibleMembers.length === 0) return;
+
+      const metrics = getGroupLayoutMetrics(groupNode, visibleMembers);
+      const groupX = placement.coreCenterX - metrics.width / 2;
+      const groupY = nextGroupY;
+
+      positionedNodes.set(groupNode.id, {
+        ...groupNode,
+        selectable: false,
+        draggable: false,
+        connectable: false,
+        deletable: false,
+        focusable: false,
+        position: { x: groupX, y: groupY },
+        data: {
+          ...groupNode.data,
+          visibleMembers,
+          visibleMemberCount: visibleMembers.length,
+          layoutBox: metrics,
+        },
+      });
+
+      sortFallbackNodes(
+        visibleMembers
+          .map((memberId) => nodeById.get(memberId))
+          .filter((memberNode) => memberNode?.type === "character"),
+        childEdgesByTarget,
+      ).forEach((memberNode, index) => {
+        const col = index % metrics.memberColumns;
+        const row = Math.floor(index / metrics.memberColumns);
+        const contentStartX =
+          groupX + (metrics.width - metrics.contentWidth) / 2;
+        const x =
+          contentStartX +
+          col * (DEFAULT_SIZES.character.width + SPACING.cardGap);
+        const y =
+          groupY +
+          metrics.titleHeight +
+          metrics.padding +
+          row * (DEFAULT_SIZES.character.height + SPACING.satelliteGap);
+
+        positionedNodes.set(memberNode.id, {
+          ...memberNode,
+          position: { x, y },
+        });
+      });
+
+      nextGroupY += metrics.height + SPACING.groupGap;
     });
   });
 

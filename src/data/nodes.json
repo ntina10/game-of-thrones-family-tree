@@ -224,6 +224,42 @@
     }
   },
   {
+    "id": "group_wildlings",
+    "type": "group",
+    "data": {
+      "label": "Wildlings",
+      "houseAffinity": "house_nights_watch",
+      "members": ["ygritte", "mance_rayder", "tormund_giantsbane", "orell", "thenn"]
+    }
+  },
+  {
+    "id": "group_brotherhood_without_banners",
+    "type": "group",
+    "data": {
+      "label": "Brotherhood Without Banners",
+      "houseAffinity": "house_stark",
+      "members": ["beric_dondarrion", "thoros_of_myr"]
+    }
+  },
+  {
+    "id": "group_thirteen_of_qarth",
+    "type": "group",
+    "data": {
+      "label": "The Thirteen of Qarth",
+      "houseAffinity": "house_targaryen",
+      "members": ["spice_master", "xaro_xhoan_daxos", "pyat_pree"]
+    }
+  },
+  {
+    "id": "group_second_sons",
+    "type": "group",
+    "data": {
+      "label": "The Second Sons",
+      "houseAffinity": "house_targaryen",
+      "members": ["mero", "daario_naharis"]
+    }
+  },
+  {
     "id": "u_ned_cat",
     "type": "union",
     "data": {
@@ -2796,7 +2832,7 @@
     "id": "thenn",
     "type": "character",
     "data": {
-      "name": "Styr",
+      "name": "Thenn",
       "image": "/characters/thenn.png",
       "house": "Free Folk",
       "states": [

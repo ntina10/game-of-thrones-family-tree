@@ -15,6 +15,7 @@ import { SmartBezierEdge } from "@tisoap/react-flow-smart-edge";
 import CharacterNode from "./CharacterNode";
 import HouseNode from "./HouseNode";
 import UnionNode from "./UnionNode";
+import GroupNode from "./GroupNode";
 import RelationshipEdge from "./RelationshipEdge";
 import EpisodeSlider from "./EpisodeSlider";
 import { getStateForEpisode } from "../utils/getStateForEpisode";
@@ -49,11 +50,23 @@ function GoTDiagram() {
   // 2. Run semantic layout asynchronously when the component mounts
   useEffect(() => {
     const calculateLayout = async () => {
+      const visibleNodeIds = initialNodes
+        .filter((node) => {
+          if (node.type === "group") return true;
+          const currentState = getStateForEpisode(
+            node.data?.states || [],
+            currentEpisode,
+          );
+          return Object.keys(currentState).length > 0;
+        })
+        .map((node) => node.id);
+
       // Fetch the layouted nodes and edges
       const { nodes: layoutedNodes, edges: layoutedEdges } =
         await getSemanticLayout(
           initialNodes,
           initialEdges,
+          { visibleNodeIds },
         );
 
       // Update the state with the new X/Y positions
@@ -63,10 +76,15 @@ function GoTDiagram() {
     };
 
     calculateLayout();
-  }, []); // Empty dependency array ensures this runs exactly once on mount
+  }, [currentEpisode]);
 
   const nodeTypes = useMemo(
-    () => ({ character: CharacterNode, house: HouseNode, union: UnionNode }),
+    () => ({
+      character: CharacterNode,
+      house: HouseNode,
+      union: UnionNode,
+      group: GroupNode,
+    }),
     [],
   );
 
@@ -94,7 +112,36 @@ function GoTDiagram() {
   );
 
   const activeNodes = useMemo(() => {
+    const nodeById = new Map(nodes.map((node) => [node.id, node]));
+
     return nodes.map((node) => {
+      if (node.type === "group") {
+        const members = node.data?.members ?? [];
+        const visibleMembers = members.filter((memberId) => {
+          const memberNode = nodeById.get(memberId);
+          const currentState = getStateForEpisode(
+            memberNode?.data?.states || [],
+            currentEpisode,
+          );
+          return Object.keys(currentState).length > 0;
+        });
+
+        return {
+          ...node,
+          hidden: visibleMembers.length === 0,
+          selectable: false,
+          draggable: false,
+          connectable: false,
+          deletable: false,
+          focusable: false,
+          data: {
+            ...node.data,
+            visibleMembers,
+            visibleMemberCount: visibleMembers.length,
+          },
+        };
+      }
+
       const currentState = getStateForEpisode(
         node.data?.states || [],
         currentEpisode,
