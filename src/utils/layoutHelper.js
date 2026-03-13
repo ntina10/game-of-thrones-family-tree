@@ -18,8 +18,8 @@ const SPACING = {
   satelliteGap: 32,
   unionOffsetY: 42,
   groupGap: 42,
-  groupPadding: 18,
-  groupTitleHeight: 44,
+  groupPadding: 30,
+  groupTitleHeight: 56,
 };
 
 const HOUSE_AFFINITY_ALIASES = {

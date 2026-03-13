@@ -8,9 +8,11 @@
 }
 
 .house-node {
+    position: relative;
     text-align: center;
     width: 250px;
     font-family: 'GameOfThrones', serif;
+    overflow: visible;
 }
 
 .house-node img {

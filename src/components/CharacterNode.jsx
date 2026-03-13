@@ -1,5 +1,10 @@
-import React from "react";
-import { Handle, Position } from "@xyflow/react";
+import React, { useCallback, useEffect } from "react";
+import {
+  Handle,
+  Position,
+  useNodeId,
+  useUpdateNodeInternals,
+} from "@xyflow/react";
 import "./CharacterNode.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,12 +27,23 @@ const opinionInfo = {
 
 // The data prop is passed automatically by React Flow
 function CharacterNode({ data }) {
+  const nodeId = useNodeId();
+  const updateNodeInternals = useUpdateNodeInternals();
   const houseClass = toCssClass(data.house);
   const isDead = data.tag?.type === "dead";
   const nodeClasses = `character-node ${houseClass} ${isDead ? "is-dead" : ""}`;
 
   const infoToRender = data.title ? titleInfo[data.title] : null;
   const infoToRen = data.opinion ? opinionInfo[data.opinion] : null;
+  const refreshNodeInternals = useCallback(() => {
+    if (nodeId) {
+      updateNodeInternals(nodeId);
+    }
+  }, [nodeId, updateNodeInternals]);
+
+  useEffect(() => {
+    refreshNodeInternals();
+  }, [refreshNodeInternals, data.image, data.name]);
 
   return (
     // The main container for our custom node
@@ -49,6 +65,8 @@ function CharacterNode({ data }) {
           className="character-image"
           loading="lazy"
           decoding="async"
+          onLoad={refreshNodeInternals}
+          onError={refreshNodeInternals}
         />
 
         <div className="character-info">

@@ -281,6 +281,12 @@ describe("layoutHelper (global generations)", () => {
     expect(byId.pyat.position.x).toBeGreaterThanOrEqual(group.position.x);
     expect(byId.spice.position.y).toBeGreaterThanOrEqual(group.position.y);
     expect(group.data.layoutBox.width).toBeGreaterThan(0);
+    expect(byId.xaro.position.x - group.position.x).toBeGreaterThanOrEqual(28);
+    expect(
+      group.position.y +
+        group.data.layoutBox.height -
+        (byId.xaro.position.y + 210),
+    ).toBeGreaterThanOrEqual(28);
   });
 
   it("matches the regression cases in the real dataset", () => {
