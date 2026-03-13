@@ -187,7 +187,7 @@ describe("GoTDiagram", () => {
     vi.restoreAllMocks();
   });
 
-  it("animates node movement and entry opacity between episode snapshots", async () => {
+  it("animates node movement between episode snapshots without blinking the graph", async () => {
     buildEpisodeGraph.mockImplementation(async (_nodes, _edges, episode) => {
       if (episode === 1) {
         return {
@@ -240,25 +240,31 @@ describe("GoTDiagram", () => {
       await Promise.resolve();
     });
 
+    const transitionStartNed = screen.getByTestId("node-ned");
+    const transitionStartArya = screen.getByTestId("node-arya");
+
+    expect(Number(transitionStartNed.getAttribute("data-x"))).toBe(0);
+    expect(Number(transitionStartArya.getAttribute("data-y"))).toBe(102);
+
     await act(async () => {
-      await flushAnimationFrames(176);
+      await flushAnimationFrames(32);
     });
 
     const animatedNed = screen.getByTestId("node-ned");
     const enteringArya = screen.getByTestId("node-arya");
 
-    expect(Number(animatedNed.getAttribute("data-x"))).toBeGreaterThan(0);
-    expect(Number(animatedNed.getAttribute("data-x"))).toBeLessThan(120);
-    expect(parseFloat(enteringArya.style.opacity)).toBeGreaterThan(0);
-    expect(parseFloat(enteringArya.style.opacity)).toBeLessThan(1);
+    expect(Number(animatedNed.getAttribute("data-x"))).toBe(120);
+    expect(Number(enteringArya.getAttribute("data-y"))).toBe(120);
+    expect(animatedNed.style.transition).toContain("transform 520ms");
+    expect(enteringArya.style.transition).toContain("transform 520ms");
 
     await act(async () => {
-      await flushAnimationFrames(320);
+      await flushAnimationFrames(560);
     });
 
     expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(120);
     expect(Number(screen.getByTestId("node-arya").getAttribute("data-y"))).toBe(120);
-    expect(screen.getByTestId("edge-edge-ned-arya").style.opacity).toBe("1");
+    expect(screen.getByTestId("edge-edge-ned-arya")).toBeInTheDocument();
   });
 
   it("ignores stale async graph results during rapid forward and backward scrubs", async () => {
@@ -317,7 +323,7 @@ describe("GoTDiagram", () => {
     });
 
     await act(async () => {
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
     });
 
     expect(screen.getByTestId("node-arya")).toBeInTheDocument();
@@ -339,7 +345,7 @@ describe("GoTDiagram", () => {
     });
 
     await act(async () => {
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
     });
 
     expect(screen.getByTestId("node-arya")).toBeInTheDocument();
@@ -390,7 +396,7 @@ describe("GoTDiagram", () => {
         target: { value: "2" },
       });
       await Promise.resolve();
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
       await flushAnimationFrames(64);
     });
 
@@ -402,14 +408,21 @@ describe("GoTDiagram", () => {
         target: { value: "1" },
       });
       await Promise.resolve();
-      await flushAnimationFrames(176);
     });
 
-    expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBeLessThan(220);
+    expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(220);
     expect(screen.getByTestId("node-arya")).toBeInTheDocument();
 
     await act(async () => {
-      await flushAnimationFrames(320);
+      await flushAnimationFrames(32);
+    });
+
+    expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(40);
+    expect(screen.getByTestId("node-ned").style.transition).toContain("transform 520ms");
+    expect(screen.getByTestId("node-arya")).toBeInTheDocument();
+
+    await act(async () => {
+      await flushAnimationFrames(560);
     });
 
     expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(40);
@@ -436,7 +449,7 @@ describe("GoTDiagram", () => {
 
     await waitFor(() => expect(screen.getByTestId("node-ned")).toBeInTheDocument());
     await act(async () => {
-      await flushAnimationFrames(64);
+      await flushAnimationFrames(128);
     });
 
     await waitFor(() => expect(fitView).toHaveBeenCalledTimes(1));
@@ -488,7 +501,7 @@ describe("GoTDiagram", () => {
         target: { value: "2" },
       });
       await Promise.resolve();
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
       await flushAnimationFrames(64);
     });
 
@@ -559,7 +572,7 @@ describe("GoTDiagram", () => {
         target: { value: "2" },
       });
       await Promise.resolve();
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
     });
 
     await waitFor(() => expect(screen.getByTestId("node-arya")).toBeInTheDocument());
@@ -567,6 +580,38 @@ describe("GoTDiagram", () => {
     expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(40);
     expect(Number(screen.getByTestId("node-arya").getAttribute("data-y"))).toBe(234);
     expect(screen.queryByTestId("edge-edge-dangling")).not.toBeInTheDocument();
+  });
+
+  it("renders group cards behind character cards", async () => {
+    buildEpisodeGraph.mockResolvedValue({
+      nodes: [
+        {
+          id: "stark-kids",
+          type: "group",
+          position: { x: 40, y: 120 },
+          data: {
+            label: "Stark Children",
+            layoutBox: { width: 420, height: 280 },
+          },
+        },
+        {
+          id: "arya",
+          type: "character",
+          position: { x: 80, y: 180 },
+          data: { name: "Arya" },
+        },
+      ],
+      edges: [],
+    });
+
+    render(<DiagramWrapper />);
+
+    await waitFor(() => expect(screen.getByTestId("node-stark-kids")).toBeInTheDocument());
+    expect(screen.getByTestId("node-arya")).toBeInTheDocument();
+
+    expect(Number(screen.getByTestId("node-stark-kids").style.zIndex)).toBeLessThan(
+      Number(screen.getByTestId("node-arya").style.zIndex),
+    );
   });
 
   it("keeps the current viewport when the settled graph already fits", async () => {
@@ -614,7 +659,7 @@ describe("GoTDiagram", () => {
         target: { value: "2" },
       });
       await Promise.resolve();
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
     });
 
     expect(fitView).toHaveBeenCalledTimes(1);

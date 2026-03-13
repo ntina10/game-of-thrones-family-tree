@@ -27,19 +27,26 @@ import { getHouseCoreWidthById } from "../utils/layoutHelper";
 import initialNodes from "../data/nodes.json";
 import initialEdges from "../data/edges.json";
 
-const ANIMATION_DURATION_MS = 350;
-const DENSE_ANIMATION_DURATION_MS = 220;
-const ENTRY_OFFSET_Y = 28;
+const ANIMATION_DURATION_MS = 520;
+const DENSE_ANIMATION_DURATION_MS = 360;
+const ENTRY_OFFSET_Y = 18;
 const VIEWPORT_MARGIN_RATIO = 0.1;
 const INITIAL_FIT_PADDING = 0.18;
 const SMART_REFIT_DURATION_MS = 0;
 const DENSE_GRAPH_NODE_THRESHOLD = 85;
 const DENSE_GRAPH_EDGE_THRESHOLD = 140;
+const MOTION_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 const DEFAULT_NODE_SIZES = {
   character: { width: 170, height: 210 },
   group: { width: 320, height: 180 },
   house: { width: 250, height: 190 },
   union: { width: 28, height: 28 },
+};
+const NODE_LAYER_Z_INDEX = {
+  group: 0,
+  house: 1,
+  union: 3,
+  character: 4,
 };
 const SHARED_EDGE_TYPES = new Set(["banner", "child", "partner"]);
 const EMPTY_GRAPH = { nodes: [], edges: [] };
@@ -213,11 +220,6 @@ class DiagramErrorBoundary extends React.Component {
   }
 }
 
-function easeInOutCubic(progress) {
-  if (progress < 0.5) return 4 * progress * progress * progress;
-  return 1 - ((-2 * progress + 2) ** 3) / 2;
-}
-
 function interpolate(start, end, progress) {
   return start + (end - start) * progress;
 }
@@ -226,6 +228,23 @@ function withOpacity(style, opacity) {
   return {
     ...(style ?? {}),
     opacity,
+  };
+}
+
+function withTransition(style, durationMs, properties = "transform") {
+  let transition = "none";
+
+  if (durationMs > 0) {
+    if (properties === "opacity") {
+      transition = `opacity ${durationMs}ms ease-out`;
+    } else {
+      transition = `${properties} ${durationMs}ms ${MOTION_EASING}`;
+    }
+  }
+
+  return {
+    ...(style ?? {}),
+    transition,
   };
 }
 
@@ -242,6 +261,24 @@ function getNodeSize(node) {
   return {
     width: Number(node?.width) || fallback.width,
     height: Number(node?.height) || fallback.height,
+  };
+}
+
+function withStableNodeBox(node) {
+  const { width, height } = getNodeSize(node);
+  const zIndex = NODE_LAYER_Z_INDEX[node?.type] ?? 2;
+
+  return {
+    ...node,
+    width,
+    height,
+    zIndex,
+    style: {
+      ...(node.style ?? {}),
+      width,
+      height,
+      zIndex,
+    },
   };
 }
 
@@ -379,10 +416,12 @@ function decorateEdge(edge, opacity = 1) {
 
 function renderGraphForDisplay(graph) {
   return {
-    nodes: graph.nodes.map((node) => ({
-      ...node,
-      style: withOpacity(node.style, 1),
-    })),
+    nodes: graph.nodes.map((node) =>
+      withStableNodeBox({
+        ...node,
+        style: withTransition(withOpacity(node.style, 1), 0, "transform"),
+      }),
+    ),
     edges: graph.edges.map((edge) => decorateEdge(edge, 1)),
   };
 }
@@ -425,7 +464,7 @@ function buildAnimatedGraph(previousGraph, nextGraph, progress, options = {}) {
           x: interpolate(previousNode.position.x, nextNode.position.x, progress),
           y: interpolate(previousNode.position.y, nextNode.position.y, progress),
         },
-        style: withOpacity(nextNode.style, 1),
+        style: nextNode.style,
       };
     }
 
@@ -440,13 +479,13 @@ function buildAnimatedGraph(previousGraph, nextGraph, progress, options = {}) {
             progress,
           ),
         },
-        style: withOpacity(nextNode.style, progress),
+        style: nextNode.style,
       };
     }
 
     return {
       ...previousNode,
-      style: withOpacity(previousNode.style, 1 - progress),
+      style: previousNode.style,
     };
   });
 
@@ -474,15 +513,32 @@ function buildAnimatedGraph(previousGraph, nextGraph, progress, options = {}) {
           }
 
           if (nextEdge) {
-            return decorateEdge(nextEdge, progress);
+            return decorateEdge(nextEdge, 1);
           }
 
-          return decorateEdge(previousEdge, 1 - progress);
+          return decorateEdge(previousEdge, 1);
         });
       })()
     : [];
 
   return { nodes, edges };
+}
+
+function buildTransitionGraph(previousGraph, nextGraph, durationMs, options = {}) {
+  const { includeEdges = true, progress = 1 } = options;
+  const graph = buildAnimatedGraph(previousGraph, nextGraph, progress, {
+    includeEdges,
+  });
+
+  return {
+    nodes: graph.nodes.map((node) =>
+      withStableNodeBox({
+        ...node,
+        style: withTransition(node.style, durationMs, "transform"),
+      }),
+    ),
+    edges: graph.edges,
+  };
 }
 
 function GoTDiagram() {
@@ -492,11 +548,17 @@ function GoTDiagram() {
     ...EMPTY_GRAPH,
   });
   const [isLayoutReady, setIsLayoutReady] = useState(false);
+  const [isEpisodeUpdating, setIsEpisodeUpdating] = useState(false);
   const [currentEpisode, setCurrentEpisode] = useState(1);
 
   const displayGraphRef = useRef(EMPTY_GRAPH);
+  const settledGraphRef = useRef({
+    version: 0,
+    ...EMPTY_GRAPH,
+  });
   const requestIdRef = useRef(0);
   const animationFrameRef = useRef(null);
+  const animationSettleFrameRef = useRef(null);
   const animationTokenRef = useRef(0);
   const settledGraphVersionRef = useRef(0);
   const seenHouseOrderRef = useRef([]);
@@ -716,6 +778,9 @@ function GoTDiagram() {
   }, []);
 
   const invalidateAnimation = useCallback(() => {
+    const hadActiveAnimation =
+      animationFrameRef.current !== null || animationSettleFrameRef.current !== null;
+
     animationTokenRef.current += 1;
     if (animationFrameRef.current !== null) {
       appendDebugEvent("animation:cancel", {
@@ -725,7 +790,15 @@ function GoTDiagram() {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
     }
-  }, [currentEpisode]);
+    if (animationSettleFrameRef.current !== null) {
+      cancelAnimationFrame(animationSettleFrameRef.current);
+      animationSettleFrameRef.current = null;
+    }
+
+    if (hadActiveAnimation && settledGraphRef.current.version > 0) {
+      publishDisplayGraph(renderGraphForDisplay(settledGraphRef.current));
+    }
+  }, [currentEpisode, publishDisplayGraph]);
 
   const commitSettledGraph = useCallback((nextGraph) => {
     const nextDisplayGraph = renderGraphForDisplay(nextGraph);
@@ -737,6 +810,7 @@ function GoTDiagram() {
     };
 
     displayGraphRef.current = nextDisplayGraph;
+    settledGraphRef.current = nextSettledGraph;
     appendDebugEvent("graph:commit", {
       episode: currentEpisode,
       version: settledGraphVersionRef.current,
@@ -747,6 +821,7 @@ function GoTDiagram() {
     setDisplayGraph(nextDisplayGraph);
     setSettledGraph(nextSettledGraph);
     setIsLayoutReady(true);
+    setIsEpisodeUpdating(false);
   }, [currentEpisode, syncViewportForGraph]);
 
   const animateToGraph = useCallback(
@@ -754,7 +829,10 @@ function GoTDiagram() {
       invalidateAnimation();
 
       const animationToken = animationTokenRef.current;
-      const previousGraph = displayGraphRef.current;
+      const previousGraph =
+        settledGraphRef.current.version > 0
+          ? settledGraphRef.current
+          : displayGraphRef.current;
       const animationStart = performance.now();
       const useLightweightAnimation = shouldUseLightweightAnimation(
         previousGraph,
@@ -763,6 +841,19 @@ function GoTDiagram() {
       const animationDuration = useLightweightAnimation
         ? DENSE_ANIMATION_DURATION_MS
         : ANIMATION_DURATION_MS;
+      const includeEdges = true;
+      const startGraph = buildTransitionGraph(
+        previousGraph,
+        nextGraph,
+        0,
+        { includeEdges, progress: 0 },
+      );
+      const endGraph = buildTransitionGraph(
+        previousGraph,
+        nextGraph,
+        animationDuration,
+        { includeEdges, progress: 1 },
+      );
       appendDebugEvent("animation:start", {
         episode: currentEpisode,
         requestId,
@@ -772,7 +863,9 @@ function GoTDiagram() {
         next: summarizeGraph(nextGraph),
       });
 
-      const step = (timestamp) => {
+      publishDisplayGraph(startGraph);
+
+      const settle = (timestamp) => {
         if (
           animationToken !== animationTokenRef.current ||
           requestId !== requestIdRef.current
@@ -788,21 +881,12 @@ function GoTDiagram() {
         }
 
         const elapsed = timestamp - animationStart;
-        const progress = Math.min(1, elapsed / animationDuration);
-        const easedProgress = easeInOutCubic(progress);
-
-        publishDisplayGraph(
-          buildAnimatedGraph(previousGraph, nextGraph, easedProgress, {
-            includeEdges: !useLightweightAnimation,
-          }),
-        );
-
-        if (progress < 1) {
-          animationFrameRef.current = requestAnimationFrame(step);
+        if (elapsed < animationDuration) {
+          animationSettleFrameRef.current = requestAnimationFrame(settle);
           return;
         }
 
-        animationFrameRef.current = null;
+        animationSettleFrameRef.current = null;
         appendDebugEvent("animation:complete", {
           episode: currentEpisode,
           requestId,
@@ -811,7 +895,18 @@ function GoTDiagram() {
         commitSettledGraph(nextGraph);
       };
 
-      animationFrameRef.current = requestAnimationFrame(step);
+      animationFrameRef.current = requestAnimationFrame(() => {
+        if (
+          animationToken !== animationTokenRef.current ||
+          requestId !== requestIdRef.current
+        ) {
+          return;
+        }
+
+        animationFrameRef.current = null;
+        publishDisplayGraph(endGraph);
+        animationSettleFrameRef.current = requestAnimationFrame(settle);
+      });
     },
     [commitSettledGraph, currentEpisode, invalidateAnimation, publishDisplayGraph],
   );
@@ -839,6 +934,9 @@ function GoTDiagram() {
           requestId,
           visibleHouseIds,
         });
+        if (displayGraphRef.current.nodes.length > 0) {
+          setIsEpisodeUpdating(true);
+        }
         visibleHouseIds.forEach((houseId) => {
           if (!seenHouseOrderRef.current.includes(houseId)) {
             seenHouseOrderRef.current = [...seenHouseOrderRef.current, houseId];
@@ -884,6 +982,7 @@ function GoTDiagram() {
         animateToGraph(sanitizedGraph, requestId);
       } catch (error) {
         if (!cancelled && requestId === requestIdRef.current) {
+          setIsEpisodeUpdating(false);
           reportRuntimeError("loadGraph", error);
         }
       }
@@ -913,6 +1012,14 @@ function GoTDiagram() {
     if (typeof window === "undefined") return undefined;
 
     const handleWindowError = (event) => {
+      if (
+        event.message?.includes(
+          "ResizeObserver loop completed with undelivered notifications.",
+        )
+      ) {
+        event.preventDefault?.();
+        return;
+      }
       appendDebugEvent("window:error", {
         episode: currentEpisode,
         message: event.message,
@@ -963,7 +1070,7 @@ function GoTDiagram() {
 
       <div
         ref={flowContainerRef}
-        style={{ flex: 1 }}
+        style={{ flex: 1, position: "relative" }}
       >
         {isLayoutReady ? (
           <DiagramErrorBoundary
@@ -1018,6 +1125,31 @@ function GoTDiagram() {
             <h3>Drawing the Realm...</h3>
           </div>
         )}
+        {isLayoutReady ? (
+          <div
+            aria-hidden={!isEpisodeUpdating}
+            style={{
+              position: "absolute",
+              top: 16,
+              right: 16,
+              padding: "8px 12px",
+              borderRadius: "999px",
+              background: "rgba(245, 239, 228, 0.92)",
+              border: "1px solid rgba(70, 49, 24, 0.12)",
+              boxShadow: "0 8px 18px rgba(48, 35, 18, 0.08)",
+              color: "#473421",
+              fontSize: "0.9rem",
+              letterSpacing: "0.02em",
+              opacity: isEpisodeUpdating ? 1 : 0,
+              transform: isEpisodeUpdating ? "translateY(0)" : "translateY(-6px)",
+              transition: `opacity 180ms ease-out, transform 180ms ease-out`,
+              pointerEvents: "none",
+              zIndex: 5,
+            }}
+          >
+            Updating episode...
+          </div>
+        ) : null}
       </div>
 
       <EpisodeSlider

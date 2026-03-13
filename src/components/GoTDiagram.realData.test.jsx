@@ -145,7 +145,7 @@ describe("GoTDiagram real data parity", () => {
       });
       await Promise.resolve();
       await Promise.resolve();
-      await flushAnimationFrames(400);
+      await flushAnimationFrames(640);
     });
 
     await waitFor(() => expectEpisodeCharacters(episode));
