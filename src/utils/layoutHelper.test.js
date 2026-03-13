@@ -386,4 +386,29 @@ describe("layoutHelper (global generations)", () => {
     expect(model.derivedGenerationByCharacter.get("blackfish")).toBe(-1);
     expect(model.characterHouseById.get("ellaria")).toBe("house_martell");
   });
+
+  it("keeps fallback positions finite even when no visible houses are present", async () => {
+    const nodes = [
+      {
+        id: "jorah",
+        type: "character",
+        data: { house: "Mormont", layout: { generationSeed: 0, importance: "primary" } },
+      },
+      {
+        id: "doreah",
+        type: "character",
+        data: { house: "Dothraki" },
+      },
+    ];
+    const edges = [
+      { id: "jorah-doreah", source: "jorah", target: "doreah", relationshipType: "child" },
+    ];
+
+    const { nodes: layoutedNodes } = await getSemanticLayout(nodes, edges);
+
+    layoutedNodes.forEach((node) => {
+      expect(Number.isFinite(node.position.x)).toBe(true);
+      expect(Number.isFinite(node.position.y)).toBe(true);
+    });
+  });
 });

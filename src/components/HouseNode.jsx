@@ -8,7 +8,12 @@ function HouseNode({ data }) {
     <div className="house-node">
       <Handle type="source" position={Position.Bottom} id="parent" />
 
-      <img src={data.image} alt={data.label} />
+      <img
+        src={data.image}
+        alt={data.label}
+        loading="lazy"
+        decoding="async"
+      />
       <h2> {name} </h2>
     </div>
   );

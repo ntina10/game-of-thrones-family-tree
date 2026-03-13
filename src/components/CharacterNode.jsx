@@ -43,7 +43,13 @@ function CharacterNode({ data }) {
       <Handle type="target" position={Position.Bottom} id="lover" />
 
       <div className="character-image-container">
-        <img src={data.image} alt={data.name} className="character-image" />
+        <img
+          src={data.image}
+          alt={data.name}
+          className="character-image"
+          loading="lazy"
+          decoding="async"
+        />
 
         <div className="character-info">
           {infoToRender && (

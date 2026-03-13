@@ -536,7 +536,7 @@ function deriveCharacterGenerations({
   };
 }
 
-export function buildLayoutModel(initialNodes, initialEdges) {
+export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
   const cleanNodes = initialNodes.map((node, index) => {
     const nextNode = { ...node };
     delete nextNode.parentId;
@@ -638,10 +638,17 @@ export function buildLayoutModel(initialNodes, initialEdges) {
     }
   });
 
-  const orderedHouseIds = optimizeHouseOrder(
-    houses.map((house) => house.id),
-    houseConnectionWeights,
-  );
+  const houseIds = houses.map((house) => house.id);
+  const preferredHouseOrder = Array.isArray(options.orderedHouseIds)
+    ? options.orderedHouseIds.filter((houseId) => houseIds.includes(houseId))
+    : [];
+  const orderedHouseIds =
+    preferredHouseOrder.length > 0
+      ? [
+          ...preferredHouseOrder,
+          ...houseIds.filter((houseId) => !preferredHouseOrder.includes(houseId)),
+        ]
+      : optimizeHouseOrder(houseIds, houseConnectionWeights);
 
   const { childIdsByParent, parentIdsByChild, bannerChildrenByHouse } = buildCharacterLineage({
     childEdges,
@@ -750,7 +757,15 @@ export function buildLayoutModel(initialNodes, initialEdges) {
   };
 }
 
-function buildHousePlacement(model, visibleNodeIdSet) {
+function getFixedHouseCoreWidth(houseId, fixedHouseCoreWidthById) {
+  if (!fixedHouseCoreWidthById) return null;
+  if (fixedHouseCoreWidthById instanceof Map) {
+    return fixedHouseCoreWidthById.get(houseId) ?? null;
+  }
+  return fixedHouseCoreWidthById[houseId] ?? null;
+}
+
+function buildHousePlacement(model, visibleNodeIdSet, options = {}) {
   const {
     houses,
     groupNodes,
@@ -821,12 +836,15 @@ function buildHousePlacement(model, visibleNodeIdSet) {
         ? fallbackCols * DEFAULT_SIZES.character.width +
           Math.max(0, fallbackCols - 1) * SPACING.satelliteGap
         : 0;
+    const fixedCoreWidth =
+      getFixedHouseCoreWidth(houseId, options.fixedHouseCoreWidthById) ?? 0;
     const coreWidth = Math.max(
       SPACING.coreLaneMinWidth,
       bannerSize.width + SPACING.cardGap,
       maxRowWidth,
       fallbackWidth,
       groupWidth,
+      fixedCoreWidth,
     );
     const territoryLeft = cursorX - SPACING.territoryPadding;
     const territoryWidth = SPACING.territoryPadding * 2 + coreWidth;
@@ -847,10 +865,28 @@ function buildHousePlacement(model, visibleNodeIdSet) {
   return placements;
 }
 
+export function getHouseCoreWidthById(initialNodes, initialEdges, options = {}) {
+  const model = buildLayoutModel(initialNodes, initialEdges, options);
+  const visibleNodeIdSet =
+    options.visibleNodeIds instanceof Set
+      ? options.visibleNodeIds
+      : new Set(
+          options.visibleNodeIds ?? model.cleanNodes.map((node) => node.id),
+        );
+  const placements = buildHousePlacement(model, visibleNodeIdSet, options);
+
+  return new Map(
+    [...placements.entries()].map(([houseId, placement]) => [
+      houseId,
+      placement.coreWidth,
+    ]),
+  );
+}
+
 export async function getSemanticLayout(initialNodes, initialEdges, options = {}) {
-  const model = buildLayoutModel(initialNodes, initialEdges);
+  const model = buildLayoutModel(initialNodes, initialEdges, options);
   const visibleNodeIdSet = new Set(options.visibleNodeIds ?? []);
-  const housePlacement = buildHousePlacement(model, visibleNodeIdSet);
+  const housePlacement = buildHousePlacement(model, visibleNodeIdSet, options);
   const {
     cleanNodes,
     houses,
@@ -1211,12 +1247,14 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
     });
 
   const fallbackX =
-    Math.max(
-      ...orderedHouseIds.map((houseId) => {
-        const placement = housePlacement.get(houseId);
-        return placement.left + placement.width;
-      }),
-    ) + 200;
+    orderedHouseIds.length > 0
+      ? Math.max(
+          ...orderedHouseIds.map((houseId) => {
+            const placement = housePlacement.get(houseId);
+            return placement.left + placement.width;
+          }),
+        ) + 200
+      : SPACING.canvasPaddingX + SPACING.territoryPadding;
   let fallbackIndex = 0;
 
   cleanNodes.forEach((node) => {
