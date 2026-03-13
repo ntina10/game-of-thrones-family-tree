@@ -444,13 +444,11 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "active": true
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "active": false
         }
       ]
@@ -501,13 +499,11 @@
         {
           "season": 1,
           "episode": 5,
-          "absolute_episode": 5,
           "active": true
         },
         {
           "season": 2,
           "episode": 5,
-          "absolute_episode": 15,
           "active": false
         }
       ]
@@ -526,13 +522,11 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "active": true
         },
         {
           "season": 2,
           "episode": 2,
-          "absolute_episode": 12,
           "active": false
         }
       ]
@@ -719,13 +713,11 @@
         {
           "season": 3,
           "episode": 5,
-          "absolute_episode": 25,
           "active": true
         },
         {
           "season": 4,
           "episode": 9,
-          "absolute_episode": 39,
           "active": false
         }
       ]
@@ -744,7 +736,6 @@
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "active": true
         }
       ]
@@ -763,7 +754,6 @@
         {
           "season": 4,
           "episode": 4,
-          "absolute_episode": 34,
           "active": true
         }
       ]
@@ -782,7 +772,6 @@
         {
           "season": 3,
           "episode": 6,
-          "absolute_episode": 26,
           "active": true
         }
       ]

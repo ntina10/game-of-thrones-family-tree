@@ -31,19 +31,21 @@ describe("getStateForEpisode", () => {
     });
   });
 
-  it("supports absolute_episode schema and ignores future states", () => {
+  it("computes absolute position from season and episode and ignores future states", () => {
     const states = [
-      { absolute_episode: 2, tag: { type: "alive", text: "Alive" } },
-      { absolute_episode: 5, tag: { type: "dead", text: "Dead" } },
+      { season: 1, episode: 2, tag: { type: "alive", text: "Alive" } },
+      { season: 1, episode: 5, tag: { type: "dead", text: "Dead" } },
     ];
 
     expect(getStateForEpisode(states, 1)).toEqual({});
     expect(getStateForEpisode(states, 2)).toEqual({
-      absolute_episode: 2,
+      season: 1,
+      episode: 2,
       tag: { type: "alive", text: "Alive" },
     });
     expect(getStateForEpisode(states, 4)).toEqual({
-      absolute_episode: 2,
+      season: 1,
+      episode: 2,
       tag: { type: "alive", text: "Alive" },
     });
   });
@@ -69,4 +71,3 @@ describe("getStateForEpisode", () => {
     expect(getStateForEpisode(null, 10)).toEqual({});
   });
 });
-

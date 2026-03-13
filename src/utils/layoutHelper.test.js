@@ -265,7 +265,7 @@ describe("layoutHelper (global generations)", () => {
         data: {
           house: "Targaryen",
           layout: { generationSeed: 0, importance: "primary" },
-          states: [{ season: 1, episode: 1, absolute_episode: 1 }],
+          states: [{ season: 1, episode: 1 }],
         },
       },
     ];

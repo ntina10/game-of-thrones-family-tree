@@ -9,8 +9,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -25,8 +24,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -41,8 +39,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -57,8 +54,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -73,8 +69,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -89,8 +84,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -105,8 +99,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -121,8 +114,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -137,8 +129,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -153,8 +144,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -169,8 +159,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -185,8 +174,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 9,
-          "absolute_episode": 9
+          "episode": 9
         }
       ]
     }
@@ -201,8 +189,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -217,8 +204,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 1,
-          "absolute_episode": 31
+          "episode": 1
         }
       ]
     }
@@ -229,7 +215,13 @@
     "data": {
       "label": "Wildlings",
       "houseAffinity": "house_nights_watch",
-      "members": ["ygritte", "mance_rayder", "tormund_giantsbane", "orell", "thenn"]
+      "members": [
+        "ygritte",
+        "mance_rayder",
+        "tormund_giantsbane",
+        "orell",
+        "thenn"
+      ]
     }
   },
   {
@@ -238,7 +230,10 @@
     "data": {
       "label": "Brotherhood Without Banners",
       "houseAffinity": "house_stark",
-      "members": ["beric_dondarrion", "thoros_of_myr"]
+      "members": [
+        "beric_dondarrion",
+        "thoros_of_myr"
+      ]
     }
   },
   {
@@ -247,7 +242,11 @@
     "data": {
       "label": "The Thirteen of Qarth",
       "houseAffinity": "house_targaryen",
-      "members": ["spice_master", "xaro_xhoan_daxos", "pyat_pree"]
+      "members": [
+        "spice_master",
+        "xaro_xhoan_daxos",
+        "pyat_pree"
+      ]
     }
   },
   {
@@ -256,7 +255,10 @@
     "data": {
       "label": "The Second Sons",
       "houseAffinity": "house_targaryen",
-      "members": ["mero", "daario_naharis"]
+      "members": [
+        "mero",
+        "daario_naharis"
+      ]
     }
   },
   {
@@ -267,8 +269,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -281,8 +282,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -295,8 +295,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -309,8 +308,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -323,8 +321,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 1,
-          "absolute_episode": 11
+          "episode": 1
         }
       ]
     }
@@ -337,8 +334,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 3,
-          "absolute_episode": 33
+          "episode": 3
         }
       ]
     }
@@ -351,8 +347,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 9,
-          "absolute_episode": 29
+          "episode": 9
         }
       ]
     }
@@ -365,8 +360,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 8,
-          "absolute_episode": 38
+          "episode": 8
         }
       ]
     }
@@ -379,8 +373,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 7,
-          "absolute_episode": 27
+          "episode": 7
         }
       ]
     }
@@ -400,7 +393,6 @@
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "Commander",
             "type": "info"
@@ -409,7 +401,6 @@
         {
           "season": 3,
           "episode": 4,
-          "absolute_episode": 24,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -429,8 +420,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         }
       ]
     }
@@ -446,8 +436,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         }
       ]
     }
@@ -463,8 +452,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 3,
-          "absolute_episode": 33
+          "episode": 3
         }
       ]
     }
@@ -480,13 +468,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         },
         {
           "season": 2,
           "episode": 2,
-          "absolute_episode": 12,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -506,8 +492,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 4,
-          "absolute_episode": 4
+          "episode": 4
         }
       ]
     }
@@ -523,13 +508,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 4,
-          "absolute_episode": 4
+          "episode": 4
         },
         {
           "season": 4,
           "episode": 9,
-          "absolute_episode": 39,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -549,13 +532,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 4,
-          "absolute_episode": 4
+          "episode": 4
         },
         {
           "season": 4,
           "episode": 9,
-          "absolute_episode": 39,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -575,13 +556,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 4,
-          "absolute_episode": 4
+          "episode": 4
         },
         {
           "season": 4,
           "episode": 5,
-          "absolute_episode": 35,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -600,13 +579,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "Night's Watch",
             "type": "info"
@@ -615,7 +592,6 @@
         {
           "season": 5,
           "episode": 2,
-          "absolute_episode": 42,
           "tag": {
             "text": "Lord Commander",
             "type": "info"
@@ -634,8 +610,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -651,7 +626,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "Night's Watch",
             "type": "info"
@@ -660,7 +634,6 @@
         {
           "season": 1,
           "episode": 7,
-          "absolute_episode": 7,
           "tag": {
             "text": "MISSING",
             "type": "missing"
@@ -683,25 +656,21 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "title": "Hand of the King"
         },
         {
           "season": 1,
           "episode": 7,
-          "absolute_episode": 7,
           "title": null
         },
         {
           "season": 1,
           "episode": 9,
-          "absolute_episode": 9,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -721,7 +690,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -740,13 +708,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -765,8 +731,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -781,8 +746,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -797,8 +761,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -813,8 +776,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -829,13 +791,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -855,7 +815,6 @@
         {
           "season": 1,
           "episode": 2,
-          "absolute_episode": 2,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -875,7 +834,6 @@
         {
           "season": 1,
           "episode": 2,
-          "absolute_episode": 2,
           "tag": {
             "text": "MISSING",
             "type": "missing"
@@ -894,8 +852,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -910,8 +867,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -928,13 +884,11 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "title": "Helper"
         },
         {
           "season": 1,
           "episode": 5,
-          "absolute_episode": 5,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -954,13 +908,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         },
         {
           "season": 1,
           "episode": 8,
-          "absolute_episode": 8,
           "tag": {
             "text": "DEAD?",
             "type": "dead"
@@ -981,7 +933,6 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "title": "Helper"
         }
       ]
@@ -998,8 +949,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -1015,13 +965,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 3,
           "episode": 6,
-          "absolute_episode": 26,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1042,13 +990,11 @@
         {
           "season": 1,
           "episode": 5,
-          "absolute_episode": 5,
           "title": "Helper"
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1069,13 +1015,11 @@
         {
           "season": 1,
           "episode": 5,
-          "absolute_episode": 5,
           "title": "Helper"
         },
         {
           "season": 1,
           "episode": 9,
-          "absolute_episode": 9,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1095,7 +1039,6 @@
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1115,7 +1058,6 @@
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1138,13 +1080,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1167,13 +1107,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 7,
-          "absolute_episode": 37,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1192,8 +1130,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -1213,7 +1150,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1234,7 +1170,6 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1253,19 +1188,16 @@
       "states": [
         {
           "season": 1,
-          "episode": 7,
-          "absolute_episode": 7
+          "episode": 7
         },
         {
           "season": 1,
           "episode": 9,
-          "absolute_episode": 9,
           "title": "Hand of the King"
         },
         {
           "season": 4,
           "episode": 10,
-          "absolute_episode": 40,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1284,8 +1216,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 8,
-          "absolute_episode": 8
+          "episode": 8
         }
       ]
     }
@@ -1304,19 +1235,16 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "title": "Hand of the King"
         },
         {
           "season": 3,
           "episode": 1,
-          "absolute_episode": 21,
           "title": null
         }
       ]
@@ -1336,13 +1264,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "tag": {
             "text": "KingSlayer",
             "type": "info"
@@ -1365,13 +1291,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 7,
-          "absolute_episode": 7,
           "opinion": "Evil"
         }
       ]
@@ -1387,8 +1311,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 2,
-          "absolute_episode": 2
+          "episode": 2
         }
       ]
     }
@@ -1404,8 +1327,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -1421,13 +1343,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 9,
-          "absolute_episode": 9
+          "episode": 9
         },
         {
           "season": 4,
           "episode": 10,
-          "absolute_episode": 40,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1447,8 +1367,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 6,
-          "absolute_episode": 6
+          "episode": 6
         }
       ]
     }
@@ -1468,13 +1387,11 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "title": "King"
         },
         {
           "season": 1,
           "episode": 7,
-          "absolute_episode": 7,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1497,13 +1414,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 5,
-          "absolute_episode": 15,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1526,13 +1441,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         },
         {
           "season": 2,
           "episode": 1,
-          "absolute_episode": 11,
           "title": "King in the Narrow Sea"
         }
       ]
@@ -1548,25 +1461,21 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 8,
-          "absolute_episode": 8,
           "title": "King"
         },
         {
           "season": 1,
           "episode": 9,
-          "absolute_episode": 9,
           "opinion": "Evil"
         },
         {
           "season": 4,
           "episode": 2,
-          "absolute_episode": 32,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1585,8 +1494,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -1601,19 +1509,16 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         },
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "image": "/characters/tommen-baratheon2.png"
         },
         {
           "season": 4,
           "episode": 2,
-          "absolute_episode": 32,
           "title": "King"
         }
       ]
@@ -1629,8 +1534,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 4,
-          "absolute_episode": 4
+          "episode": 4
         }
       ]
     }
@@ -1647,7 +1551,6 @@
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "Littlefinger",
             "type": "info"
@@ -1667,8 +1570,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         }
       ]
     }
@@ -1684,8 +1586,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         }
       ]
     }
@@ -1701,8 +1602,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -1718,8 +1618,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 8,
-          "absolute_episode": 8
+          "episode": 8
         }
       ]
     }
@@ -1736,7 +1635,6 @@
         {
           "season": 2,
           "episode": 1,
-          "absolute_episode": 11,
           "title": "The Red Priestess"
         }
       ]
@@ -1754,7 +1652,6 @@
         {
           "season": 2,
           "episode": 1,
-          "absolute_episode": 11,
           "title": "The Onion Knight"
         }
       ]
@@ -1772,7 +1669,6 @@
         {
           "season": 2,
           "episode": 3,
-          "absolute_episode": 13,
           "title": "Kingsguard"
         }
       ]
@@ -1793,7 +1689,6 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "tag": {
             "text": "The Mountain",
             "type": "info"
@@ -1817,7 +1712,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "The Hound",
             "type": "info"
@@ -1826,7 +1720,6 @@
         {
           "season": 4,
           "episode": 10,
-          "absolute_episode": 40,
           "tag": {
             "text": "MISSING",
             "type": "missing"
@@ -1849,13 +1742,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 2,
-          "absolute_episode": 12,
           "title": "King of the Iron Islands"
         }
       ]
@@ -1871,13 +1762,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "tag": {
             "text": "Reek",
             "type": "info"
@@ -1900,8 +1789,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 5,
-          "absolute_episode": 5
+          "episode": 5
         }
       ]
     }
@@ -1920,8 +1808,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -1936,13 +1823,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 6,
-          "absolute_episode": 6,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -1965,13 +1850,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "title": "Mother of Dragons"
         }
       ]
@@ -1991,13 +1874,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2017,7 +1898,6 @@
         {
           "season": 1,
           "episode": 9,
-          "absolute_episode": 9,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2037,7 +1917,6 @@
         {
           "season": 1,
           "episode": 3,
-          "absolute_episode": 3,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2057,7 +1936,6 @@
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2077,7 +1955,6 @@
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2097,8 +1974,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         }
       ]
     }
@@ -2114,13 +1990,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 4,
-          "absolute_episode": 4,
           "title": "Helper"
         }
       ]
@@ -2138,7 +2012,6 @@
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2158,13 +2031,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 1,
           "episode": 10,
-          "absolute_episode": 10,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2184,13 +2055,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 8,
-          "absolute_episode": 8
+          "episode": 8
         },
         {
           "season": 1,
           "episode": 8,
-          "absolute_episode": 8,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2211,7 +2080,6 @@
         {
           "season": 1,
           "episode": 8,
-          "absolute_episode": 8,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2230,8 +2098,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 9,
-          "absolute_episode": 9
+          "episode": 9
         }
       ]
     }
@@ -2246,8 +2113,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 9,
-          "absolute_episode": 9
+          "episode": 9
         }
       ]
     }
@@ -2263,7 +2129,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "Night's Watch",
             "type": "info"
@@ -2272,7 +2137,6 @@
         {
           "season": 1,
           "episode": 1,
-          "absolute_episode": 1,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2295,8 +2159,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 1,
-          "absolute_episode": 31
+          "episode": 1
         }
       ]
     }
@@ -2315,8 +2178,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -2331,8 +2193,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 3,
-          "absolute_episode": 23
+          "episode": 3
         }
       ]
     }
@@ -2347,13 +2208,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 1,
-          "absolute_episode": 21
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 5,
-          "absolute_episode": 35,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2373,13 +2232,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 2,
-          "absolute_episode": 2
+          "episode": 2
         },
         {
           "season": 2,
           "episode": 6,
-          "absolute_episode": 16,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2399,8 +2256,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 7,
-          "absolute_episode": 7
+          "episode": 7
         }
       ]
     }
@@ -2416,8 +2272,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 8,
-          "absolute_episode": 8
+          "episode": 8
         }
       ]
     }
@@ -2433,13 +2288,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 8,
-          "absolute_episode": 18
+          "episode": 8
         },
         {
           "season": 3,
           "episode": 5,
-          "absolute_episode": 25,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2458,13 +2311,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 4,
-          "absolute_episode": 14
+          "episode": 4
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2487,8 +2338,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -2503,8 +2353,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 8,
-          "absolute_episode": 18
+          "episode": 8
         }
       ],
       "layout": {
@@ -2522,8 +2371,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 3,
-          "absolute_episode": 23
+          "episode": 3
         }
       ],
       "layout": {
@@ -2541,13 +2389,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 2,
-          "absolute_episode": 22
+          "episode": 2
         },
         {
           "season": 4,
           "episode": 10,
-          "absolute_episode": 40,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2569,8 +2415,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 2,
-          "absolute_episode": 22
+          "episode": 2
         }
       ],
       "layout": {
@@ -2588,8 +2433,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 10,
-          "absolute_episode": 40
+          "episode": 10
         }
       ],
       "layout": {
@@ -2607,8 +2451,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 10,
-          "absolute_episode": 40
+          "episode": 10
         }
       ],
       "layout": {
@@ -2627,13 +2470,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 6,
-          "absolute_episode": 16
+          "episode": 6
         },
         {
           "season": 2,
           "episode": 9,
-          "absolute_episode": 19,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2652,13 +2493,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 2,
-          "absolute_episode": 12
+          "episode": 2
         },
         {
           "season": 3,
           "episode": 4,
-          "absolute_episode": 24,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2680,8 +2519,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 2,
-          "absolute_episode": 12
+          "episode": 2
         }
       ],
       "layout": {
@@ -2699,8 +2537,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 4,
-          "absolute_episode": 24
+          "episode": 4
         }
       ],
       "layout": {
@@ -2719,8 +2556,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 3,
-          "absolute_episode": 3
+          "episode": 3
         }
       ]
     }
@@ -2735,13 +2571,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 1,
-          "absolute_episode": 21
+          "episode": 1
         },
         {
           "season": 5,
           "episode": 1,
-          "absolute_episode": 41,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2763,8 +2597,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 1,
-          "absolute_episode": 21
+          "episode": 1
         }
       ],
       "layout": {
@@ -2782,13 +2615,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 6,
-          "absolute_episode": 16
+          "episode": 6
         },
         {
           "season": 4,
           "episode": 9,
-          "absolute_episode": 39,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2810,13 +2641,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 1,
-          "absolute_episode": 21
+          "episode": 1
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2839,7 +2668,6 @@
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "tag": {
             "text": "Thenn",
             "type": "info"
@@ -2848,7 +2676,6 @@
         {
           "season": 4,
           "episode": 9,
-          "absolute_episode": 39,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2871,13 +2698,11 @@
       "states": [
         {
           "season": 4,
-          "episode": 1,
-          "absolute_episode": 31
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 5,
-          "absolute_episode": 35,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2897,8 +2722,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 8,
-          "absolute_episode": 38
+          "episode": 8
         }
       ]
     }
@@ -2914,13 +2738,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 1,
-          "absolute_episode": 11
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 1,
-          "absolute_episode": 11,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2940,8 +2762,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 6,
-          "absolute_episode": 16
+          "episode": 6
         }
       ]
     }
@@ -2957,13 +2778,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 1,
-          "absolute_episode": 11
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 9,
-          "absolute_episode": 19,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -2983,8 +2802,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 1,
-          "absolute_episode": 11
+          "episode": 1
         }
       ]
     }
@@ -3000,8 +2818,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 4,
-          "absolute_episode": 24
+          "episode": 4
         }
       ]
     }
@@ -3017,8 +2834,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 2,
-          "absolute_episode": 2
+          "episode": 2
         }
       ]
     }
@@ -3034,13 +2850,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 1,
-          "absolute_episode": 11
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3060,8 +2874,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -3077,8 +2890,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 9,
-          "absolute_episode": 29
+          "episode": 9
         }
       ]
     }
@@ -3094,8 +2906,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 3,
-          "absolute_episode": 23
+          "episode": 3
         }
       ]
     }
@@ -3111,8 +2922,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 6,
-          "absolute_episode": 26
+          "episode": 6
         }
       ]
     }
@@ -3128,13 +2938,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 7,
-          "absolute_episode": 17
+          "episode": 7
         },
         {
           "season": 2,
           "episode": 7,
-          "absolute_episode": 17,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3154,13 +2962,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 6,
-          "absolute_episode": 16
+          "episode": 6
         },
         {
           "season": 2,
           "episode": 6,
-          "absolute_episode": 16,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3180,13 +2986,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         },
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3206,13 +3010,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 7,
-          "absolute_episode": 17
+          "episode": 7
         },
         {
           "season": 4,
           "episode": 1,
-          "absolute_episode": 31,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3232,7 +3034,6 @@
         {
           "season": 3,
           "episode": 3,
-          "absolute_episode": 23,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3254,8 +3055,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 8,
-          "absolute_episode": 28
+          "episode": 8
         }
       ]
     }
@@ -3271,7 +3071,6 @@
         {
           "season": 3,
           "episode": 8,
-          "absolute_episode": 28,
           "tag": {
             "text": "Blackfish",
             "type": "info"
@@ -3297,8 +3096,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 9,
-          "absolute_episode": 29
+          "episode": 9
         }
       ]
     }
@@ -3313,13 +3111,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 9,
-          "absolute_episode": 29
+          "episode": 9
         },
         {
           "season": 3,
           "episode": 9,
-          "absolute_episode": 29,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3338,8 +3134,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 8,
-          "absolute_episode": 38
+          "episode": 8
         }
       ]
     }
@@ -3354,8 +3149,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 2,
-          "absolute_episode": 12
+          "episode": 2
         }
       ]
     }
@@ -3371,8 +3165,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 3,
-          "absolute_episode": 13
+          "episode": 3
         }
       ]
     }
@@ -3387,8 +3180,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 2,
-          "absolute_episode": 22
+          "episode": 2
         }
       ]
     }
@@ -3403,8 +3195,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 3,
-          "absolute_episode": 33
+          "episode": 3
         }
       ]
     }
@@ -3423,8 +3214,7 @@
       "states": [
         {
           "season": 5,
-          "episode": 1,
-          "absolute_episode": 41
+          "episode": 1
         }
       ]
     }
@@ -3443,13 +3233,11 @@
       "states": [
         {
           "season": 4,
-          "episode": 1,
-          "absolute_episode": 31
+          "episode": 1
         },
         {
           "season": 4,
           "episode": 8,
-          "absolute_episode": 38,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3472,8 +3260,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 1,
-          "absolute_episode": 31
+          "episode": 1
         }
       ]
     }
@@ -3489,8 +3276,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 2,
-          "absolute_episode": 22
+          "episode": 2
         }
       ]
     }
@@ -3506,13 +3292,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3532,13 +3316,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3558,13 +3340,11 @@
       "states": [
         {
           "season": 1,
-          "episode": 1,
-          "absolute_episode": 1
+          "episode": 1
         },
         {
           "season": 2,
           "episode": 1,
-          "absolute_episode": 11,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3584,13 +3364,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 2,
-          "absolute_episode": 12
+          "episode": 2
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3610,13 +3388,11 @@
       "states": [
         {
           "season": 2,
-          "episode": 2,
-          "absolute_episode": 12
+          "episode": 2
         },
         {
           "season": 2,
           "episode": 10,
-          "absolute_episode": 20,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3636,8 +3412,7 @@
       "states": [
         {
           "season": 2,
-          "episode": 6,
-          "absolute_episode": 16
+          "episode": 6
         }
       ]
     }
@@ -3653,13 +3428,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 4,
-          "absolute_episode": 24
+          "episode": 4
         },
         {
           "season": 3,
           "episode": 4,
-          "absolute_episode": 24,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3679,8 +3452,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 4,
-          "absolute_episode": 24
+          "episode": 4
         }
       ]
     }
@@ -3696,8 +3468,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 4,
-          "absolute_episode": 24
+          "episode": 4
         }
       ]
     }
@@ -3713,8 +3484,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 7,
-          "absolute_episode": 27
+          "episode": 7
         }
       ]
     }
@@ -3730,13 +3500,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 8,
-          "absolute_episode": 28
+          "episode": 8
         },
         {
           "season": 3,
           "episode": 8,
-          "absolute_episode": 28,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3756,13 +3524,11 @@
       "states": [
         {
           "season": 3,
-          "episode": 8,
-          "absolute_episode": 28
+          "episode": 8
         },
         {
           "season": 3,
           "episode": 10,
-          "absolute_episode": 30,
           "tag": {
             "text": "DEAD",
             "type": "dead"
@@ -3782,8 +3548,7 @@
       "states": [
         {
           "season": 3,
-          "episode": 8,
-          "absolute_episode": 28
+          "episode": 8
         }
       ]
     }
@@ -3799,8 +3564,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 10,
-          "absolute_episode": 10
+          "episode": 10
         }
       ]
     }
@@ -3816,8 +3580,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 10,
-          "absolute_episode": 10
+          "episode": 10
         }
       ]
     }
@@ -3833,8 +3596,7 @@
       "states": [
         {
           "season": 1,
-          "episode": 10,
-          "absolute_episode": 10
+          "episode": 10
         }
       ]
     }
@@ -3850,8 +3612,7 @@
       "states": [
         {
           "season": 4,
-          "episode": 5,
-          "absolute_episode": 35
+          "episode": 5
         }
       ]
     }
