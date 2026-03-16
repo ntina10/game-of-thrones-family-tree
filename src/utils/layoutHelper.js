@@ -105,6 +105,20 @@ function getGenerationSeed(node) {
   return null;
 }
 
+function getMapValue(mapLike, key) {
+  if (!mapLike) return null;
+  if (mapLike instanceof Map) return mapLike.get(key) ?? null;
+  return mapLike[key] ?? null;
+}
+
+function cloneSetMap(mapLike) {
+  if (!(mapLike instanceof Map)) return new Map();
+
+  return new Map(
+    [...mapLike.entries()].map(([key, values]) => [key, new Set(values ?? [])]),
+  );
+}
+
 function addWeightedConnection(weightMap, leftId, rightId, weight) {
   if (!leftId || !rightId || leftId === rightId) return;
   const pair = [leftId, rightId].sort().join("::");
@@ -388,6 +402,7 @@ function deriveCharacterGenerations({
   partnerEdgesByUnion,
   primaryUnionIds,
   nodeById,
+  generationOverrideByCharacter,
 }) {
   const explicitGenerationByCharacter = new Map();
   const derivedGenerationByCharacter = new Map();
@@ -395,7 +410,11 @@ function deriveCharacterGenerations({
   const queue = [];
 
   characterNodes.forEach((node) => {
-    const seed = getGenerationSeed(node);
+    const overrideSeed = getMapValue(generationOverrideByCharacter, node.id);
+    const seed =
+      overrideSeed != null && Number.isFinite(Number(overrideSeed))
+        ? Number(overrideSeed)
+        : getGenerationSeed(node);
     if (!Number.isFinite(seed)) return;
 
     explicitGenerationByCharacter.set(node.id, seed);
@@ -650,12 +669,20 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
         ]
       : optimizeHouseOrder(houseIds, houseConnectionWeights);
 
-  const { childIdsByParent, parentIdsByChild, bannerChildrenByHouse } = buildCharacterLineage({
+  const {
+    childIdsByParent,
+    parentIdsByChild,
+    bannerChildrenByHouse: derivedBannerChildrenByHouse,
+  } = buildCharacterLineage({
     childEdges,
     bannerEdges,
     nodeById,
     partnerEdgesByUnion,
   });
+  const bannerChildrenByHouse =
+    options.bannerChildrenByHouse instanceof Map
+      ? cloneSetMap(options.bannerChildrenByHouse)
+      : derivedBannerChildrenByHouse;
 
   const {
     explicitGenerationByCharacter,
@@ -669,6 +696,7 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
     partnerEdgesByUnion,
     primaryUnionIds,
     nodeById,
+    generationOverrideByCharacter: options.generationOverrideByCharacter,
   });
 
   const characterImportance = new Map();
@@ -730,6 +758,29 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
     );
   });
 
+  const bannerHouseByCharacter = new Map();
+  bannerChildrenByHouse.forEach((characterIds, houseId) => {
+    [...characterIds].forEach((characterId) => {
+      if (!bannerHouseByCharacter.has(characterId)) {
+        bannerHouseByCharacter.set(characterId, houseId);
+      }
+    });
+  });
+
+  const parentSignatureByCharacter = new Map();
+  characterNodes.forEach((node) => {
+    const actualParentIds = unique([...(parentIdsByChild.get(node.id) ?? [])]).sort();
+    if (actualParentIds.length > 0) {
+      parentSignatureByCharacter.set(node.id, actualParentIds.join("::"));
+      return;
+    }
+
+    const bannerHouseId = bannerHouseByCharacter.get(node.id);
+    if (bannerHouseId) {
+      parentSignatureByCharacter.set(node.id, `banner:${bannerHouseId}`);
+    }
+  });
+
   return {
     cleanNodes,
     structuralEdges,
@@ -752,9 +803,95 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
     primaryUnionIds,
     childIdsByParent,
     parentIdsByChild,
+    parentSignatureByCharacter,
     bannerChildrenByHouse,
     conflicts,
   };
+}
+
+function buildRowClusters({
+  rowNodes,
+  parentSignatureByCharacter,
+  sameHousePrimaryUnionIdByCharacter,
+  houseId,
+  orderedHouseIds,
+  primaryPartnerHouseIdsByCharacter,
+}) {
+  const clustersByKey = new Map();
+
+  rowNodes.forEach((node) => {
+    const parentSignature = parentSignatureByCharacter.get(node.id);
+    const sameHouseUnionId = sameHousePrimaryUnionIdByCharacter.get(node.id);
+    const clusterKey = parentSignature
+      ? `parent:${parentSignature}`
+      : sameHouseUnionId
+        ? `union:${sameHouseUnionId}`
+        : `solo:${node.id}`;
+
+    if (!clustersByKey.has(clusterKey)) {
+      clustersByKey.set(clusterKey, {
+        key: clusterKey,
+        parentSignature,
+        nodes: [],
+      });
+    }
+
+    clustersByKey.get(clusterKey).nodes.push(node);
+  });
+
+  return [...clustersByKey.values()].map((cluster) => ({
+    ...cluster,
+    nodes: sortRowNodes(
+      cluster.nodes,
+      houseId,
+      orderedHouseIds,
+      primaryPartnerHouseIdsByCharacter,
+    ),
+  }));
+}
+
+function positionRowClusters({
+  clusters,
+  placement,
+  houseId,
+  orderedHouseIds,
+  primaryPartnerHouseIdsByCharacter,
+  targetCenterX,
+}) {
+  const totalWidth = clusters.reduce((sum, cluster) => {
+    const clusterWidth =
+      cluster.nodes.length * DEFAULT_SIZES.character.width +
+      Math.max(0, cluster.nodes.length - 1) * SPACING.cardGap;
+    return sum + clusterWidth;
+  }, 0) + Math.max(0, clusters.length - 1) * SPACING.cardGap;
+  const rowStartX = getRowStartX(
+    placement,
+    totalWidth,
+    houseId,
+    orderedHouseIds,
+    clusters.flatMap((cluster) => cluster.nodes),
+    primaryPartnerHouseIdsByCharacter,
+    targetCenterX,
+  );
+
+  let cursorX = rowStartX;
+
+  return clusters.map((cluster, index) => {
+    const startX = cursorX;
+    const clusterWidth =
+      cluster.nodes.length * DEFAULT_SIZES.character.width +
+      Math.max(0, cluster.nodes.length - 1) * SPACING.cardGap;
+
+    cursorX += clusterWidth;
+    if (index < clusters.length - 1) {
+      cursorX += SPACING.cardGap;
+    }
+
+    return {
+      ...cluster,
+      startX,
+    };
+  });
 }
 
 function getFixedHouseCoreWidth(houseId, fixedHouseCoreWidthById) {
@@ -899,6 +1036,7 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
     displayRowByCharacter,
     displayRowByUnion,
     childEdges,
+    parentSignatureByCharacter,
     characterImportance,
     partnerEdgesByUnion,
     primaryUnionIds,
@@ -907,6 +1045,7 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
 
   const positionedNodes = new Map();
   const primaryPartnerHouseIdsByCharacter = new Map();
+  const sameHousePrimaryUnionIdByCharacter = new Map();
   const childEdgesByTarget = new Map();
   const rowTop = (displayRow) =>
     SPACING.canvasPaddingY +
@@ -937,6 +1076,9 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
   primaryUnionIds.forEach((unionId) => {
     const partnerEntries = partnerEdgesByUnion.get(unionId) ?? [];
     const partnerIds = unique(partnerEntries.map((edge) => edge.source));
+    const partnerHouseIds = unique(
+      partnerIds.map((characterId) => characterHouseById.get(characterId)),
+    );
 
     partnerIds.forEach((characterId) => {
       const otherHouseIds = unique(
@@ -945,6 +1087,10 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
           .map((otherId) => characterHouseById.get(otherId)),
       );
       primaryPartnerHouseIdsByCharacter.set(characterId, otherHouseIds);
+
+      if (partnerHouseIds.length === 1) {
+        sameHousePrimaryUnionIdByCharacter.set(characterId, unionId);
+      }
     });
   });
 
@@ -976,16 +1122,14 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
     [...houseRows.keys()]
       .sort((left, right) => left - right)
       .forEach((displayRow) => {
-        const rowNodes = sortRowNodes(
-          houseRows.get(displayRow),
+        const rowNodes = houseRows.get(displayRow);
+        const sortedRowNodes = sortRowNodes(
+          rowNodes,
           houseId,
           orderedHouseIds,
           primaryPartnerHouseIdsByCharacter,
         );
-        const totalWidth =
-          rowNodes.length * DEFAULT_SIZES.character.width +
-          Math.max(0, rowNodes.length - 1) * SPACING.cardGap;
-        const parentCenters = rowNodes
+        const parentCenters = sortedRowNodes
           .flatMap((node) => childEdgesByTarget.get(node.id) ?? [])
           .map((edge) => positionedNodes.get(edge.source))
           .filter(Boolean)
@@ -998,23 +1142,34 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
             ? parentCenters.reduce((sum, value) => sum + value, 0) /
               parentCenters.length
             : placement.coreCenterX;
-        const startX = getRowStartX(
-          placement,
-          totalWidth,
+        const clusters = buildRowClusters({
+          rowNodes,
+          parentSignatureByCharacter,
+          sameHousePrimaryUnionIdByCharacter,
           houseId,
           orderedHouseIds,
-          rowNodes,
+          primaryPartnerHouseIdsByCharacter,
+        });
+        const positionedClusters = positionRowClusters({
+          clusters,
+          placement,
+          houseId,
+          orderedHouseIds,
           primaryPartnerHouseIdsByCharacter,
           targetCenterX,
-        );
+        });
 
-        rowNodes.forEach((node, index) => {
-          positionedNodes.set(node.id, {
-            ...node,
-            position: {
-              x: startX + index * (DEFAULT_SIZES.character.width + SPACING.cardGap),
-              y: rowTop(displayRow),
-            },
+        positionedClusters.forEach((cluster) => {
+          cluster.nodes.forEach((node, index) => {
+            positionedNodes.set(node.id, {
+              ...node,
+              position: {
+                x:
+                  cluster.startX +
+                  index * (DEFAULT_SIZES.character.width + SPACING.cardGap),
+                y: rowTop(displayRow),
+              },
+            });
           });
         });
       });
@@ -1057,11 +1212,16 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
       const desiredRightX = leftPartner.position.x + leftWidth + SPACING.partnerGap;
       const rightHouseId = characterHouseById.get(rightPartner.id);
       const rightPlacement = housePlacement.get(rightHouseId);
+      const maxAllowedRightX =
+        (rightPlacement?.coreRight ?? rightPartner.position.x + rightWidth) - rightWidth;
 
-      if (rightPartner.position.x < desiredRightX) {
-        const adjustedRightX = Math.min(
-          desiredRightX,
-          (rightPlacement?.coreRight ?? desiredRightX) - rightWidth,
+      if (
+        rightPartner.position.x < desiredRightX &&
+        maxAllowedRightX > rightPartner.position.x
+      ) {
+        const adjustedRightX = Math.max(
+          rightPartner.position.x,
+          Math.min(desiredRightX, maxAllowedRightX),
         );
         positionedNodes.set(rightPartner.id, {
           ...rightPartner,

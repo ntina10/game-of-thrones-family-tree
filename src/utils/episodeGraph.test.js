@@ -320,6 +320,173 @@ describe("episodeGraph", () => {
     ]);
   });
 
+  it("does not attach same-row spouses to the house banner when a real banner member is visible", () => {
+    const nodes = [
+      {
+        id: "house-baratheon",
+        type: "house",
+        data: { house: "Baratheon", label: "House Baratheon", states: [{ episode: 1 }] },
+      },
+      {
+        id: "robert",
+        type: "character",
+        data: {
+          house: "Baratheon",
+          name: "Robert",
+          states: [{ episode: 2 }],
+        },
+      },
+      {
+        id: "renly",
+        type: "character",
+        data: {
+          house: "Baratheon",
+          name: "Renly",
+          states: [{ episode: 2 }],
+        },
+      },
+      {
+        id: "stannis",
+        type: "character",
+        data: {
+          house: "Baratheon",
+          name: "Stannis",
+          states: [{ episode: 1 }],
+          layout: { generationSeed: 0, importance: "primary" },
+        },
+      },
+      {
+        id: "selyse",
+        type: "character",
+        data: {
+          house: "Baratheon",
+          name: "Selyse",
+          states: [{ episode: 1 }],
+        },
+      },
+      {
+        id: "union-stannis-selyse",
+        type: "union",
+        data: {
+          relationship: "married",
+          layout: { primary: true },
+          states: [{ episode: 1 }],
+        },
+      },
+    ];
+    const edges = [
+      {
+        id: "banner-robert",
+        source: "house-baratheon",
+        sourceHandle: "parent",
+        target: "robert",
+        targetHandle: "child",
+        relationshipType: "banner",
+      },
+      {
+        id: "banner-renly",
+        source: "house-baratheon",
+        sourceHandle: "parent",
+        target: "renly",
+        targetHandle: "child",
+        relationshipType: "banner",
+      },
+      {
+        id: "banner-stannis",
+        source: "house-baratheon",
+        sourceHandle: "parent",
+        target: "stannis",
+        targetHandle: "child",
+        relationshipType: "banner",
+      },
+      {
+        id: "partner-stannis",
+        source: "stannis",
+        target: "union-stannis-selyse",
+        relationshipType: "partner",
+      },
+      {
+        id: "partner-selyse",
+        source: "selyse",
+        target: "union-stannis-selyse",
+        relationshipType: "partner",
+      },
+    ];
+
+    const subgraph = buildEpisodeSubgraph(nodes, edges, 1);
+
+    expect(subgraph.bannerEdges.map((edge) => edge.target)).toEqual(["stannis"]);
+  });
+
+  it("keeps banner-defined brothers above their visible nieces even when the sibling with children is hidden", async () => {
+    const nodes = [
+      {
+        id: "house-tully",
+        type: "house",
+        data: { house: "Tully", label: "House Tully", states: [{ episode: 1 }] },
+      },
+      {
+        id: "hoster",
+        type: "character",
+        data: {
+          house: "Tully",
+          name: "Hoster",
+          states: [{ episode: 2 }],
+        },
+      },
+      {
+        id: "blackfish",
+        type: "character",
+        data: {
+          house: "Tully",
+          name: "Blackfish",
+          states: [{ episode: 1 }],
+        },
+      },
+      {
+        id: "catelyn",
+        type: "character",
+        data: {
+          house: "Tully",
+          name: "Catelyn",
+          states: [{ episode: 1 }],
+          layout: { generationSeed: 0, importance: "primary" },
+        },
+      },
+    ];
+    const edges = [
+      {
+        id: "banner-hoster",
+        source: "house-tully",
+        sourceHandle: "parent",
+        target: "hoster",
+        targetHandle: "child",
+        relationshipType: "banner",
+      },
+      {
+        id: "banner-blackfish",
+        source: "house-tully",
+        sourceHandle: "parent",
+        target: "blackfish",
+        targetHandle: "child",
+        relationshipType: "banner",
+      },
+      {
+        id: "hoster-catelyn",
+        source: "hoster",
+        target: "catelyn",
+        relationshipType: "child",
+      },
+    ];
+
+    const subgraph = buildEpisodeSubgraph(nodes, edges, 1);
+    const graph = await buildEpisodeGraph(nodes, edges, 1);
+    const byId = Object.fromEntries(graph.nodes.map((node) => [node.id, node]));
+
+    expect(subgraph.bannerEdges.map((edge) => edge.target)).toEqual(["blackfish"]);
+    expect(byId.blackfish.position.y).toBeLessThan(byId.catelyn.position.y);
+  });
+
   it("returns episode visibility helpers that match the real dataset", () => {
     expect(getVisibleCharacterIdsForEpisode(rawNodes, 1)).toContain("jon_snow");
     expect(getVisibleCharacterIdsForEpisode(rawNodes, 1)).not.toContain("jeor_mormont");

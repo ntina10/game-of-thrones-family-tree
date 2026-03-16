@@ -184,8 +184,33 @@ function deriveLineageDepthByCharacter(model) {
   return depthByCharacter;
 }
 
-export function buildSyntheticBannerEdges(model) {
-  const lineageDepthByCharacter = deriveLineageDepthByCharacter(model);
+function getParentSignature(characterId, parentIdsByChild) {
+  const parentIds = [...(parentIdsByChild.get(characterId) ?? [])]
+    .filter((parentId) => parentId != null)
+    .sort();
+  return parentIds.length > 0 ? parentIds.join("::") : null;
+}
+
+function pickBannerTargets(candidateNodes, houseId, lineageModel) {
+  const explicitBannerMembers = lineageModel.bannerChildrenByHouse?.get(houseId) ?? new Set();
+  const explicitTargets = candidateNodes.filter((node) =>
+    explicitBannerMembers.has(node.id),
+  );
+
+  if (explicitTargets.length > 0) return explicitTargets;
+
+  const siblingTargets = candidateNodes.filter(
+    (node) => getParentSignature(node.id, lineageModel.parentIdsByChild) != null,
+  );
+
+  if (siblingTargets.length > 0) return siblingTargets;
+
+  return candidateNodes;
+}
+
+export function buildSyntheticBannerEdges(model, options = {}) {
+  const lineageModel = options.lineageModel ?? model;
+  const lineageDepthByCharacter = deriveLineageDepthByCharacter(lineageModel);
   const characterNodes = model.cleanNodes.filter((node) => node.type === "character");
 
   return model.houses.flatMap((houseNode) => {
@@ -207,20 +232,29 @@ export function buildSyntheticBannerEdges(model) {
                 model.displayRowByCharacter.get(node.id),
               ),
             );
-            return resolvedTargets.filter(
-              (node) => model.displayRowByCharacter.get(node.id) === minRow,
+            return pickBannerTargets(
+              resolvedTargets.filter(
+                (node) => model.displayRowByCharacter.get(node.id) === minRow,
+              ),
+              houseNode.id,
+              lineageModel,
             );
           })()
         : (() => {
             const minDepth = Math.min(
               ...houseCharacters.map(
-                (node) => lineageDepthByCharacter.get(node.id) ?? Number.POSITIVE_INFINITY,
+                (node) =>
+                  lineageDepthByCharacter.get(node.id) ?? Number.POSITIVE_INFINITY,
               ),
             );
-            return houseCharacters.filter(
-              (node) =>
-                (lineageDepthByCharacter.get(node.id) ?? Number.POSITIVE_INFINITY) ===
-                minDepth,
+            return pickBannerTargets(
+              houseCharacters.filter(
+                (node) =>
+                  (lineageDepthByCharacter.get(node.id) ??
+                    Number.POSITIVE_INFINITY) === minDepth,
+              ),
+              houseNode.id,
+              lineageModel,
             );
           })();
 
@@ -250,6 +284,9 @@ export function buildEpisodeSubgraph(
   currentAbsoluteEpisode,
   options = {},
 ) {
+  const fullModel = buildLayoutModel(rawNodes, rawEdges, {
+    orderedHouseIds: options.orderedHouseIds,
+  });
   const {
     visibleNodes,
     visibleNodeIds,
@@ -263,8 +300,12 @@ export function buildEpisodeSubgraph(
   );
   const firstPassModel = buildLayoutModel(visibleNodes, visibleEdges, {
     orderedHouseIds: options.orderedHouseIds,
+    generationOverrideByCharacter: fullModel.derivedGenerationByCharacter,
+    bannerChildrenByHouse: fullModel.bannerChildrenByHouse,
   });
-  const bannerEdges = buildSyntheticBannerEdges(firstPassModel);
+  const bannerEdges = buildSyntheticBannerEdges(firstPassModel, {
+    lineageModel: fullModel,
+  });
 
   return {
     visibleNodes,
@@ -282,6 +323,9 @@ export async function buildEpisodeGraph(
   currentAbsoluteEpisode,
   options = {},
 ) {
+  const fullModel = buildLayoutModel(rawNodes, rawEdges, {
+    orderedHouseIds: options.orderedHouseIds,
+  });
   const { visibleNodes, visibleNodeIds, edges } = buildEpisodeSubgraph(
     rawNodes,
     rawEdges,
@@ -293,5 +337,7 @@ export async function buildEpisodeGraph(
     visibleNodeIds,
     orderedHouseIds: options.orderedHouseIds,
     fixedHouseCoreWidthById: options.fixedHouseCoreWidthById,
+    generationOverrideByCharacter: fullModel.derivedGenerationByCharacter,
+    bannerChildrenByHouse: fullModel.bannerChildrenByHouse,
   });
 }

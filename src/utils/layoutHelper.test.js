@@ -146,6 +146,34 @@ describe("layoutHelper (global generations)", () => {
     expect(model.derivedGenerationByCharacter.get("kevan")).toBe(0);
   });
 
+  it("assigns a synthetic parent signature to banner-defined root siblings", () => {
+    const nodes = [
+      { id: "house-tully", type: "house", data: { house: "Tully" } },
+      {
+        id: "catelyn",
+        type: "character",
+        data: {
+          house: "Tully",
+          layout: { generationSeed: 0, importance: "primary" },
+        },
+      },
+      { id: "hoster", type: "character", data: { house: "Tully" } },
+      { id: "blackfish", type: "character", data: { house: "Tully" } },
+    ];
+    const edges = [
+      { id: "banner-hoster", source: "house-tully", target: "hoster", relationshipType: "banner" },
+      { id: "banner-blackfish", source: "house-tully", target: "blackfish", relationshipType: "banner" },
+      { id: "hoster-catelyn", source: "hoster", target: "catelyn", relationshipType: "child" },
+    ];
+
+    const model = buildLayoutModel(nodes, edges);
+
+    expect(model.parentSignatureByCharacter.get("hoster")).toBe("banner:house-tully");
+    expect(model.parentSignatureByCharacter.get("blackfish")).toBe("banner:house-tully");
+    expect(model.derivedGenerationByCharacter.get("hoster")).toBe(-1);
+    expect(model.derivedGenerationByCharacter.get("blackfish")).toBe(-1);
+  });
+
   it("propagates lineage from a banner-fallback parent", () => {
     const nodes = [
       { id: "house-lannister", type: "house", data: { house: "Lannister" } },
