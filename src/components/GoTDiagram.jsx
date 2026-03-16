@@ -15,6 +15,7 @@ import RelationshipEdge from "./RelationshipEdge";
 import UnionNode from "./UnionNode";
 import EpisodeSlider from "./EpisodeSlider";
 import {
+  absoluteToSeasonEpisode,
   seasonEpisodeToAbsolute,
   totalEpisodesThroughSeason,
 } from "../utils/episodeIndex";
@@ -569,6 +570,10 @@ function GoTDiagram() {
   const maxEpisode = useMemo(
     () => seasonEpisodeToAbsolute(5, 2) ?? totalEpisodesThroughSeason(4) ?? 40,
     [],
+  );
+  const selectedEpisodeInfo = useMemo(
+    () => absoluteToSeasonEpisode(sliderEpisode),
+    [sliderEpisode],
   );
   const fixedHouseCoreWidthById = useMemo(
     () => getHouseCoreWidthById(initialNodes, initialEdges),
@@ -1152,8 +1157,52 @@ function GoTDiagram() {
       </div>
 
       <div
+        style={{
+          padding: "0 24px 12px",
+          color: "#473421",
+        }}
+      >
+        <div
+          style={{
+            display: "inline-block",
+            padding: "12px 16px",
+            borderRadius: "16px",
+            border: "1px solid rgba(92, 71, 43, 0.18)",
+            background:
+              "linear-gradient(180deg, rgba(246, 241, 232, 0.72) 0%, rgba(246, 241, 232, 0.52) 100%)",
+            boxShadow: "0 10px 30px rgba(62, 46, 28, 0.12)",
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "1rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            {selectedEpisodeInfo
+              ? `S${String(selectedEpisodeInfo.season).padStart(2, "0")} · E${String(selectedEpisodeInfo.episode).padStart(2, "0")}`
+              : `Episode ${sliderEpisode}`}
+          </div>
+          <div
+            style={{
+              marginTop: "4px",
+              fontSize: "0.94rem",
+              color: "rgba(71, 52, 33, 0.74)",
+            }}
+          >
+            {selectedEpisodeInfo
+              ? `Season ${selectedEpisodeInfo.season}, Episode ${selectedEpisodeInfo.episode}`
+              : `Episode ${sliderEpisode}`}
+          </div>
+        </div>
+      </div>
+
+      <div
         ref={flowContainerRef}
-        style={{ flex: 1, position: "relative" }}
+        style={{ flex: 1, minHeight: 0, position: "relative" }}
       >
         {isLayoutReady ? (
           <DiagramErrorBoundary
@@ -1196,7 +1245,7 @@ function GoTDiagram() {
                 transition: "opacity 120ms ease-out",
               }}
             >
-              <Controls />
+              <Controls position="top-left" />
               <Background />
             </ReactFlow>
           </DiagramErrorBoundary>
@@ -1234,7 +1283,6 @@ function GoTDiagram() {
         maxEpisode={maxEpisode}
         locked={isSliderLocked}
         updating={isEpisodeUpdating}
-        committedEpisode={currentEpisode}
       />
     </div>
   );

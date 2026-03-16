@@ -8,7 +8,6 @@ function EpisodeSlider({
   maxEpisode,
   locked = false,
   updating = false,
-  committedEpisode = currentEpisode,
 }) {
   const handleChange = (event) => {
     setCurrentEpisode(Number(event.target.value));
@@ -54,7 +53,7 @@ function EpisodeSlider({
           <div
             key={season}
             className="slider-season-marker"
-            style={{ left: `calc(${leftPercent}% + 10px)` }}
+            style={{ left: `${leftPercent}%` }}
           >
             <span className="slider-season-label">{`S${season}`}</span>
           </div>
