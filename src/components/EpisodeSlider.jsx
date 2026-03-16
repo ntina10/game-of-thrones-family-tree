@@ -1,21 +1,66 @@
-import React from 'react';
-import './EpisodeSlider.css'; // We'll create this next
-import { absoluteToSeasonEpisode } from "../utils/episodeIndex";
+import React, { useMemo } from "react";
+import "./EpisodeSlider.css";
+import { seasonEpisodeToAbsolute } from "../utils/episodeIndex";
 
-function EpisodeSlider({ currentEpisode, setCurrentEpisode, maxEpisode }) {
+function EpisodeSlider({
+  currentEpisode,
+  setCurrentEpisode,
+  maxEpisode,
+  locked = false,
+  updating = false,
+  committedEpisode = currentEpisode,
+}) {
   const handleChange = (event) => {
-    // The value from a range input is a string, so we convert it to a number
     setCurrentEpisode(Number(event.target.value));
   };
 
-  const se = absoluteToSeasonEpisode(currentEpisode);
-  const label = se
-    ? `Season ${se.season}, Episode ${se.episode} (#${currentEpisode})`
-    : `Episode #${currentEpisode}`;
+  const seasonStarts = useMemo(() => {
+    const starts = [];
+
+    for (let season = 1; season <= 8; season += 1) {
+      const absoluteEpisode = seasonEpisodeToAbsolute(season, 1);
+      if (absoluteEpisode === null || absoluteEpisode > maxEpisode) break;
+
+      starts.push({
+        season,
+        leftPercent:
+          maxEpisode <= 1
+            ? 0
+            : ((absoluteEpisode - 1) / (maxEpisode - 1)) * 100,
+      });
+    }
+
+    return starts;
+  }, [maxEpisode]);
+
+  const displayValue = Math.max(1, Math.min(currentEpisode, maxEpisode));
+  const progressPercent =
+    maxEpisode <= 1 ? 0 : ((displayValue - 1) / (maxEpisode - 1)) * 100;
+  const statusLabel = updating || locked ? "Updating..." : null;
 
   return (
-    <div className="slider-container">
-      <label htmlFor="episode-slider">{label}</label>
+    <div
+      className={`slider-container${locked ? " slider-container--locked" : ""}`}
+      style={{ "--slider-progress": `${progressPercent}%` }}
+    >
+      {statusLabel ? (
+        <div className="slider-status" aria-live="polite">
+          {statusLabel}
+        </div>
+      ) : null}
+
+      <div className="slider-season-markers" aria-hidden="true">
+        {seasonStarts.map(({ season, leftPercent }) => (
+          <div
+            key={season}
+            className="slider-season-marker"
+            style={{ left: `calc(${leftPercent}% + 10px)` }}
+          >
+            <span className="slider-season-label">{`S${season}`}</span>
+          </div>
+        ))}
+      </div>
+
       <input
         id="episode-slider"
         type="range"
@@ -25,6 +70,8 @@ function EpisodeSlider({ currentEpisode, setCurrentEpisode, maxEpisode }) {
         value={currentEpisode}
         onChange={handleChange}
         className="slider"
+        aria-busy={locked}
+        aria-valuetext={`Episode ${currentEpisode}`}
       />
     </div>
   );

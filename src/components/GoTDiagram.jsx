@@ -30,9 +30,9 @@ import initialEdges from "../data/edges.json";
 const ANIMATION_DURATION_MS = 520;
 const DENSE_ANIMATION_DURATION_MS = 360;
 const ENTRY_OFFSET_Y = 18;
-const VIEWPORT_MARGIN_RATIO = 0.1;
 const INITIAL_FIT_PADDING = 0.18;
-const SMART_REFIT_DURATION_MS = 0;
+const INITIAL_FIT_DURATION_MS = 0;
+const COMMIT_FIT_DURATION_MS = 260;
 const DENSE_GRAPH_NODE_THRESHOLD = 85;
 const DENSE_GRAPH_EDGE_THRESHOLD = 140;
 const MOTION_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -321,33 +321,6 @@ function getGraphBounds(nodes) {
   };
 }
 
-function expandBounds(bounds, ratio) {
-  if (!bounds) return null;
-
-  const paddingX = bounds.width * ratio;
-  const paddingY = bounds.height * ratio;
-
-  return {
-    minX: bounds.minX - paddingX,
-    minY: bounds.minY - paddingY,
-    maxX: bounds.maxX + paddingX,
-    maxY: bounds.maxY + paddingY,
-    width: bounds.width + paddingX * 2,
-    height: bounds.height + paddingY * 2,
-  };
-}
-
-function boundsContain(outerBounds, innerBounds) {
-  if (!outerBounds || !innerBounds) return false;
-
-  return (
-    innerBounds.minX >= outerBounds.minX &&
-    innerBounds.maxX <= outerBounds.maxX &&
-    innerBounds.minY >= outerBounds.minY &&
-    innerBounds.maxY <= outerBounds.maxY
-  );
-}
-
 function getViewportBounds(containerElement, reactFlow) {
   if (!containerElement || !reactFlow?.screenToFlowPosition) return null;
 
@@ -423,6 +396,19 @@ function renderGraphForDisplay(graph) {
       }),
     ),
     edges: graph.edges.map((edge) => decorateEdge(edge, 1)),
+  };
+}
+
+function freezeDisplayGraph(graph) {
+  return {
+    nodes: (graph?.nodes ?? []).map((node) => ({
+      ...node,
+      style: withTransition(node.style, 0, "transform"),
+    })),
+    edges: (graph?.edges ?? []).map((edge) => ({
+      ...edge,
+      style: withTransition(edge.style, 0, "opacity"),
+    })),
   };
 }
 
@@ -549,7 +535,11 @@ function GoTDiagram() {
   });
   const [isLayoutReady, setIsLayoutReady] = useState(false);
   const [isEpisodeUpdating, setIsEpisodeUpdating] = useState(false);
+  const [isViewportCurtainVisible, setIsViewportCurtainVisible] = useState(false);
+  const [isInitialViewportReady, setIsInitialViewportReady] = useState(false);
+  const [isSliderLocked, setIsSliderLocked] = useState(false);
   const [currentEpisode, setCurrentEpisode] = useState(1);
+  const [sliderEpisode, setSliderEpisode] = useState(1);
 
   const displayGraphRef = useRef(EMPTY_GRAPH);
   const settledGraphRef = useRef({
@@ -561,6 +551,13 @@ function GoTDiagram() {
   const animationSettleFrameRef = useRef(null);
   const animationTokenRef = useRef(0);
   const settledGraphVersionRef = useRef(0);
+  const skipNextAnimationRef = useRef(false);
+  const maskNextViewportFitRef = useRef(false);
+  const episodeChangeLockedRef = useRef(false);
+  const episodeChangeTokenRef = useRef(0);
+  const activeEpisodeChangeTokenRef = useRef(0);
+  const pendingEpisodeRef = useRef(null);
+  const currentEpisodeRef = useRef(1);
   const seenHouseOrderRef = useRef([]);
   const flowContainerRef = useRef(null);
   const previousEpisodeRef = useRef(null);
@@ -596,6 +593,53 @@ function GoTDiagram() {
     [],
   );
 
+  const requestEpisodeChange = useCallback((nextEpisode) => {
+    if (nextEpisode === currentEpisodeRef.current) return;
+
+    episodeChangeTokenRef.current += 1;
+    activeEpisodeChangeTokenRef.current = episodeChangeTokenRef.current;
+    episodeChangeLockedRef.current = true;
+    setIsSliderLocked(true);
+    setCurrentEpisode(nextEpisode);
+  }, []);
+
+  const unlockEpisodeChange = useCallback((token) => {
+    if (token !== activeEpisodeChangeTokenRef.current) return;
+
+    episodeChangeLockedRef.current = false;
+    activeEpisodeChangeTokenRef.current = 0;
+    setIsSliderLocked(false);
+    const pendingEpisode = pendingEpisodeRef.current;
+
+    if (
+      pendingEpisode !== null &&
+      pendingEpisode !== currentEpisodeRef.current
+    ) {
+      pendingEpisodeRef.current = null;
+      requestEpisodeChange(pendingEpisode);
+      return;
+    }
+
+    pendingEpisodeRef.current = null;
+    setSliderEpisode(currentEpisodeRef.current);
+  }, [requestEpisodeChange]);
+
+  const handleEpisodeChange = useCallback(
+    (nextEpisode) => {
+      setSliderEpisode(nextEpisode);
+
+      if (episodeChangeLockedRef.current) {
+        pendingEpisodeRef.current = nextEpisode;
+        return;
+      }
+
+      if (nextEpisode === currentEpisodeRef.current) return;
+
+      requestEpisodeChange(nextEpisode);
+    },
+    [requestEpisodeChange],
+  );
+
   const reportRuntimeError = useCallback((label, error) => {
     appendDebugEvent(`runtime-error:${label}`, {
       episode: currentEpisode,
@@ -617,7 +661,7 @@ function GoTDiagram() {
     [reportRuntimeError],
   );
   const syncViewportForGraph = useCallback(
-    (graph, reason = "effect") => {
+    (graph, reason = "effect", episodeChangeToken = 0) => {
       viewportSyncTokenRef.current += 1;
       const syncToken = viewportSyncTokenRef.current;
       let attempt = 0;
@@ -634,12 +678,37 @@ function GoTDiagram() {
         const reactFlow = reactFlowInstanceRef.current;
         const containerElement = flowContainerRef.current;
 
-        if (!reactFlow || graph.version === 0 || graph.nodes.length === 0) return;
+        if (graph.version === 0 || graph.nodes.length === 0) {
+          unlockEpisodeChange(episodeChangeToken);
+          return;
+        }
+
+        if (!reactFlow) {
+          if (attempt >= maxAttempts) {
+            appendDebugEvent("viewport:sync:gave-up", {
+              version: graph.version,
+              reason,
+              attempt,
+              renderedNodeCount: 0,
+              missingReactFlow: true,
+            });
+            setIsInitialViewportReady(true);
+            setIsViewportCurtainVisible(false);
+            unlockEpisodeChange(episodeChangeToken);
+            return;
+          }
+
+          attempt += 1;
+          requestAnimationFrame(() => {
+            void runSync();
+          });
+          return;
+        }
 
         const renderedNodeCount =
           containerElement?.querySelectorAll?.(".react-flow__node")?.length ?? 0;
 
-        if (attempt < 2 || !containerElement || renderedNodeCount === 0) {
+        if (!containerElement || renderedNodeCount === 0) {
           if (attempt >= maxAttempts) {
             appendDebugEvent("viewport:sync:gave-up", {
               version: graph.version,
@@ -647,6 +716,9 @@ function GoTDiagram() {
               attempt,
               renderedNodeCount,
             });
+            setIsInitialViewportReady(true);
+            setIsViewportCurtainVisible(false);
+            unlockEpisodeChange(episodeChangeToken);
             return;
           }
 
@@ -672,7 +744,7 @@ function GoTDiagram() {
               reason,
             });
             await reactFlow.fitView({
-              duration: 0,
+              duration: INITIAL_FIT_DURATION_MS,
               padding: INITIAL_FIT_PADDING,
             });
             if (syncToken !== viewportSyncTokenRef.current) return;
@@ -683,55 +755,41 @@ function GoTDiagram() {
               version: graph.version,
               reason,
             });
+            setIsInitialViewportReady(true);
+            setIsViewportCurtainVisible(false);
+            unlockEpisodeChange(episodeChangeToken);
             return;
           }
 
-          if (handledViewportVersionRef.current === graph.version) return;
-
-          const graphBounds = getGraphBounds(graph.nodes);
-          const viewportBounds = getViewportBounds(containerElement, reactFlow);
-
-          if (!graphBounds || !viewportBounds) {
-            appendDebugEvent("viewport:sync:skipped", {
-              version: graph.version,
-              reason,
-              skipReason: !graphBounds ? "missing-graph-bounds" : "missing-viewport-bounds",
-            });
-            handledViewportVersionRef.current = graph.version;
+          if (handledViewportVersionRef.current === graph.version) {
+            unlockEpisodeChange(episodeChangeToken);
             return;
           }
 
-          const viewportWithMargin = expandBounds(
-            viewportBounds,
-            VIEWPORT_MARGIN_RATIO,
-          );
+          appendDebugEvent("viewport:fit:commit:start", {
+            version: graph.version,
+            reason,
+            graphBounds: getGraphBounds(graph.nodes),
+            viewportBounds: getViewportBounds(containerElement, reactFlow),
+          });
+          await reactFlow.fitView({
+            duration: COMMIT_FIT_DURATION_MS,
+            padding: INITIAL_FIT_PADDING,
+          });
+          if (syncToken !== viewportSyncTokenRef.current) return;
 
-          if (!boundsContain(viewportWithMargin, graphBounds)) {
-            appendDebugEvent("viewport:fit:smart:start", {
-              version: graph.version,
-              reason,
-              graphBounds,
-              viewportBounds,
-            });
-            await reactFlow.fitView({
-              duration: SMART_REFIT_DURATION_MS,
-              padding: INITIAL_FIT_PADDING,
-            });
-            if (syncToken !== viewportSyncTokenRef.current) return;
-
-            appendDebugEvent("viewport:fit:smart:done", {
-              version: graph.version,
-              reason,
-            });
-          } else {
-            appendDebugEvent("viewport:fit:smart:skipped", {
-              version: graph.version,
-              reason,
-            });
-          }
+          appendDebugEvent("viewport:fit:commit:done", {
+            version: graph.version,
+            reason,
+          });
 
           handledViewportVersionRef.current = graph.version;
+          setIsViewportCurtainVisible(false);
+          unlockEpisodeChange(episodeChangeToken);
         } catch (error) {
+          setIsInitialViewportReady(true);
+          setIsViewportCurtainVisible(false);
+          unlockEpisodeChange(episodeChangeToken);
           appendDebugEvent("viewport:sync:error", {
             version: graph.version,
             reason,
@@ -745,7 +803,7 @@ function GoTDiagram() {
         void runSync();
       });
     },
-    [handleViewportError],
+    [handleViewportError, unlockEpisodeChange],
   );
   const handleReactFlowInit = useCallback(
     (instance) => {
@@ -755,7 +813,7 @@ function GoTDiagram() {
       });
 
       if (settledGraph.version > 0) {
-        syncViewportForGraph(settledGraph, "init");
+        syncViewportForGraph(settledGraph, "init", 0);
       }
     },
     [settledGraph, syncViewportForGraph],
@@ -795,12 +853,16 @@ function GoTDiagram() {
       animationSettleFrameRef.current = null;
     }
 
-    if (hadActiveAnimation && settledGraphRef.current.version > 0) {
-      publishDisplayGraph(renderGraphForDisplay(settledGraphRef.current));
+    if (hadActiveAnimation) {
+      skipNextAnimationRef.current = true;
+      maskNextViewportFitRef.current = true;
+      setIsViewportCurtainVisible(true);
+      publishDisplayGraph(freezeDisplayGraph(displayGraphRef.current));
     }
   }, [currentEpisode, publishDisplayGraph]);
 
   const commitSettledGraph = useCallback((nextGraph) => {
+    const episodeChangeToken = activeEpisodeChangeTokenRef.current;
     const nextDisplayGraph = renderGraphForDisplay(nextGraph);
     settledGraphVersionRef.current += 1;
     const nextSettledGraph = {
@@ -811,17 +873,22 @@ function GoTDiagram() {
 
     displayGraphRef.current = nextDisplayGraph;
     settledGraphRef.current = nextSettledGraph;
+    if (maskNextViewportFitRef.current) {
+      setIsViewportCurtainVisible(true);
+      maskNextViewportFitRef.current = false;
+    }
     appendDebugEvent("graph:commit", {
       episode: currentEpisode,
       version: settledGraphVersionRef.current,
       ...summarizeGraph(nextGraph),
     });
-    syncViewportForGraph(nextSettledGraph, "commit");
+    syncViewportForGraph(nextSettledGraph, "commit", episodeChangeToken);
 
     setDisplayGraph(nextDisplayGraph);
     setSettledGraph(nextSettledGraph);
     setIsLayoutReady(true);
     setIsEpisodeUpdating(false);
+    skipNextAnimationRef.current = false;
   }, [currentEpisode, syncViewportForGraph]);
 
   const animateToGraph = useCallback(
@@ -912,6 +979,10 @@ function GoTDiagram() {
   );
 
   useEffect(() => {
+    currentEpisodeRef.current = currentEpisode;
+  }, [currentEpisode]);
+
+  useEffect(() => {
     appendDebugEvent("episode:requested", {
       episode: currentEpisode,
       previousEpisode: previousEpisodeRef.current,
@@ -979,10 +1050,21 @@ function GoTDiagram() {
           return;
         }
 
+        if (skipNextAnimationRef.current) {
+          appendDebugEvent("animation:skipped-interrupt", {
+            episode: currentEpisode,
+            requestId,
+          });
+          commitSettledGraph(sanitizedGraph);
+          return;
+        }
+
         animateToGraph(sanitizedGraph, requestId);
       } catch (error) {
         if (!cancelled && requestId === requestIdRef.current) {
+          setIsViewportCurtainVisible(false);
           setIsEpisodeUpdating(false);
+          unlockEpisodeChange(activeEpisodeChangeTokenRef.current);
           reportRuntimeError("loadGraph", error);
         }
       }
@@ -1004,6 +1086,7 @@ function GoTDiagram() {
     fixedHouseCoreWidthById,
     invalidateAnimation,
     reportRuntimeError,
+    unlockEpisodeChange,
   ]);
 
   useEffect(() => () => invalidateAnimation(), [invalidateAnimation]);
@@ -1108,6 +1191,10 @@ function GoTDiagram() {
               nodesConnectable={false}
               elementsSelectable={false}
               onError={handleReactFlowError}
+              style={{
+                opacity: isInitialViewportReady ? 1 : 0,
+                transition: "opacity 120ms ease-out",
+              }}
             >
               <Controls />
               <Background />
@@ -1127,35 +1214,27 @@ function GoTDiagram() {
         )}
         {isLayoutReady ? (
           <div
-            aria-hidden={!isEpisodeUpdating}
+            aria-hidden={!isViewportCurtainVisible}
             style={{
               position: "absolute",
-              top: 16,
-              right: 16,
-              padding: "8px 12px",
-              borderRadius: "999px",
-              background: "rgba(245, 239, 228, 0.92)",
-              border: "1px solid rgba(70, 49, 24, 0.12)",
-              boxShadow: "0 8px 18px rgba(48, 35, 18, 0.08)",
-              color: "#473421",
-              fontSize: "0.9rem",
-              letterSpacing: "0.02em",
-              opacity: isEpisodeUpdating ? 1 : 0,
-              transform: isEpisodeUpdating ? "translateY(0)" : "translateY(-6px)",
-              transition: `opacity 180ms ease-out, transform 180ms ease-out`,
+              inset: 0,
+              background: "#f6f1e8",
+              opacity: isViewportCurtainVisible ? 1 : 0,
+              transition: "opacity 140ms ease-out",
               pointerEvents: "none",
-              zIndex: 5,
+              zIndex: 4,
             }}
-          >
-            Updating episode...
-          </div>
+          />
         ) : null}
       </div>
 
       <EpisodeSlider
-        currentEpisode={currentEpisode}
-        setCurrentEpisode={setCurrentEpisode}
+        currentEpisode={sliderEpisode}
+        setCurrentEpisode={handleEpisodeChange}
         maxEpisode={maxEpisode}
+        locked={isSliderLocked}
+        updating={isEpisodeUpdating}
+        committedEpisode={currentEpisode}
       />
     </div>
   );

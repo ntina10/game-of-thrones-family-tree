@@ -1,21 +1,184 @@
 .slider-container {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(40, 40, 40, 0.85);
-    padding: 15px 25px;
-    border-radius: 10px;
-    border: 1px solid #555;
+    bottom: 20px;
+    left: 24px;
+    right: 24px;
     z-index: 10;
-    /* Ensures it's on top of the diagram */
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-    width: 400px;
+    padding: 14px 18px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(92, 71, 43, 0.18);
+    background: linear-gradient(
+        180deg,
+        rgba(246, 241, 232, 0.72) 0%,
+        rgba(246, 241, 232, 0.52) 100%
+    );
+    backdrop-filter: blur(10px);
+    color: #473421;
+    font-family: Georgia, serif;
+    box-shadow: 0 10px 30px rgba(62, 46, 28, 0.12);
+}
+
+.slider-container--locked {
+    box-shadow:
+        0 10px 30px rgba(62, 46, 28, 0.14),
+        0 0 0 1px rgba(166, 121, 54, 0.18);
+}
+
+.slider-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.slider-title-wrap {
+    min-width: 0;
+}
+
+.slider-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.slider-subtitle {
+    margin-top: 4px;
+    font-size: 0.9rem;
+    color: rgba(71, 52, 33, 0.74);
+}
+
+.slider-status {
+    flex-shrink: 0;
+    padding-top: 2px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: rgba(113, 73, 17, 0.92);
+    text-align: right;
+    letter-spacing: 0.03em;
+}
+
+.slider-season-markers {
+    position: relative;
+    height: 22px;
+    margin-bottom: 6px;
+}
+
+.slider-season-marker {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+}
+
+.slider-season-marker::after {
+    content: "";
+    width: 1px;
+    height: 8px;
+    background: rgba(92, 71, 43, 0.28);
+}
+
+.slider-season-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(71, 52, 33, 0.72);
 }
 
 .slider {
     width: 100%;
-    margin-top: 10px;
+    margin: 0;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(113, 73, 17, 0.86) 0%,
+        rgba(113, 73, 17, 0.86) var(--slider-progress),
+        rgba(124, 103, 76, 0.18) var(--slider-progress),
+        rgba(124, 103, 76, 0.18) 100%
+    );
+}
+
+.slider::-moz-range-track {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(124, 103, 76, 0.18);
+}
+
+.slider::-moz-range-progress {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(113, 73, 17, 0.86);
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -5px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 250, 242, 0.95);
+    background: #5f3f18;
+    box-shadow: 0 4px 12px rgba(62, 46, 28, 0.22);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 250, 242, 0.95);
+    border-radius: 50%;
+    background: #5f3f18;
+    box-shadow: 0 4px 12px rgba(62, 46, 28, 0.22);
+}
+
+.slider:focus-visible {
+    outline: none;
+}
+
+.slider:focus-visible::-webkit-slider-thumb {
+    box-shadow:
+        0 0 0 4px rgba(197, 159, 96, 0.22),
+        0 4px 12px rgba(62, 46, 28, 0.22);
+}
+
+.slider:focus-visible::-moz-range-thumb {
+    box-shadow:
+        0 0 0 4px rgba(197, 159, 96, 0.22),
+        0 4px 12px rgba(62, 46, 28, 0.22);
+}
+
+.slider-container--locked .slider {
+    cursor: wait;
+}
+
+@media (max-width: 720px) {
+    .slider-container {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 12px 14px 14px;
+    }
+
+    .slider-header {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .slider-status {
+        text-align: left;
+    }
 }

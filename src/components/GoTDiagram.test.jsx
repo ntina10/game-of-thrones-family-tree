@@ -267,7 +267,7 @@ describe("GoTDiagram", () => {
     expect(screen.getByTestId("edge-edge-ned-arya")).toBeInTheDocument();
   });
 
-  it("ignores stale async graph results during rapid forward and backward scrubs", async () => {
+  it("queues the latest slider move until the current episode transition settles", async () => {
     const episodeThree = deferred();
     const episodeTwo = deferred();
 
@@ -296,16 +296,42 @@ describe("GoTDiagram", () => {
     render(<DiagramWrapper />);
 
     await waitFor(() => expect(screen.getByTestId("node-ned")).toBeInTheDocument());
+    const slider = screen.getByRole("slider");
 
     await act(async () => {
-      fireEvent.change(screen.getByRole("slider"), {
+      fireEvent.change(slider, {
         target: { value: "3" },
       });
-      fireEvent.change(screen.getByRole("slider"), {
+      fireEvent.change(slider, {
         target: { value: "2" },
       });
       await Promise.resolve();
     });
+
+    expect(slider).toHaveValue("2");
+
+    await act(async () => {
+      episodeThree.resolve({
+        nodes: [
+          {
+            id: "sansa",
+            type: "character",
+            position: { x: 360, y: 120 },
+            data: { name: "Sansa" },
+          },
+        ],
+        edges: [],
+      });
+      await Promise.resolve();
+    });
+
+    await act(async () => {
+      await flushAnimationFrames(640);
+    });
+
+    expect(screen.getByTestId("node-sansa")).toBeInTheDocument();
+    expect(screen.queryByTestId("node-ned")).not.toBeInTheDocument();
+    expect(slider).toHaveValue("2");
 
     await act(async () => {
       episodeTwo.resolve({
@@ -327,29 +353,8 @@ describe("GoTDiagram", () => {
     });
 
     expect(screen.getByTestId("node-arya")).toBeInTheDocument();
-    expect(screen.queryByTestId("node-ned")).not.toBeInTheDocument();
-
-    await act(async () => {
-      episodeThree.resolve({
-        nodes: [
-          {
-            id: "sansa",
-            type: "character",
-            position: { x: 360, y: 120 },
-            data: { name: "Sansa" },
-          },
-        ],
-        edges: [],
-      });
-      await Promise.resolve();
-    });
-
-    await act(async () => {
-      await flushAnimationFrames(640);
-    });
-
-    expect(screen.getByTestId("node-arya")).toBeInTheDocument();
     expect(screen.queryByTestId("node-sansa")).not.toBeInTheDocument();
+    expect(slider).toHaveValue("2");
   });
 
   it("animates cleanly when moving backward on the slider", async () => {
@@ -429,6 +434,97 @@ describe("GoTDiagram", () => {
     expect(screen.queryByTestId("node-arya")).not.toBeInTheDocument();
   });
 
+  it("keeps the slider focused and queues arrow or drag updates while locked", async () => {
+    buildEpisodeGraph.mockImplementation(async (_nodes, _edges, episode) => {
+      if (episode === 1) {
+        return {
+          nodes: [
+            {
+              id: "ned",
+              type: "character",
+              position: { x: 0, y: 120 },
+              data: { name: "Ned" },
+            },
+          ],
+          edges: [],
+        };
+      }
+
+      if (episode === 2) {
+        return {
+          nodes: [
+            {
+              id: "ned",
+              type: "character",
+              position: { x: 120, y: 120 },
+              data: { name: "Ned" },
+            },
+          ],
+          edges: [],
+        };
+      }
+
+      return {
+        nodes: [
+          {
+            id: "ned",
+            type: "character",
+            position: { x: 260, y: 120 },
+            data: { name: "Ned" },
+          },
+        ],
+        edges: [],
+      };
+    });
+
+    render(<DiagramWrapper />);
+
+    await waitFor(() => expect(screen.getByTestId("node-ned")).toBeInTheDocument());
+    const slider = screen.getByRole("slider");
+    slider.focus();
+    expect(slider).toHaveFocus();
+
+    await act(async () => {
+      fireEvent.change(slider, {
+        target: { value: "2" },
+      });
+      await Promise.resolve();
+      await flushAnimationFrames(32);
+    });
+
+    expect(slider).toHaveFocus();
+    expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(120);
+
+    await act(async () => {
+      fireEvent.change(slider, {
+        target: { value: "3" },
+      });
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(slider).toHaveFocus();
+    expect(slider).toHaveValue("3");
+    expect(Number(screen.getByTestId("node-ned").getAttribute("data-x"))).toBe(120);
+
+    await act(async () => {
+      await flushAnimationFrames(1280);
+      await Promise.resolve();
+      await flushAnimationFrames(1280);
+    });
+
+    await waitFor(() =>
+      expect(buildEpisodeGraph).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.anything(),
+        3,
+        expect.anything(),
+      ),
+    );
+    expect(slider).toHaveFocus();
+    expect(slider).toHaveValue("3");
+  });
+
   it("performs the initial fit view after the first settled graph mounts", async () => {
     const fitView = vi.fn(() => Promise.resolve(true));
 
@@ -456,7 +552,7 @@ describe("GoTDiagram", () => {
     expect(fitView).toHaveBeenCalledWith({ duration: 0, padding: 0.18 });
   });
 
-  it("smart-refits after a settled episode when the graph no longer fits in view", async () => {
+  it("fits the view after every settled episode change", async () => {
     const fitView = vi.fn(() => Promise.resolve(true));
 
     __setReactFlowApi({ fitView });
@@ -506,7 +602,7 @@ describe("GoTDiagram", () => {
     });
 
     await waitFor(() => expect(fitView).toHaveBeenCalledTimes(2));
-    expect(fitView).toHaveBeenLastCalledWith({ duration: 0, padding: 0.18 });
+    expect(fitView).toHaveBeenLastCalledWith({ duration: 260, padding: 0.18 });
   });
 
   it("sanitizes invalid graph geometry before rendering", async () => {
@@ -614,7 +710,7 @@ describe("GoTDiagram", () => {
     );
   });
 
-  it("keeps the current viewport when the settled graph already fits", async () => {
+  it("fits the view even when the next graph would already fit in the current viewport", async () => {
     const fitView = vi.fn(() => Promise.resolve(true));
 
     __setReactFlowApi({ fitView });
@@ -662,7 +758,7 @@ describe("GoTDiagram", () => {
       await flushAnimationFrames(640);
     });
 
-    expect(fitView).toHaveBeenCalledTimes(1);
+    expect(fitView).toHaveBeenCalledTimes(2);
     expect(__getReactFlowApi().screenToFlowPosition).toHaveBeenCalled();
   });
 });
