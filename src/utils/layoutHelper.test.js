@@ -8,12 +8,12 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "ned",
         type: "character",
-        data: { house: "Stark", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Stark", layout: { generationSeed: 0 } },
       },
       {
         id: "catelyn",
         type: "character",
-        data: { house: "Tully", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Tully", layout: { generationSeed: 0 } },
       },
     ];
 
@@ -33,7 +33,7 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "ned",
         type: "character",
-        data: { house: "Stark", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Stark", layout: { generationSeed: 0 } },
       },
       { id: "robb", type: "character", data: { house: "Stark" } },
     ];
@@ -58,7 +58,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Baratheon",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "renly", type: "character", data: { house: "Baratheon" } },
@@ -88,7 +88,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Lannister",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "jaime", type: "character", data: { house: "Lannister" } },
@@ -97,7 +97,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Baratheon",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -108,7 +108,7 @@ describe("layoutHelper (global generations)", () => {
     ];
 
     const edges = [
-      { id: "child-tywin-cersei", source: "jaime", target: "cersei", relationshipType: "visual_only", sourceHandle: "lover", targetHandle: "lover" },
+      { id: "child-tywin-cersei", source: "jaime", target: "cersei", relationshipType: "lover", sourceHandle: "lover", targetHandle: "lover" },
       { id: "partner-robert", source: "robert", target: "union-robert-cersei", relationshipType: "partner" },
       { id: "partner-cersei", source: "cersei", target: "union-robert-cersei", relationshipType: "partner" },
     ];
@@ -130,7 +130,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Lannister",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "kevan", type: "character", data: { house: "Lannister" } },
@@ -154,7 +154,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Tully",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "hoster", type: "character", data: { house: "Tully" } },
@@ -182,7 +182,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Lannister",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "kevan", type: "character", data: { house: "Lannister" } },
@@ -209,7 +209,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Stark",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "talisa", type: "character", data: { house: "Maegyr" } },
@@ -238,7 +238,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Lannister",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       { id: "bronn", type: "character", data: { house: "Lannister" } },
@@ -257,12 +257,12 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "ned",
         type: "character",
-        data: { house: "Stark", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Stark", layout: { generationSeed: 0 } },
       },
       {
         id: "catelyn",
         type: "character",
-        data: { house: "Tully", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Tully", layout: { generationSeed: 0 } },
       },
     ];
 
@@ -292,7 +292,7 @@ describe("layoutHelper (global generations)", () => {
         type: "character",
         data: {
           house: "Targaryen",
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
           states: [{ season: 1, episode: 1 }],
         },
       },
@@ -328,7 +328,7 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "tyrion",
         type: "character",
-        data: { house: "Lannister", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Lannister", layout: { generationSeed: 0 } },
       },
       { id: "tywin", type: "character", data: { house: "Lannister" } },
       { id: "kevan", type: "character", data: { house: "Lannister" } },
@@ -343,20 +343,20 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "yohn",
         type: "character",
-        data: { house: "Royce", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Royce", layout: { generationSeed: 0 } },
       },
       { id: "waymar", type: "character", data: { house: "Royce" } },
       {
         id: "catelyn",
         type: "character",
-        data: { house: "Tully", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Tully", layout: { generationSeed: 0 } },
       },
-      { id: "hoster", type: "character", data: { house: "Tully", layout: { importance: "primary" } } },
-      { id: "blackfish", type: "character", data: { house: "Tully", layout: { importance: "primary" } } },
+      { id: "hoster", type: "character", data: { house: "Tully" } },
+      { id: "blackfish", type: "character", data: { house: "Tully" } },
       {
         id: "daenerys",
         type: "character",
-        data: { house: "Targaryen", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Targaryen", layout: { generationSeed: 0 } },
       },
       { id: "aerys", type: "character", data: { house: "Targaryen" } },
       { id: "aegon", type: "character", data: { house: "Targaryen" } },
@@ -368,7 +368,6 @@ describe("layoutHelper (global generations)", () => {
           house: "Sand",
           layout: {
             generationSeed: 0,
-            importance: "primary",
             houseAffinity: "house_martell",
           },
         },
@@ -376,7 +375,7 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "oberyn",
         type: "character",
-        data: { house: "Martell", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Martell", layout: { generationSeed: 0 } },
       },
     ];
     const edges = [
@@ -426,7 +425,7 @@ describe("layoutHelper (global generations)", () => {
       {
         id: "jorah",
         type: "character",
-        data: { house: "Mormont", layout: { generationSeed: 0, importance: "primary" } },
+        data: { house: "Mormont", layout: { generationSeed: 0 } },
       },
       {
         id: "doreah",

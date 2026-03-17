@@ -33,7 +33,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Ned",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
     ];
@@ -63,7 +63,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Ned",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -73,7 +73,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Bran",
           states: [{ episode: 2 }],
-          layout: { generationSeed: 1, importance: "primary" },
+          layout: { generationSeed: 1 },
         },
       },
       {
@@ -83,7 +83,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Rickon",
           states: [{ episode: 2 }],
-          layout: { generationSeed: 1, importance: "primary" },
+          layout: { generationSeed: 1 },
         },
       },
       {
@@ -93,7 +93,7 @@ describe("episodeGraph", () => {
           house: "Tully",
           name: "Catelyn",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
     ];
@@ -133,7 +133,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Ned",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -143,7 +143,7 @@ describe("episodeGraph", () => {
           house: "Stark",
           name: "Arya",
           states: [{ episode: 2 }],
-          layout: { generationSeed: 1, importance: "primary" },
+          layout: { generationSeed: 1 },
         },
       },
       {
@@ -153,7 +153,7 @@ describe("episodeGraph", () => {
           house: "Tully",
           name: "Catelyn",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
     ];
@@ -195,7 +195,7 @@ describe("episodeGraph", () => {
           house: "Lannister",
           name: "Tywin",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -205,7 +205,7 @@ describe("episodeGraph", () => {
           house: "Lannister",
           name: "Kevan",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 1, importance: "primary" },
+          layout: { generationSeed: 1 },
         },
       },
     ];
@@ -249,7 +249,7 @@ describe("episodeGraph", () => {
           house: "Tully",
           name: "Hoster",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -259,7 +259,7 @@ describe("episodeGraph", () => {
           house: "Tully",
           name: "Blackfish",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
     ];
@@ -352,7 +352,7 @@ describe("episodeGraph", () => {
           house: "Baratheon",
           name: "Stannis",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
       {
@@ -450,7 +450,7 @@ describe("episodeGraph", () => {
           house: "Tully",
           name: "Catelyn",
           states: [{ episode: 1 }],
-          layout: { generationSeed: 0, importance: "primary" },
+          layout: { generationSeed: 0 },
         },
       },
     ];

@@ -22,10 +22,6 @@ const SPACING = {
   groupTitleHeight: 56,
 };
 
-const HOUSE_AFFINITY_ALIASES = {
-  Sand: "house_martell",
-};
-
 function getNodeLayout(node) {
   return node?.data?.layout ?? {};
 }
@@ -53,28 +49,17 @@ function resolveCharacterHouseId(node, houseIdByName) {
     resolveHouseId(layout.houseAffinity, houseIdByName) ??
     resolveHouseId(node.data?.house, houseIdByName);
 
-  if (explicitHouse && houseIdByName.has(explicitHouse)) {
-    return explicitHouse;
-  }
-
-  const alias = HOUSE_AFFINITY_ALIASES[node.data?.house];
-  return resolveHouseId(alias, houseIdByName) ?? explicitHouse;
+  return explicitHouse;
 }
 
 function isVisualRelationship(edge) {
-  return (
-    edge.relationshipType === "visual_only" ||
-    edge.relationshipType === "lover" ||
-    edge.sourceHandle === "lover" ||
-    edge.targetHandle === "lover"
-  );
+  return edge.relationshipType === "lover";
 }
 
 function edgeAffectsLayout(edge, nodeById) {
   const explicit = edge.data?.layout?.affectsLayout;
   if (typeof explicit === "boolean") return explicit;
   if (isVisualRelationship(edge)) return false;
-  if (edge.relationshipType === "partner_overlay") return false;
 
   const unionNode = nodeById.get(edge.target);
   if (
@@ -87,10 +72,10 @@ function edgeAffectsLayout(edge, nodeById) {
   return true;
 }
 
-function getCharacterImportance(node, participatesInStructure) {
+function getCharacterRole(node, participatesInStructure) {
   const layout = getNodeLayout(node);
 
-  if (layout.importance) return layout.importance;
+  if (getGenerationSeed(node) != null) return "primary";
   if (layout.preserveAnchor) return "primary";
   if (participatesInStructure) return "secondary";
   return "satellite";
@@ -556,11 +541,10 @@ function deriveCharacterGenerations({
 }
 
 export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
-  const cleanNodes = initialNodes.map((node, index) => {
-    const nextNode = { ...node };
-    delete nextNode.parentId;
-    return { ...nextNode, _layoutOrder: index };
-  });
+  const cleanNodes = initialNodes.map((node, index) => ({
+    ...node,
+    _layoutOrder: index,
+  }));
 
   const nodeById = new Map(cleanNodes.map((node) => [node.id, node]));
   const houses = cleanNodes.filter((node) => node.type === "house");
@@ -699,15 +683,15 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
     generationOverrideByCharacter: options.generationOverrideByCharacter,
   });
 
-  const characterImportance = new Map();
+  const characterRoleById = new Map();
   const resolvedGenerationByHouse = new Map();
 
   characterNodes.forEach((node) => {
-    const importance = getCharacterImportance(
+    const role = getCharacterRole(
       node,
       structuralParticipation.has(node.id),
     );
-    characterImportance.set(node.id, importance);
+    characterRoleById.set(node.id, role);
 
     const houseId = characterHouseById.get(node.id);
     const generation = derivedGenerationByCharacter.get(node.id);
@@ -792,7 +776,7 @@ export function buildLayoutModel(initialNodes, initialEdges, options = {}) {
     characterHouseById,
     groupHouseById,
     groupMembershipByCharacter,
-    characterImportance,
+    characterRoleById,
     explicitGenerationByCharacter,
     derivedGenerationByCharacter,
     displayRowByCharacter,
@@ -911,7 +895,7 @@ function buildHousePlacement(model, visibleNodeIdSet, options = {}) {
     characterHouseById,
     groupHouseById,
     groupMembershipByCharacter,
-    characterImportance,
+    characterRoleById,
     displayRowByCharacter,
     unresolvedCharacters,
   } = model;
@@ -927,7 +911,7 @@ function buildHousePlacement(model, visibleNodeIdSet, options = {}) {
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
         !groupMembershipByCharacter.has(node.id) &&
-        characterImportance.get(node.id) !== "satellite" &&
+        characterRoleById.get(node.id) !== "satellite" &&
         displayRowByCharacter.has(node.id),
     );
     const fallbackNodes = cleanNodes.filter(
@@ -935,7 +919,7 @@ function buildHousePlacement(model, visibleNodeIdSet, options = {}) {
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
         !groupMembershipByCharacter.has(node.id) &&
-        (characterImportance.get(node.id) === "satellite" ||
+        (characterRoleById.get(node.id) === "satellite" ||
           unresolvedCharacters.has(node.id)),
     );
     const groupWidth = Math.max(
@@ -1037,7 +1021,7 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
     displayRowByUnion,
     childEdges,
     parentSignatureByCharacter,
-    characterImportance,
+    characterRoleById,
     partnerEdgesByUnion,
     primaryUnionIds,
     unresolvedCharacters,
@@ -1098,7 +1082,7 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
   cleanNodes
     .filter((node) => node.type === "character")
     .forEach((node) => {
-      if (characterImportance.get(node.id) === "satellite") return;
+      if (characterRoleById.get(node.id) === "satellite") return;
       if (groupMembershipByCharacter.has(node.id)) return;
       if (!displayRowByCharacter.has(node.id)) return;
 
@@ -1257,7 +1241,7 @@ export async function getSemanticLayout(initialNodes, initialEdges, options = {}
         node.type === "character" &&
         characterHouseById.get(node.id) === houseId &&
         !groupMembershipByCharacter.has(node.id) &&
-        (characterImportance.get(node.id) === "satellite" ||
+        (characterRoleById.get(node.id) === "satellite" ||
           unresolvedCharacters.has(node.id)),
     );
 

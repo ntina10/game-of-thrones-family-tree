@@ -376,8 +376,7 @@
       "image": "/characters/jeor-mormont.png",
       "house": "Night's Watch",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -402,7 +401,6 @@
   {
     "id": "alliser_thorne",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Alliser Thorne",
       "image": "/characters/alliser-thorne.png",
@@ -418,7 +416,6 @@
   {
     "id": "maester_aemon",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Maester Aemon",
       "image": "/characters/maester-aemon.png",
@@ -434,7 +431,6 @@
   {
     "id": "maester_aemon_targaryen",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Maester Aemon Targaryen",
       "image": "/characters/maester-aemon.png",
@@ -450,7 +446,6 @@
   {
     "id": "yoren",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Yoren",
       "image": "/characters/yoren.png",
@@ -474,7 +469,6 @@
   {
     "id": "samwell_tarly",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Samwell Tarly",
       "image": "/characters/samwell-tarly.png",
@@ -490,7 +484,6 @@
   {
     "id": "pyp",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Pyp",
       "image": "/characters/pyp.png",
@@ -514,7 +507,6 @@
   {
     "id": "grenn",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Grenn",
       "image": "/characters/grenn.png",
@@ -538,7 +530,6 @@
   {
     "id": "rast",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Rast",
       "image": "/characters/rast.png",
@@ -640,8 +631,7 @@
       "image": "/characters/ned-stark.png",
       "house": "Stark",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -865,7 +855,6 @@
   {
     "id": "jory_cassel",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Jory Cassel",
       "image": "/characters/jory-cassel.png",
@@ -890,7 +879,6 @@
   {
     "id": "syrio_forel",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Syrio Forel",
       "image": "/characters/syrio-forel.png",
@@ -914,7 +902,6 @@
   {
     "id": "hodor",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Hodor",
       "image": "/characters/hodor.png",
@@ -931,7 +918,6 @@
   {
     "id": "beric_dondarrion",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Beric Dondarrion",
       "image": "/characters/beric-dondarrion.png",
@@ -947,7 +933,6 @@
   {
     "id": "ros",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Ros",
       "image": "/characters/ros.png",
@@ -971,7 +956,6 @@
   {
     "id": "maester_luwin",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Maester Luwin",
       "image": "/characters/maester-luwin.png",
@@ -996,7 +980,6 @@
   {
     "id": "septa_mordane",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Septa Mordane",
       "image": "/characters/septa-mordane.png",
@@ -1064,8 +1047,7 @@
       "image": "/characters/catelyn-tully.png",
       "house": "Tully",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1091,8 +1073,7 @@
       "image": "/characters/lysa-arryn.png",
       "house": "Tully",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1133,8 +1114,7 @@
       "image": "/characters/jon-arryn.png",
       "house": "Arryn",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1151,7 +1131,6 @@
   {
     "id": "hugh_of_the_vale",
     "type": "character",
-    "parentId": "house_arryn",
     "data": {
       "name": "Hugh of the Vale",
       "image": "/characters/hugh-of-the-vale.png",
@@ -1219,8 +1198,7 @@
       "image": "/characters/lancel-lannister.png",
       "house": "Lannister",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1238,8 +1216,7 @@
       "image": "/characters/tyrion-lannister.png",
       "house": "Lannister",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1267,8 +1244,7 @@
       "image": "/characters/jaime-lannister.png",
       "house": "Lannister",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1294,8 +1270,7 @@
       "image": "/characters/cersei-lannister.png",
       "house": "Lannister",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1313,7 +1288,6 @@
   {
     "id": "bronn",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Bronn",
       "image": "/characters/bronn.png",
@@ -1329,7 +1303,6 @@
   {
     "id": "shae",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Shae",
       "image": "/characters/shae.png",
@@ -1353,7 +1326,6 @@
   {
     "id": "shagga",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Shagga",
       "image": "/characters/shagga.png",
@@ -1374,8 +1346,7 @@
       "image": "/characters/robert-baratheon.png",
       "house": "Baratheon",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1402,8 +1373,7 @@
       "image": "/characters/renly-baratheon.png",
       "house": "Baratheon",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1429,8 +1399,7 @@
       "image": "/characters/stannis-baratheon.png",
       "house": "Baratheon",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1536,7 +1505,6 @@
   {
     "id": "littlefinger",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Petyr Baelish",
       "image": "/characters/petyr-baelish.png",
@@ -1556,7 +1524,6 @@
   {
     "id": "lord_varys",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Lord Varys",
       "image": "/characters/varys.png",
@@ -1572,7 +1539,6 @@
   {
     "id": "maester_pycelle",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Grand Maester Pycelle",
       "image": "/characters/maester-pycelle.png",
@@ -1588,7 +1554,6 @@
   {
     "id": "janos_slynt",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Janos Slynt",
       "image": "/characters/janos-slynt.png",
@@ -1604,7 +1569,6 @@
   {
     "id": "meryn_trant",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Meryn Trant",
       "image": "/characters/meryn-trant.png",
@@ -1620,7 +1584,6 @@
   {
     "id": "melisandre",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Melisandre",
       "image": "/characters/melissandre.png",
@@ -1637,7 +1600,6 @@
   {
     "id": "davos_seaworth",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Davos Seaworth",
       "image": "/characters/davos-seaworth.png",
@@ -1654,7 +1616,6 @@
   {
     "id": "brienne_tarth",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Brienne of Tarth",
       "image": "/characters/brienne-of-tarth.png",
@@ -1676,8 +1637,7 @@
       "image": "/characters/gregor-clegane.png",
       "house": "Clegane",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1699,8 +1659,7 @@
       "image": "/characters/sandor-clegane.png",
       "house": "Clegane",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1730,8 +1689,7 @@
       "image": "/characters/balon-greyjoy.png",
       "house": "Greyjoy",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1777,8 +1735,7 @@
       "image": "/characters/loras-tyrell.png",
       "house": "Tyrell",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1796,8 +1753,7 @@
       "image": "/characters/margery-tyrell.png",
       "house": "Tyrell",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1838,8 +1794,7 @@
       "image": "/characters/daenerys-targaryen.png",
       "house": "Targaryen",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1862,8 +1817,7 @@
       "image": "/characters/khal-drogo.png",
       "house": "Targaryen",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -1960,7 +1914,6 @@
   {
     "id": "illyrio",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Illyrio Mopatis",
       "image": "/characters/illyrio.png",
@@ -1976,7 +1929,6 @@
   {
     "id": "jorah_mormont",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Jorah Mormont",
       "image": "/characters/jorah-mormont.png",
@@ -1997,7 +1949,6 @@
   {
     "id": "mirri_maz_duur",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Mirri Maz Duur",
       "image": "/characters/mirri-maz-duur.png",
@@ -2017,7 +1968,6 @@
   {
     "id": "qotho",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Qotho",
       "image": "/characters/qotho.png",
@@ -2041,7 +1991,6 @@
   {
     "id": "mago",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Mago",
       "image": "/characters/mago.png",
@@ -2065,7 +2014,6 @@
   {
     "id": "wineseller",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Wineseller",
       "image": "/characters/wineseller.png",
@@ -2147,8 +2095,7 @@
       "image": "/characters/yohn-royce.png",
       "house": "Royce",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -2166,8 +2113,7 @@
       "image": "/characters/roose-bolton.png",
       "house": "Bolton",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -2218,7 +2164,6 @@
   {
     "id": "rodrick_cassel",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Rodrik Cassel",
       "image": "/characters/rodrick-cassel.png",
@@ -2242,7 +2187,6 @@
   {
     "id": "osha",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Osha",
       "image": "/characters/osha.png",
@@ -2258,7 +2202,6 @@
   {
     "id": "greatjon_umber",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Greatjon Umber",
       "image": "/characters/greatjon-umber.png",
@@ -2274,7 +2217,6 @@
   {
     "id": "rickard_karstark",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Rickard Karstark",
       "image": "/characters/karstark.png",
@@ -2324,7 +2266,6 @@
   {
     "id": "hot_pie",
     "type": "character",
-    "parentId": "house_stark",
     "data": {
       "name": "Hot Pie",
       "image": "/characters/hot-pie.png",
@@ -2456,7 +2397,6 @@
   {
     "id": "qhorin_halfhand",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Qhorin Halfhand",
       "image": "/characters/qhorin-halfhand.png",
@@ -2542,7 +2482,6 @@
   {
     "id": "edd",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Edd",
       "image": "/characters/edd.png",
@@ -2684,7 +2623,6 @@
   {
     "id": "karl_tanner",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Karl Tanner",
       "image": "/characters/karl-tanner.png",
@@ -2708,7 +2646,6 @@
   {
     "id": "olly",
     "type": "character",
-    "parentId": "house_nights_watch",
     "data": {
       "name": "Olly",
       "image": "/characters/olly.png",
@@ -2724,7 +2661,6 @@
   {
     "id": "maester_cressen",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Maester Cressen",
       "image": "/characters/maester-cressen.png",
@@ -2748,7 +2684,6 @@
   {
     "id": "salladhor_saan",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Salladhor Saan",
       "image": "/characters/salladhor-saan.png",
@@ -2764,7 +2699,6 @@
   {
     "id": "mathos_seaworth",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Mathos Seaworth",
       "image": "/characters/mathos-seaworth.png",
@@ -2788,7 +2722,6 @@
   {
     "id": "selyse_baratheon",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Selyse Baratheon",
       "image": "/characters/selyse-baratheon.png",
@@ -2804,7 +2737,6 @@
   {
     "id": "shireen_baratheon",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Shireen Baratheon",
       "image": "/characters/shireen-baratheon.png",
@@ -2820,7 +2752,6 @@
   {
     "id": "ilyn_payne",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Ilyn Payne",
       "image": "/characters/ilyn-payne.png",
@@ -2836,7 +2767,6 @@
   {
     "id": "dontos_hollard",
     "type": "character",
-    "parentId": "house_baratheon",
     "data": {
       "name": "Dontos Hollard",
       "image": "/characters/dontos-hollard.png",
@@ -2860,7 +2790,6 @@
   {
     "id": "podrick_payne",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Podrick Payne",
       "image": "/characters/podrick-payne.png",
@@ -2876,7 +2805,6 @@
   {
     "id": "lollys_stokeworth",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Lollys Stokeworth",
       "image": "/characters/lollys-stokeworth.png",
@@ -2892,7 +2820,6 @@
   {
     "id": "qyburn",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Qyburn",
       "image": "/characters/maester-qyburn.png",
@@ -2908,7 +2835,6 @@
   {
     "id": "olyvar",
     "type": "character",
-    "parentId": "house_tyrell",
     "data": {
       "name": "Olyvar",
       "image": "/characters/olyvar.png",
@@ -2924,7 +2850,6 @@
   {
     "id": "alton_lannister",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Alton Lannister",
       "image": "/characters/alton-lannister.png",
@@ -2948,7 +2873,6 @@
   {
     "id": "amory_lorch",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Amory Lorch",
       "image": "/characters/amory-lorch.png",
@@ -2972,7 +2896,6 @@
   {
     "id": "polliver",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "Polliver",
       "image": "/characters/polliver.png",
@@ -2996,7 +2919,6 @@
   {
     "id": "tickler",
     "type": "character",
-    "parentId": "house_lannister",
     "data": {
       "name": "The Tickler",
       "image": "/characters/tickler.png",
@@ -3033,10 +2955,7 @@
             "type": "dead"
           }
         }
-      ],
-      "layout": {
-        "importance": "primary"
-      }
+      ]
     }
   },
   {
@@ -3070,10 +2989,7 @@
             "type": "info"
           }
         }
-      ],
-      "layout": {
-        "importance": "primary"
-      }
+      ]
     }
   },
   {
@@ -3084,8 +3000,7 @@
       "image": "/characters/roslin-frey.png",
       "house": "Frey",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -3151,7 +3066,6 @@
   {
     "id": "dagmer_cleftjaw",
     "type": "character",
-    "parentId": "house_greyjoy",
     "data": {
       "name": "Dagmer Cleftjaw",
       "image": "/characters/dagmar.png",
@@ -3202,8 +3116,7 @@
       "image": "/characters/doran-martell.png",
       "house": "Martell",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -3221,8 +3134,7 @@
       "image": "/characters/oberyn-martell.png",
       "house": "Martell",
       "layout": {
-        "generationSeed": 0,
-        "importance": "primary"
+        "generationSeed": 0
       },
       "states": [
         {
@@ -3249,7 +3161,7 @@
       "house": "Sand",
       "layout": {
         "generationSeed": 0,
-        "importance": "primary"
+        "houseAffinity": "house_martell"
       },
       "states": [
         {
@@ -3262,7 +3174,6 @@
   {
     "id": "barristan_selmy",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Barristan Selmy",
       "image": "/characters/barristan-selmy.png",
@@ -3278,7 +3189,6 @@
   {
     "id": "doreah",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Doreah",
       "image": "/characters/doreah.png",
@@ -3302,7 +3212,6 @@
   {
     "id": "irri",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Irri",
       "image": "/characters/irri.png",
@@ -3326,7 +3235,6 @@
   {
     "id": "rakharo",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Rakharo",
       "image": "/characters/rakharo.png",
@@ -3350,7 +3258,6 @@
   {
     "id": "pyat_pree",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Pyat Pree",
       "image": "/characters/pyat-pree.png",
@@ -3374,7 +3281,6 @@
   {
     "id": "xaro_xhoan_daxos",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Xaro Xhoan Daxos",
       "image": "/characters/xaro-xhoan-daxos.png",
@@ -3398,7 +3304,6 @@
   {
     "id": "spice_master",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Spice King",
       "image": "/characters/spice-master.png",
@@ -3414,7 +3319,6 @@
   {
     "id": "kraznys_mo_nakloz",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Kraznys mo Nakloz",
       "image": "/characters/master-kraznys.png",
@@ -3438,7 +3342,6 @@
   {
     "id": "grey_worm",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Grey Worm",
       "image": "/characters/grey-worm.png",
@@ -3454,7 +3357,6 @@
   {
     "id": "missandei",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Missandei",
       "image": "/characters/missandrei.png",
@@ -3470,7 +3372,6 @@
   {
     "id": "razdal_mo_eraz",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Razdal mo Eraz",
       "image": "/characters/master-eraz.png",
@@ -3486,7 +3387,6 @@
   {
     "id": "mero",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Mero",
       "image": "/characters/mero.png",
@@ -3510,7 +3410,6 @@
   {
     "id": "prendhal_na_ghezn",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Prendahl na Ghezn",
       "image": "/characters/prendhal-na-ghezn.png",
@@ -3534,7 +3433,6 @@
   {
     "id": "daario_naharis",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Daario Naharis",
       "image": "/characters/daario-naharis.png",
@@ -3550,7 +3448,6 @@
   {
     "id": "drogon",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Drogon",
       "image": "/characters/drogon.png",
@@ -3566,7 +3463,6 @@
   {
     "id": "rhaegal",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Rhaegal",
       "image": "/characters/rhaegal.png",
@@ -3582,7 +3478,6 @@
   {
     "id": "viseryon",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Viserion",
       "image": "/characters/viseryon.png",
@@ -3598,7 +3493,6 @@
   {
     "id": "hizdahr_zo_loraq",
     "type": "character",
-    "parentId": "house_targaryen",
     "data": {
       "name": "Hizdahr zo Loraq",
       "image": "/characters/hizdahr-zo-loraq.png",

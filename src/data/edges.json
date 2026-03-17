@@ -438,7 +438,7 @@
     "target": "lancel_lannister",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -461,7 +461,7 @@
     "target": "cersei_lannister",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only"
+    "relationshipType": "lover"
   },
   {
     "id": "l-tyrion-shae",
@@ -470,7 +470,7 @@
     "target": "shae",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -493,7 +493,7 @@
     "target": "loras_tyrell",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -516,7 +516,7 @@
     "target": "ros",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -707,7 +707,7 @@
     "target": "ygritte",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -730,7 +730,7 @@
     "target": "ellaria_sand",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -748,7 +748,7 @@
     "target": "daario_naharis",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {
@@ -766,7 +766,7 @@
     "target": "olyvar",
     "targetHandle": "lover",
     "type": "smoothstep",
-    "relationshipType": "visual_only",
+    "relationshipType": "lover",
     "data": {
       "states": [
         {

@@ -361,12 +361,7 @@ function getViewportBounds(containerElement, reactFlow) {
 }
 
 function decorateEdge(edge, opacity = 1) {
-  const isRelationshipOverlay =
-    edge.relationshipType === "lover" ||
-    edge.relationshipType === "partner_overlay" ||
-    edge.sourceHandle === "lover" ||
-    edge.targetHandle === "lover" ||
-    edge.relationshipType === "visual_only";
+  const isRelationshipOverlay = edge.relationshipType === "lover";
   const shouldBeSmart =
     !SHARED_EDGE_TYPES.has(edge.relationshipType) && !isRelationshipOverlay;
 
@@ -379,11 +374,7 @@ function decorateEdge(edge, opacity = 1) {
     },
     data: {
       ...(edge.data ?? {}),
-      relationshipType:
-        edge.relationshipType === "visual_only" &&
-        (edge.sourceHandle === "lover" || edge.targetHandle === "lover")
-          ? "lover"
-          : edge.relationshipType,
+      relationshipType: edge.relationshipType,
     },
   };
 }
